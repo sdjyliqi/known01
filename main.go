@@ -4,7 +4,7 @@ import (
 	"flag"
 	"github.com/gin-gonic/gin"
 	"github.com/golang/glog"
-	"github.com/sdjyliqi/feirars/router"
+	"github.com/sdjyliqi/known01/router"
 )
 
 func main() {

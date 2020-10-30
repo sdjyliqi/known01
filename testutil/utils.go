@@ -4,8 +4,8 @@ package testutil
 import (
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/go-xorm/xorm"
-	"github.com/sdjyliqi/feirars/conf"
-	"github.com/sdjyliqi/feirars/utils"
+	"github.com/sdjyliqi/known01/conf"
+	"github.com/sdjyliqi/known01/utils"
 	"sync"
 	"testing"
 )
