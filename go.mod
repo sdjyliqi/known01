@@ -3,6 +3,8 @@ module known01
 go 1.15
 
 require (
+	github.com/bitly/go-simplejson v0.5.0 // indirect
+	github.com/ghostwwl/baiduai v0.0.0-20170308025310-c454baabed12
 	github.com/gin-gonic/gin v1.6.3
 	github.com/go-sql-driver/mysql v1.5.0
 	github.com/go-xorm/xorm v0.7.9

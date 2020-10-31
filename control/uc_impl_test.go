@@ -1,8 +1,6 @@
 package control
 
 import (
-	"github.com/sdjyliqi/known01/testutil"
-	"github.com/stretchr/testify/assert"
 	"testing"
 )
 
