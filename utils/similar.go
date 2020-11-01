@@ -1,6 +1,8 @@
 package utils
 
-import "math"
+import (
+	"math"
+)
 
 func SimilarText(first, second string, percent *float64) int {
 	var similarText func(string, string, int, int) int
@@ -45,7 +47,6 @@ func SimilarText(first, second string, percent *float64) int {
 	}
 	return sim
 }
-
 
 //Levenshtein 两个字符串的编辑距离
 func Levenshtein(a, b string) int {
@@ -94,4 +95,15 @@ func Levenshtein(a, b string) int {
 //SimilarDegree 字符串相似度
 func SimilarDegree(a, b string) float64 {
 	return 1 - float64(Levenshtein(a, b))/math.Max(float64(len([]rune(a))), float64(len([]rune(b))))
+}
+
+//min 获取小值
+func min(a ...int) int {
+	r := a[0]
+	for _, v := range a {
+		if r > v {
+			r = v
+		}
+	}
+	return r
 }

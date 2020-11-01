@@ -20,17 +20,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="91f69e01-107a-433a-b190-0e176ab79e31" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/brain/bank.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/brain/brain.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/brain/brain_impl.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/brain/express.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/brain/reward.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/similar.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/similar_test.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/brain/bank_impl.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/brain/zbackup.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/brain/bank.go" beforeDir="false" afterPath="$PROJECT_DIR$/brain/bank.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/brain/brain.go" beforeDir="false" afterPath="$PROJECT_DIR$/brain/brain.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/brain/brain_impl.go" beforeDir="false" afterPath="$PROJECT_DIR$/brain/brain_impl.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/news_request.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/redis.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/similar.go" beforeDir="false" afterPath="$PROJECT_DIR$/utils/similar.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/similar_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/utils/similar_test.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -157,26 +157,30 @@
     <integration-enabled>true</integration-enabled>
   </component>
   <component name="WindowStateProjectService">
-    <state width="1877" height="392" key="GridCell.Tab.0.bottom" timestamp="1604134552699">
+    <state width="1877" height="111" key="GridCell.Tab.0.bottom" timestamp="1604154823631">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="392" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1604134552699" />
-    <state width="1877" height="392" key="GridCell.Tab.0.center" timestamp="1604134552699">
+    <state width="1877" height="111" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1604154823631" />
+    <state width="1877" height="111" key="GridCell.Tab.0.center" timestamp="1604154823630">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="392" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1604134552699" />
-    <state width="1877" height="392" key="GridCell.Tab.0.left" timestamp="1604134552699">
+    <state width="1877" height="111" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1604154823630" />
+    <state width="1877" height="111" key="GridCell.Tab.0.left" timestamp="1604154823630">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="392" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1604134552699" />
-    <state width="1877" height="392" key="GridCell.Tab.0.right" timestamp="1604134552699">
+    <state width="1877" height="111" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1604154823630" />
+    <state width="1877" height="111" key="GridCell.Tab.0.right" timestamp="1604154823630">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="392" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1604134552699" />
+    <state width="1877" height="111" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1604154823630" />
     <state x="461" y="164" key="SettingsEditor" timestamp="1604068286438">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="461" y="164" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1604068286438" />
+    <state x="682" y="431" key="vcs.readOnlyHandler.ReadOnlyStatusDialog" timestamp="1604144625526">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="682" y="431" key="vcs.readOnlyHandler.ReadOnlyStatusDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1604144625526" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
