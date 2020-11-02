@@ -16,6 +16,7 @@ func (c *Center) init() bool {
 	if !ok {
 		return false
 	}
+	//通过客服电话 构建自动机
 
 	return true
 }

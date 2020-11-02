@@ -1,1 +1,1 @@
-xorm reverse mysql "pingback-0001a:Pinback-123987!@tcp(127.0.0.1:3306)/pingback?charset=utf8mb4" templates/goxorm
+xorm reverse mysql "root:Bit0123456789!@tcp(114.55.139.105:3306)/brain?charset=utf8mb4"   templates/goxorm

@@ -8,6 +8,6 @@ type Known01Config struct {
 
 // DefaultConfig .
 var DefaultConfig = Known01Config{
-	DBMysql: "pingback-0001a:Pinback-123987!@tcp(127.0.0.1:3306)/pingback?charset=utf8mb4",
+	DBMysql: "root:Bit0123456789!@tcp(114.55.139.105:3306)/brain?charset=utf8mb4",
 	DBRedis: "redis://1:@127.0.0.1:6379",
 }

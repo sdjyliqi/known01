@@ -5,7 +5,7 @@ import (
 	"encoding/hex"
 )
 
-const salt = "feirar1234567890!#"
+const salt = "knownYes1234567890!#"
 
 func CreatePassportSec(passport string) string {
 	return passport

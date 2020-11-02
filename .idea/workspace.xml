@@ -20,18 +20,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="91f69e01-107a-433a-b190-0e176ab79e31" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/brain/bank_impl.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/brain/zbackup.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/brain/bank_impl_test.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/brain/brain_impl_test.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/initial.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/mysql_test.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/brain/bank.go" beforeDir="false" afterPath="$PROJECT_DIR$/brain/bank.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/brain/bank_impl.go" beforeDir="false" afterPath="$PROJECT_DIR$/brain/bank_impl.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/brain/brain.go" beforeDir="false" afterPath="$PROJECT_DIR$/brain/brain.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/brain/brain_impl.go" beforeDir="false" afterPath="$PROJECT_DIR$/brain/brain_impl.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/brain/zbackup.go" beforeDir="false" afterPath="$PROJECT_DIR$/brain/zbackup.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/conf/config.go" beforeDir="false" afterPath="$PROJECT_DIR$/conf/config.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/similar.go" beforeDir="false" afterPath="$PROJECT_DIR$/utils/similar.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/similar_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/utils/similar_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/user_basic.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/user_basic_test.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/extract.go" beforeDir="false" afterPath="$PROJECT_DIR$/utils/extract.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/extract_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/utils/extract_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/mysql.go" beforeDir="false" afterPath="$PROJECT_DIR$/utils/mysql.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/salt.go" beforeDir="false" afterPath="$PROJECT_DIR$/utils/salt.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/xorm.reverse" beforeDir="false" afterPath="$PROJECT_DIR$/xorm.reverse" afterDir="false" />
     </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -60,27 +69,42 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="configurable.Global.GOPATH.is.expanded" value="true" />
+    <property name="configurable.Module.GOPATH.is.expanded" value="false" />
+    <property name="configurable.Project.GOPATH.is.expanded" value="true" />
     <property name="go.import.settings.migrated" value="true" />
     <property name="go.sdk.automatically.set" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/brain" />
-    <property name="settings.editor.selected.configurable" value="go.vgo" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/utils" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\gowork\src\known01\brain" />
       <recent name="D:\gowork\src\known01\utils" />
+      <recent name="D:\gowork\src\known01\brain" />
     </key>
   </component>
-  <component name="RunManager" selected="Go Test.Test_simnet in known01/utils">
-    <configuration name="Test_ExtractMPhone in known01/utils" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Go Test.Test_pickupProperties in known01/brain">
+    <configuration name="Test_ExtractMPhone in known01/utils (1)" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="known01" />
       <working_directory value="$PROJECT_DIR$/utils" />
       <framework value="gotest" />
       <kind value="PACKAGE" />
       <package value="known01/utils" />
-      <directory value="$PROJECT_DIR$" />
-      <filePath value="$PROJECT_DIR$" />
-      <pattern value="^\QTest_ExtractMPhone\E$" />
+      <directory value="$PROJECT_DIR$/" />
+      <filePath value="$PROJECT_DIR$/" />
+      <pattern value="^Test_ExtractMPhone$" />
       <method v="2" />
     </configuration>
     <configuration name="Test_ExtractWeb in known01/utils" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
@@ -89,72 +113,74 @@
       <framework value="gotest" />
       <kind value="PACKAGE" />
       <package value="known01/utils" />
-      <directory value="$PROJECT_DIR$" />
-      <filePath value="$PROJECT_DIR$" />
-      <pattern value="^\QTest_ExtractWeb\E$" />
+      <directory value="$PROJECT_DIR$/" />
+      <filePath value="$PROJECT_DIR$/" />
+      <pattern value="^Test_ExtractWeb$" />
       <method v="2" />
     </configuration>
-    <configuration name="Test_SimilarText in known01/utils" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+    <configuration name="Test_ExtractWebFirstDomain in known01/utils" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="known01" />
       <working_directory value="$PROJECT_DIR$/utils" />
       <framework value="gotest" />
       <kind value="PACKAGE" />
       <package value="known01/utils" />
-      <directory value="$PROJECT_DIR$" />
-      <filePath value="$PROJECT_DIR$" />
-      <pattern value="^\QTest_SimilarText\E$" />
+      <directory value="$PROJECT_DIR$/" />
+      <filePath value="$PROJECT_DIR$/" />
+      <pattern value="^Test_ExtractWebFirstDomain$" />
       <method v="2" />
     </configuration>
-    <configuration name="Test_TimeFormat in known01/utils" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+    <configuration name="Test_MYSQL in known01/utils" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="known01" />
       <working_directory value="$PROJECT_DIR$/utils" />
       <framework value="gotest" />
       <kind value="PACKAGE" />
       <package value="known01/utils" />
-      <directory value="$PROJECT_DIR$" />
-      <filePath value="$PROJECT_DIR$" />
-      <pattern value="^\QTest_TimeFormat\E$" />
+      <directory value="$PROJECT_DIR$/" />
+      <filePath value="$PROJECT_DIR$/" />
+      <pattern value="^Test_MYSQL$" />
       <method v="2" />
     </configuration>
-    <configuration name="Test_simnet in known01/utils" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+    <configuration name="Test_pickupProperties in known01/brain" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="known01" />
-      <working_directory value="$PROJECT_DIR$/utils" />
+      <working_directory value="$PROJECT_DIR$/brain" />
       <framework value="gotest" />
       <kind value="PACKAGE" />
-      <package value="known01/utils" />
-      <directory value="$PROJECT_DIR$" />
-      <filePath value="$PROJECT_DIR$" />
-      <pattern value="^\QTest_simnet\E$" />
+      <package value="known01/brain" />
+      <directory value="$PROJECT_DIR$/" />
+      <filePath value="$PROJECT_DIR$/" />
+      <pattern value="^Test_pickupProperties$" />
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Go Test.Test_simnet in known01/utils" />
-        <item itemvalue="Go Test.Test_SimilarText in known01/utils" />
+        <item itemvalue="Go Test.Test_pickupProperties in known01/brain" />
+        <item itemvalue="Go Test.Test_MYSQL in known01/utils" />
+        <item itemvalue="Go Test.Test_ExtractMPhone in known01/utils (1)" />
+        <item itemvalue="Go Test.Test_ExtractWebFirstDomain in known01/utils" />
         <item itemvalue="Go Test.Test_ExtractWeb in known01/utils" />
-        <item itemvalue="Go Test.Test_ExtractMPhone in known01/utils" />
-        <item itemvalue="Go Test.Test_TimeFormat in known01/utils" />
       </list>
     </recent_temporary>
   </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SpellCheckerSettings" BundledDictionaries="0" Folders="0" CustomDictionaries="0" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="application-level" UseSingleDictionary="true" />
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="3" />
+    <option name="version" value="1" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>
+    <proxy>https://goproxy.cn</proxy>
   </component>
   <component name="WindowStateProjectService">
     <state width="1877" height="111" key="GridCell.Tab.0.bottom" timestamp="1604154823631">
@@ -194,6 +220,11 @@
           <url>file://$PROJECT_DIR$/utils/extract_test.go</url>
           <line>46</line>
           <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/utils/extract_test.go</url>
+          <line>56</line>
+          <option name="timeStamp" value="5" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
