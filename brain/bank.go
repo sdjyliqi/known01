@@ -2,7 +2,7 @@ package brain
 
 import "github.com/gansidui/ahocorasick"
 
-var message = "[招商银行]尊敬的客户，一张闪电贷专属礼券为你呈上！用券条款可享受专属利率优惠，优惠日截止2020年10月31日。" +
+var messageTest = "[招商银行]尊敬的客户，一张闪电贷专属礼券为你呈上！用券条款可享受专属利率优惠，优惠日截止2020年10月31日。" +
 	"点击http://a.cmbchina.com/personal/cmhkas13快速申请，详情请咨询95599,400-66666888,15210510285"
 
 var bankNames = map[string][]string{
@@ -20,26 +20,23 @@ type bankBrain struct {
 	allNames      []string
 	customerPhone []string
 	acMatch       *ahocorasick.Matcher
-	phoneACMatch  *ahocorasick.Matcher
+
+	customerPhoneDic map[string]string //存储客服电话到标准名称的映射。
+
 }
 
 //CreateBankBrain ... 创建银行鉴别引擎
 func CreateBankBrain() *bankBrain {
 	brain := bankBrain{
-		aliasNames:   map[string]string{},
-		allNames:     []string{},
-		acMatch:      nil,
-		phoneACMatch: nil,
+		aliasNames:       map[string]string{},
+		allNames:         []string{},
+		customerPhoneDic: map[string]string{},
+		acMatch:          nil,
 	}
 	ac := ahocorasick.NewMatcher()
 	brain.allNames = bankKeywords
 	ac.Build(bankKeywords)
 	brain.acMatch = ac
-
-	acCustomerPhone := ahocorasick.NewMatcher()
-	brain.customerPhone = customerPhones
-	ac.Build(customerPhones)
-	brain.phoneACMatch = acCustomerPhone
 
 	//通过别名，找到标准名称
 	for k, v := range bankNames {

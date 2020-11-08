@@ -1,59 +1,215 @@
 package brain
 
 import (
-	"fmt"
+	"github.com/gansidui/ahocorasick"
+	"github.com/golang/glog"
+	"known01/models"
 	"known01/utils"
+	"strings"
 )
 
-func (c *Center) init() bool {
+func (c *Center) init() error {
+	//todo 换为真正的数据
 	//load templates about bank
-	ok := c.loadBankTemplates([]string{})
-	if !ok {
-		return false
+	err := c.InitTemplatesItemsFromDB()
+	if err != nil {
+		glog.Errorf("Call InitTemplatesItemsFromDB failed,err:%+v", err)
+		return err
 	}
-	//load templates about bank
-	ok = c.loadExpressTemplates([]string{})
-	if !ok {
-		return false
+
+	//load cut-words from mysql
+	err = c.InitCutWordsFromDB()
+	if err != nil {
+		glog.Errorf("Call InitCutWordsFromDB failed,err:%+v", err)
+		return err
 	}
-	//通过客服电话 构建自动机
 
-	return true
+	err = c.InitReferencesItemsFromDB()
+	if err != nil {
+		glog.Errorf("Call InitReferencesItemsFromDB failed,err:%+v", err)
+		return err
+	}
+
+	return nil
 }
 
-func (c *Center) loadBankTemplates(templates []string) bool {
-	templates = []string{"尊敬的工商银行用户：您的电子密码器于次日失效，请速登录手机维护网站wap.icbcsap.com进行更新。给你带来不变，敬请谅解！【工商银行】"}
-	templates = append(templates, "尊敬的工商银行用户：您的积分将在近期失效，请速登录手机维护网站wap.icbcsap.com进行更新。给你带来不变，敬请谅解！【工商银行】")
-	fmt.Println(templates)
-	c.bankTemplates = templates
-	return true
+func (c *Center) InitCutWordsFromDB() error {
+	items, err := models.Assist{}.GetItems(utils.GetMysqlClient())
+	if err != nil {
+		return err
+	}
+	words := make([]string, len(items))
+	for k, v := range items {
+		if v.Enable == 1 {
+			words[k] = v.Name
+		}
+	}
+	c.cutWords = words
+	return nil
 }
 
-func (c *Center) loadExpressTemplates(templates []string) bool {
-	return true
+//getReferencesItemsFromDB ...
+func (c *Center) InitReferencesItemsFromDB() error {
+	//初始化customerPhoneDic
+	phoneNumsDic := map[string]*models.Reference{}
+	items, err := models.Reference{}.GetItems(utils.GetMysqlClient())
+	if err != nil {
+		return err
+	}
+	c.referencesItems = items //尽可能的复用此数据，交付给鉴别引擎
+	//定义全量电话号码
+	var allPhoneIDs []string
+	for _, v := range items {
+		//初始化电话号码到详情的映射表
+		if len(v.Phone) > 0 {
+			phone := strings.ReplaceAll(v.Phone, "-", "")
+			phoneNumsDic[phone] = v
+			allPhoneIDs = append(allPhoneIDs, phone)
+		}
+		if len(v.ManualPhone) > 0 {
+			phonesLine := strings.ReplaceAll(v.ManualPhone, "，", ",")
+			phonesLine = strings.ReplaceAll(v.ManualPhone, "-", "")
+			phoneIDs := strings.Split(phonesLine, ",")
+			allPhoneIDs = append(allPhoneIDs, phoneIDs...)
+			for _, vv := range phoneIDs {
+				phoneNumsDic[vv] = v
+			}
+		}
+		//扩充分类关键词
+		indexWordDic[v.CategoryId] = append(indexWordDic[v.CategoryId], v.Name)
+		if len(v.AliasNames) > 0 {
+			names := strings.Split(v.AliasNames, ",")
+			indexWordDic[v.CategoryId] = append(indexWordDic[v.CategoryId], names...)
+		}
+		//初始化模板
+	}
+	c.customerPhoneDic = phoneNumsDic
+
+	//create customer phone numbers for ac
+	acPhoneIDs := ahocorasick.NewMatcher()
+	c.customerPhones = allPhoneIDs
+	acPhoneIDs.Build(allPhoneIDs)
+	c.acCustomerPhoneMatch = acPhoneIDs
+
+	//创建兜底基于关键词的匹配自动机
+	var indexWords []string
+	for k, v := range indexWordDic {
+		indexWords = append(indexWords, v...)
+		for _, vv := range v {
+			c.indexWordsDic[vv] = k
+		}
+	}
+	acIndexWord := ahocorasick.NewMatcher()
+	acIndexWord.Build(indexWords)
+	c.indexWords = indexWords
+	c.acIndexWords = acIndexWord
+
+	return nil
 }
 
-//GetEngineName ... 根据提交的信息，判断最符合那个鉴别引擎
-func (c *Center) GetEngineName(msg string) EngineType {
-	return EngineBank
+//InitTemplatesItemsFromDB ...初始化短信模板相关的内容
+func (c *Center) InitTemplatesItemsFromDB() error {
+	templateDic := map[string]utils.EngineType{}
+	items, err := models.Templates{}.GetItems(utils.GetMysqlClient())
+	if err != nil {
+		return err
+	}
+	for _, v := range items {
+		if v.Enable == 1 {
+			templateDic[v.Detail] = v.CategoryId
+		}
+	}
+	c.messageTemplates = templateDic
+	return nil
+}
+
+//amendMessage ...模板匹配前，需要提出辅助词
+func (c *Center) amendMessage(msg string) string {
+	//var newMessage []rune
+	//for _,v := range []rune(msg){
+	//	if (v > 'A' && v <= 'Z') || (v > 'a' && v <= 'z') || (v > '0' && v <= '9'){
+	//		continue
+	//	}
+	//	newMessage = append(newMessage,v)
+	//}
+	//剔除空格
+	msg = strings.ReplaceAll(msg, " ", "")
+	for _, v := range c.cutWords {
+		msg = strings.ReplaceAll(msg, v, "")
+	}
+	return msg
+}
+
+//acFindPhoneNum ...寻找
+func (c *Center) acFindPhoneID(msg string) (string, bool) {
+	matchIndex := c.acCustomerPhoneMatch.Match(msg)
+	if len(matchIndex) > 0 {
+		return c.customerPhones[matchIndex[0]], true
+	}
+	return "", false
+}
+
+//acFindPhoneNum ...根据寻找的客服电话，查找匹配的引擎名称
+func (c *Center) getEngineByPhoneID(phone string) (utils.EngineType, bool) {
+	v, ok := c.customerPhoneDic[phone]
+	return v.CategoryId, ok
+}
+
+//acFindPhoneNum ...寻找关键字
+func (c *Center) acFindIndexWord(msg string) (string, bool) {
+	matchIndex := c.acIndexWords.Match(msg)
+	if len(matchIndex) > 0 {
+		return c.indexWords[matchIndex[0]], true
+	}
+	return "", false
+}
+
+//acFindPhoneNum ...根据寻找的客服电话，查找匹配的引擎名称
+func (c *Center) getEngineByIndexWord(index string) (utils.EngineType, bool) {
+	v, ok := c.indexWordsDic[index]
+	return v, ok
 }
 
 //bankEngineRate ...计算银行类信息匹配度
-func (c *Center) bankEngineRate(msg string) float64 {
+func (c *Center) matchEngineRate(msg string) (utils.EngineType, float64) {
 	matchRate := 0.0
-	for _, v := range c.bankTemplates {
-		rate := utils.SimilarDegree(msg, v)
+	engineName := utils.EngineUnknown
+	for k, v := range c.messageTemplates {
+		rate := utils.SimilarDegree(msg, k)
 		if rate > matchRate {
 			matchRate = rate
+			engineName = v
 		}
 	}
-	return 0.0
+	return engineName, matchRate
 }
 
-func (c *Center) expressEngineRate(msg string) float64 {
-	return 0.0
-}
+//GetEngineName ... 根据提交的信息，判断最符合那个鉴别引擎
+func (c *Center) GetEngineName(msg string) (utils.EngineType, string) {
+	minMatchLevel := 0.5
+	//第二步，判断是否有官方电话号码,如果找到，返回类型和电话即可。
+	phoneID, ok := c.acFindPhoneID(msg)
+	if ok {
+		engineName, ok := c.getEngineByPhoneID(phoneID)
+		if ok {
+			return engineName, phoneID
+		}
+	}
+	//第二部，修正短信数据，提出副助词，英文字母或者数字
 
-func (c *Center) rewardEngineRate(msg string) float64 {
-	return 0.0
+	amendMessage := c.amendMessage(msg)
+	//第三步顺序匹配模板，选择匹配最高分
+	engineName, score := c.matchEngineRate(amendMessage)
+	if score > minMatchLevel {
+		return engineName, ""
+	}
+	//第四步，寻找关键字
+	indexWord, ok := c.acFindIndexWord(amendMessage)
+	if ok {
+		engineName, ok := c.getEngineByIndexWord(indexWord)
+		if ok {
+			return engineName, ""
+		}
+	}
+	return utils.EngineUnknown, ""
 }

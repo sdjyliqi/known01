@@ -20,27 +20,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="91f69e01-107a-433a-b190-0e176ab79e31" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/brain/bank_impl_test.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/brain/brain_impl_test.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/initial.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/mysql_test.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/models/assist_test.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/models/templates_test.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/brain/bank.go" beforeDir="false" afterPath="$PROJECT_DIR$/brain/bank.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/brain/bank_impl.go" beforeDir="false" afterPath="$PROJECT_DIR$/brain/bank_impl.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/brain/bank_impl_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/brain/bank_impl_test.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/brain/brain.go" beforeDir="false" afterPath="$PROJECT_DIR$/brain/brain.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/brain/brain_impl.go" beforeDir="false" afterPath="$PROJECT_DIR$/brain/brain_impl.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/brain/brain_impl_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/brain/brain_impl_test.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/brain/zbackup.go" beforeDir="false" afterPath="$PROJECT_DIR$/brain/zbackup.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/conf/config.go" beforeDir="false" afterPath="$PROJECT_DIR$/conf/config.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/user_basic.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/user_basic_test.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/extract.go" beforeDir="false" afterPath="$PROJECT_DIR$/utils/extract.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/extract_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/utils/extract_test.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/mysql.go" beforeDir="false" afterPath="$PROJECT_DIR$/utils/mysql.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/salt.go" beforeDir="false" afterPath="$PROJECT_DIR$/utils/salt.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/xorm.reverse" beforeDir="false" afterPath="$PROJECT_DIR$/xorm.reverse" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/const.go" beforeDir="false" afterPath="$PROJECT_DIR$/utils/const.go" afterDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -55,6 +47,11 @@
   </component>
   <component name="GOROOT" path="C:\Go" />
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="aaaaaaaaaaa" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1jbMHJ9MMCFFcAiai9SYfpA7uw1" />
@@ -69,136 +66,120 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="configurable.Global.GOPATH.is.expanded" value="true" />
-    <property name="configurable.Module.GOPATH.is.expanded" value="false" />
-    <property name="configurable.Project.GOPATH.is.expanded" value="true" />
     <property name="go.import.settings.migrated" value="true" />
     <property name="go.sdk.automatically.set" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/utils" />
-    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/models" />
+    <property name="settings.editor.selected.configurable" value="go.vgo" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\gowork\src\known01\utils" />
+      <recent name="D:\gowork\src\known01\models" />
       <recent name="D:\gowork\src\known01\brain" />
+      <recent name="D:\gowork\src\known01\utils" />
     </key>
   </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
-  </component>
-  <component name="RunManager" selected="Go Test.Test_pickupProperties in known01/brain">
-    <configuration name="Test_ExtractMPhone in known01/utils (1)" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
-      <module name="known01" />
-      <working_directory value="$PROJECT_DIR$/utils" />
-      <framework value="gotest" />
-      <kind value="PACKAGE" />
-      <package value="known01/utils" />
-      <directory value="$PROJECT_DIR$/" />
-      <filePath value="$PROJECT_DIR$/" />
-      <pattern value="^Test_ExtractMPhone$" />
-      <method v="2" />
-    </configuration>
-    <configuration name="Test_ExtractWeb in known01/utils" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
-      <module name="known01" />
-      <working_directory value="$PROJECT_DIR$/utils" />
-      <framework value="gotest" />
-      <kind value="PACKAGE" />
-      <package value="known01/utils" />
-      <directory value="$PROJECT_DIR$/" />
-      <filePath value="$PROJECT_DIR$/" />
-      <pattern value="^Test_ExtractWeb$" />
-      <method v="2" />
-    </configuration>
-    <configuration name="Test_ExtractWebFirstDomain in known01/utils" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
-      <module name="known01" />
-      <working_directory value="$PROJECT_DIR$/utils" />
-      <framework value="gotest" />
-      <kind value="PACKAGE" />
-      <package value="known01/utils" />
-      <directory value="$PROJECT_DIR$/" />
-      <filePath value="$PROJECT_DIR$/" />
-      <pattern value="^Test_ExtractWebFirstDomain$" />
-      <method v="2" />
-    </configuration>
-    <configuration name="Test_MYSQL in known01/utils" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
-      <module name="known01" />
-      <working_directory value="$PROJECT_DIR$/utils" />
-      <framework value="gotest" />
-      <kind value="PACKAGE" />
-      <package value="known01/utils" />
-      <directory value="$PROJECT_DIR$/" />
-      <filePath value="$PROJECT_DIR$/" />
-      <pattern value="^Test_MYSQL$" />
-      <method v="2" />
-    </configuration>
-    <configuration name="Test_pickupProperties in known01/brain" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Go Test.Test_GetEngineName in known01/brain">
+    <configuration name="Test_GetEngineName in known01/brain" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="known01" />
       <working_directory value="$PROJECT_DIR$/brain" />
       <framework value="gotest" />
       <kind value="PACKAGE" />
       <package value="known01/brain" />
-      <directory value="$PROJECT_DIR$/" />
-      <filePath value="$PROJECT_DIR$/" />
-      <pattern value="^Test_pickupProperties$" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <pattern value="^\QTest_GetEngineName\E$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Test_TemplatesGetItems in known01/models" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="known01" />
+      <working_directory value="$PROJECT_DIR$/models" />
+      <framework value="gotest" />
+      <kind value="PACKAGE" />
+      <package value="known01/models" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <pattern value="^\QTest_TemplatesGetItems\E$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Test_acFindIndexWord in known01/brain" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="known01" />
+      <working_directory value="$PROJECT_DIR$/brain" />
+      <framework value="gotest" />
+      <kind value="PACKAGE" />
+      <package value="known01/brain" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <pattern value="^\QTest_acFindIndexWord\E$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Test_acFindPhoneNum in known01/brain" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="known01" />
+      <working_directory value="$PROJECT_DIR$/brain" />
+      <framework value="gotest" />
+      <kind value="PACKAGE" />
+      <package value="known01/brain" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <pattern value="^\QTest_acFindPhoneNum\E$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Test_amendMessage in known01/brain" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="known01" />
+      <working_directory value="$PROJECT_DIR$/brain" />
+      <framework value="gotest" />
+      <kind value="PACKAGE" />
+      <package value="known01/brain" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <pattern value="^\QTest_amendMessage\E$" />
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Go Test.Test_pickupProperties in known01/brain" />
-        <item itemvalue="Go Test.Test_MYSQL in known01/utils" />
-        <item itemvalue="Go Test.Test_ExtractMPhone in known01/utils (1)" />
-        <item itemvalue="Go Test.Test_ExtractWebFirstDomain in known01/utils" />
-        <item itemvalue="Go Test.Test_ExtractWeb in known01/utils" />
+        <item itemvalue="Go Test.Test_GetEngineName in known01/brain" />
+        <item itemvalue="Go Test.Test_acFindPhoneNum in known01/brain" />
+        <item itemvalue="Go Test.Test_acFindIndexWord in known01/brain" />
+        <item itemvalue="Go Test.Test_amendMessage in known01/brain" />
+        <item itemvalue="Go Test.Test_TemplatesGetItems in known01/models" />
       </list>
     </recent_temporary>
   </component>
-  <component name="SpellCheckerSettings" BundledDictionaries="0" Folders="0" CustomDictionaries="0" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="application-level" UseSingleDictionary="true" />
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="1" />
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="COLUMN_ORDER" />
-            </State>
+            <State />
           </value>
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>
-    <proxy>https://goproxy.cn</proxy>
   </component>
   <component name="WindowStateProjectService">
-    <state width="1877" height="111" key="GridCell.Tab.0.bottom" timestamp="1604154823631">
+    <state width="1877" height="216" key="GridCell.Tab.0.bottom" timestamp="1604844335276">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="111" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1604154823631" />
-    <state width="1877" height="111" key="GridCell.Tab.0.center" timestamp="1604154823630">
+    <state width="1877" height="216" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1604844335276" />
+    <state width="1877" height="216" key="GridCell.Tab.0.center" timestamp="1604844335276">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="111" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1604154823630" />
-    <state width="1877" height="111" key="GridCell.Tab.0.left" timestamp="1604154823630">
+    <state width="1877" height="216" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1604844335276" />
+    <state width="1877" height="216" key="GridCell.Tab.0.left" timestamp="1604844335276">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="111" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1604154823630" />
-    <state width="1877" height="111" key="GridCell.Tab.0.right" timestamp="1604154823630">
+    <state width="1877" height="216" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1604844335276" />
+    <state width="1877" height="216" key="GridCell.Tab.0.right" timestamp="1604844335276">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="111" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1604154823630" />
+    <state width="1877" height="216" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1604844335276" />
     <state x="461" y="164" key="SettingsEditor" timestamp="1604068286438">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -213,17 +194,17 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="DlvLineBreakpoint">
           <url>file://$PROJECT_DIR$/utils/extract_test.go</url>
-          <line>10</line>
+          <line>7</line>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DlvLineBreakpoint">
           <url>file://$PROJECT_DIR$/utils/extract_test.go</url>
-          <line>46</line>
+          <line>42</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DlvLineBreakpoint">
-          <url>file://$PROJECT_DIR$/utils/extract_test.go</url>
-          <line>56</line>
+          <url>file://$PROJECT_DIR$/utils/mysql_test.go</url>
+          <line>7</line>
           <option name="timeStamp" value="5" />
         </line-breakpoint>
       </breakpoints>

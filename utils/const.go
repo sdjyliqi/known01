@@ -1,8 +1,13 @@
 package utils
 
+/*
+   定义三个引擎的编号
+   20201105 今天来暖气了，暖洋洋
+*/
+type EngineType int
+
 const (
-	UserStatusUnregister = 0 //注册完毕未注册
-	UserStatusNormal     = 1 //正常登陆状态
-	UserStatusForbid     = 2 //限制登陆状态
-	SepChar              = "♠"
+	EngineUnknown EngineType = 0
+	EngineBank    EngineType = 1
+	EngineReward  EngineType = 2
 )
