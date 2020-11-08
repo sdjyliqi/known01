@@ -46,7 +46,8 @@ func CreateCenter() Center {
 		indexWordsDic:    map[string]utils.EngineType{},
 		customerPhoneDic: map[string]*models.Reference{},
 	}
-	c.bank = CreateBankBrain()
+
 	c.init()
+	c.bank = CreateBankBrain(c.referencesItems)
 	return c
 }
