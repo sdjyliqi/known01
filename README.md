@@ -1,5 +1,9 @@
 # known01
 
+nohup ./known01 -log_dir="./" >> known01.log 2>&1 &
+
+
+
 接口说明：  
 1：分页获取信息列表  
 URI:IP/v1/news  
