@@ -19,31 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="91f69e01-107a-433a-b190-0e176ab79e31" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/handle/judge.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/models/news.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/models/news_test.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/brain/bank.go" beforeDir="false" afterPath="$PROJECT_DIR$/brain/bank.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/brain/bank_impl.go" beforeDir="false" afterPath="$PROJECT_DIR$/brain/bank_impl.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/brain/bank_impl_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/brain/bank_impl_test.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/brain/brain.go" beforeDir="false" afterPath="$PROJECT_DIR$/brain/brain.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/brain/brain_impl.go" beforeDir="false" afterPath="$PROJECT_DIR$/brain/brain_impl.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/brain/brain_impl_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/brain/brain_impl_test.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/handle/init.go" beforeDir="false" afterPath="$PROJECT_DIR$/handle/init.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/handle/login.go" beforeDir="false" afterPath="$PROJECT_DIR$/handle/news.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/assist_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/models/assist_test.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/category.go" beforeDir="false" afterPath="$PROJECT_DIR$/models/category.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/reference.go" beforeDir="false" afterPath="$PROJECT_DIR$/models/reference.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/results.go" beforeDir="false" afterPath="$PROJECT_DIR$/models/results.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/templates.go" beforeDir="false" afterPath="$PROJECT_DIR$/models/templates.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/templates_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/models/templates_test.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/weight.go" beforeDir="false" afterPath="$PROJECT_DIR$/models/weight.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/router/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/router/router.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/const.go" beforeDir="false" afterPath="$PROJECT_DIR$/utils/const.go" afterDir="false" />
-    </list>
+    <list default="true" id="91f69e01-107a-433a-b190-0e176ab79e31" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -74,6 +50,7 @@
   <component name="PropertiesComponent">
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="DefaultGoTemplateProperty" value="Go File" />
+    <property name="GO_FMT" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -185,7 +162,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="控制中心完毕" />
-    <option name="LAST_COMMIT_MESSAGE" value="控制中心完毕" />
+    <MESSAGE value="gin" />
+    <option name="LAST_COMMIT_MESSAGE" value="gin" />
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>
@@ -226,7 +204,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DlvLineBreakpoint">
           <url>file://$PROJECT_DIR$/brain/brain_impl_test.go</url>
-          <line>68</line>
+          <line>67</line>
           <option name="timeStamp" value="6" />
         </line-breakpoint>
       </breakpoints>
