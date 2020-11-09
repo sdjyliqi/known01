@@ -35,6 +35,11 @@ id      int   消息id  是    为上述接口返回的负载数据中的id值�
  }  
  
  
+ 
+ 
+ {"code":0,"data":[{"id":1,"title":"11月3日，解放军攻台？","status":1,"url":"https://dy.163.com/article/FN2UDNH905504DP0.html","is_real":2,"publish":"2020-11-09T15:37:40+08:00","author":"环球时报评论"},{"id":2,"title":"11月3日，解放军攻台？","status":1,"url":"https://dy.163.com/article/FN2UDNH905504DP0.html","is_real":2,"publish":"2020-11-09T15:39:45+08:00","author":"环球时报评论"},{"id":3,"title":"11月3日，解放军攻台？","status":1,"url":"https://dy.163.com/article/FN2UDNH905504DP0.html","is_real":2,"publish":"2020-11-09T15:41:03+08:00","author":"环球时报评论"},{"id":4,"title":"11月3日，解放军攻台？","status":1,"url":"https://dy.163.com/article/FN2UDNH905504DP0.html","is_real":2,"publish":"2020-11-09T15:41:51+08:00","author":"环球时报评论"},{"id":5,"title":"11月3日，解放军攻台？","status":1,"url":"https://dy.163.com/article/FN2UDNH905504DP0.html","is_real":2,"publish":"2020-11-09T15:42:43+08:00","author":"环球时报评论"}],"is_end":true}
+ 
+ 
 3：用户提交查询  
  URI:IP/v1/brain  
  请求方式:GET  
