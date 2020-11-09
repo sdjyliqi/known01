@@ -14,5 +14,5 @@ func GetNews(c *gin.Context) {
 		c.JSON(http.StatusOK, gin.H{"code": 1, "msg": err.Error()})
 		return
 	}
-	c.JSON(http.StatusOK, gin.H{"code": 0, "data": items, "is_end": len(items) < utils.PageEntry})
+	c.JSON(http.StatusOK, gin.H{"code": 0, "msg": "succ", "data": items, "is_end": len(items) < utils.PageEntry})
 }

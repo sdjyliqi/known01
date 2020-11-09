@@ -19,5 +19,5 @@ func JudgeMessage(c *gin.Context) {
 	if score <= 0.5 && score > 0 {
 		flag = 2
 	}
-	c.JSON(http.StatusOK, gin.H{"code": 0, "data": gin.H{"suggest": suggest, "flag": flag}})
+	c.JSON(http.StatusOK, gin.H{"code": 0, "msg": "succ", "data": gin.H{"suggest": suggest, "flag": flag}})
 }
