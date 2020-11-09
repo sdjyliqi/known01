@@ -9,7 +9,7 @@ import (
 
 func Test_pickupProperties(t *testing.T) {
 
-	var messageTest = "[招商银行]尊敬的客户，一张闪电贷专属礼券为你呈上！用券条款可享受专属利率优惠，优惠日截止2020年10月31日,点击http://a.cmbchina.com/personal/cmhkas13快速申请，详情请咨询95599"
+	var messageTest = "[工行]尊敬的客户，一张闪电贷专属礼券为你呈上！用券条款可享受专属利率优惠，优惠日截止2020年10月31日,点击http://a.cmbchina.com/personal/cmhkas13快速申请，详情请咨询95599"
 
 	items, err := models.Reference{}.GetItems(utils.GetMysqlClient())
 	assert.Nil(t, err)

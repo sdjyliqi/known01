@@ -2,16 +2,16 @@ package handle
 
 import (
 	"fmt"
-	"github.com/sdjyliqi/known01/conf"
-	"github.com/sdjyliqi/known01/control"
+	"known01/brain"
 	"sync"
 )
 
 var onceControl sync.Once
-
+var baCenter brain.Center
 
 func init() {
 	onceControl.Do(func() {
 		fmt.Println("Init handle")
+		baCenter = brain.CreateCenter()
 	})
 }

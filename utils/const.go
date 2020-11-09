@@ -10,4 +10,6 @@ const (
 	EngineUnknown EngineType = 0
 	EngineBank    EngineType = 1
 	EngineReward  EngineType = 2
+
+	PageEntry = 10
 )

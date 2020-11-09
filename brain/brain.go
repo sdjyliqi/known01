@@ -9,7 +9,7 @@ import (
 //propertiesVec... 定义文本识别提取数据维度
 type propertiesVec struct {
 	govName       string //特征名称，如中国工商银行
-	website       string //域名，目前只匹配一级域
+	webDomain     string //域名，目前只匹配一级域
 	mobilePhone   string //手机号码
 	customerPhone string //客服电话，如400-***-******
 	senderID      string //发信者号码，如95599，可能和客服电话不一致

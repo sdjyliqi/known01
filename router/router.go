@@ -2,24 +2,19 @@ package router
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/sdjyliqi/known01/handle"
-	"github.com/sdjyliqi/known01/middleware"
+	"known01/handle"
+	"known01/middleware"
 )
 
 func InitRouter(r *gin.Engine) {
 	r.Use(middleware.Cors())
 	r.Use(middleware.Logger())
-	//r.Use(middleware.RequestAddIPLoc())
-	// uc先关接口
-	GroupV1 := r.Group("/admin")
-	{
-		GroupV1.GET("/pingback", handle.UCLogin)
-	}
 
-	GroupV2 := r.Group("/api")
+	GroupV2 := r.Group("/v1")
 	{
-		GroupV2.GET("/update", handle.UCLogin)
-		GroupV2.GET("/city", handle.UCLogin)
+		GroupV2.GET("/news", handle.GetNews)        //获取列表
+		GroupV2.GET("/brain", handle.JudgeMessage)  //获取信息详情
+		GroupV2.POST("/brain", handle.JudgeMessage) //获取信息详情
 	}
 
 }

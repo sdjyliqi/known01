@@ -25,6 +25,8 @@ func (bb *bankBrain) Init(items []*models.Reference) error {
 				aliasNamesDic[vv] = v.Name
 			}
 		}
+
+		bb.bankDic[v.Name] = v
 		//客服电话映射表
 		phone := strings.ReplaceAll(v.ManualPhone, "-", "")
 		bb.phoneNumDic[phone] = v.Name
@@ -73,7 +75,7 @@ func (bb *bankBrain) PickupProperties(msg, phoneID string) (propertiesVec, bool)
 
 	firstDomain, ok := bb.pickupWebDomain(msg)
 	if ok {
-		pickVal.website = firstDomain
+		pickVal.webDomain = firstDomain
 	}
 
 	mobilePhone, ok := bb.pickupMobilePhone(msg)
@@ -111,7 +113,67 @@ func (bb *bankBrain) pickupMobilePhone(msg string) (string, bool) {
 	return utils.ExtractMobilePhone(msg)
 }
 
+func (bb *bankBrain) JudgeMessage(msg, phoneID string) (float64, string) {
+	v, ok := bb.PickupProperties(msg, phoneID)
+	fmt.Println("bank JudgeMessage:", v, ok)
+	if !ok {
+		return 0, ""
+	}
+	return bb.MatchScore(v)
+}
+
 //MatchScore ...计算匹配分数，分支越高，可信度越高。
-func (bb *bankBrain) MatchScore(pickup propertiesVec) float64 {
-	return 0.0
+func (bb *bankBrain) MatchScore(pickup propertiesVec) (float64, string) {
+	notFindMessage := "尊敬的用户，是真是假APP提示您，你接收的短信类型为【金融】，目前未识别出关键信息，请加强安全意识，切勿泄露个人信息，认准官方。"
+	matchMessage := "尊敬的用户，是真是假APP提示您，你接收的短信类型为【金融】，目前判断短信内容可信度为%d%%，请致电官方客服%s或登录官方网站%s进行再次确认，避免上当，谢谢您使用时真是假APP。。"
+	matchScore := 0.0
+	//fakeMessage:= "尊敬的用户，是真是假APP提示您，你接收的短信类型为【金融】，目前判断短信内容可信度为%f%%，请致电官方客服%s或登录官方网站%s进行再次确认，避免上当，谢谢您使用时真是假APP。。"
+
+	if pickup.govName == "" {
+		return 0, notFindMessage
+	}
+	referenceItem, ok := bb.bankDic[pickup.govName]
+	fmt.Println("=======参考值=============", referenceItem, ok, pickup.govName)
+	fmt.Printf("===========================%+v", pickup)
+	if !ok {
+		return 0, notFindMessage
+	}
+	if pickup.senderID != "" && pickup.webDomain != "" && pickup.customerPhone != "" {
+		//如果全部正确
+		matchScore := 0.0
+		_, phoneExisted := bb.phoneNumDic[pickup.customerPhone]
+		if pickup.webDomain == referenceItem.Domain && phoneExisted {
+			if strings.HasSuffix(pickup.senderID, referenceItem.MessageId) {
+				matchScore = 1.0
+			} else {
+				matchScore = 0.6
+			}
+		}
+		if pickup.webDomain == referenceItem.Domain && !phoneExisted {
+			if strings.HasSuffix(pickup.senderID, referenceItem.MessageId) {
+				matchScore = 0.9
+			} else {
+				matchScore = 0.55
+			}
+		}
+		suggest := fmt.Sprintf(matchMessage, int(matchScore*100), referenceItem.ManualPhone, referenceItem.Website)
+		return matchScore, suggest
+	}
+
+	//如果提交的sender_id为空
+	if pickup.webDomain != "" {
+		fmt.Println("\n------------------------------------------", pickup.webDomain, referenceItem.Domain)
+		if pickup.webDomain == referenceItem.Domain {
+			matchScore = 0.6
+		}
+		if len(pickup.customerPhone) > 0 {
+			_, ok := bb.phoneNumDic[pickup.customerPhone]
+			if ok {
+				matchScore += 0.2
+			}
+		}
+	}
+	suggest := fmt.Sprintf(matchMessage, int(matchScore*100), referenceItem.ManualPhone, referenceItem.Website)
+	fmt.Println("XXXXXXXXXXXXXXXXXXXX", matchScore, suggest)
+	return matchScore, suggest
 }

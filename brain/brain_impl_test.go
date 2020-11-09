@@ -22,7 +22,14 @@ func Test_amendMessage(t *testing.T) {
 
 func Test_matchEngineRate(t *testing.T) {
 	c := CreateCenter()
-	testMsg := "尊敬的用户：您的电子密码器于次日失效，请速登录手机维护网站wap.icbcsap.com进行更新。给你带来不变，敬请谅解！【工商银行】"
+	testMsg := "尊敬的用户：您的电子密码器于次日失效，请速登录手机维护网站wap.icbcsap.com进行更新。给你带来不变，敬请谅解,,具体请咨询95588！【工商银行】"
+	rate, engine := c.matchEngineRate(testMsg)
+	t.Log(rate, engine)
+}
+
+func Test_aaa(t *testing.T) {
+	c := CreateCenter()
+	testMsg := "尊敬的用户：您的电子密码器于次日失效，请速登录手机维护网站wap.icbcsap.com进行更新。给你带来不变，敬请谅解,,具体请咨询95588！【工商银行】"
 	rate, engine := c.matchEngineRate(testMsg)
 	t.Log(rate, engine)
 }
@@ -56,5 +63,15 @@ func Test_GetEngineName(t *testing.T) {
 	t.Log(name, phoneID)
 	assert.Equal(t, utils.EngineBank, name)
 	assert.Equal(t, "", phoneID)
+}
 
+func Test_JudgeMessage(t *testing.T) {
+	testMsg := "尊敬的用户：您的电子密码器于次日失效，请速登录手机维护网站wap.icbc.com进行更新。给你带来不变，敬请谅解,,具体请咨询95588！【工商银行】"
+	c := CreateCenter()
+	suggest, score := c.JudgeMessage(testMsg)
+	t.Log(suggest, score)
+
+	testMsg = "今天阳光明媚，可以小酌一杯"
+	suggest, score = c.JudgeMessage(testMsg)
+	t.Log(suggest, score)
 }
