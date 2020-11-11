@@ -161,7 +161,6 @@ func (bb *bankBrain) MatchScoreV2(pickup propertiesVec) (float64, string) {
 	matchScore := 0.0
 
 	idx, bankItem := bb.createMatchScoreIndex(pickup)
-	fmt.Println("==================", idx, bankItem)
 	if idx == "" {
 		return matchScore, notFindMessage
 	}
