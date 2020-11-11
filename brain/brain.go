@@ -37,6 +37,9 @@ type Center struct {
 	bank          *bankBrain
 
 	referencesItems []*models.Reference
+
+	acCutWords *ahocorasick.Matcher //副助词匹配自动机，作用，进行模板匹配前，需要将辅助词剔除。
+
 }
 
 //CreateCenter ...创建控制中心

@@ -9,7 +9,6 @@ import (
 )
 
 func (c *Center) init() error {
-	//todo 换为真正的数据
 	//load templates about bank
 	err := c.InitTemplatesItemsFromDB()
 	if err != nil {
@@ -44,7 +43,11 @@ func (c *Center) InitCutWordsFromDB() error {
 			words[k] = v.Name
 		}
 	}
+	//构建副助词匹配自动机
 	c.cutWords = words
+	acCutWord := ahocorasick.NewMatcher()
+	acCutWord.Build(words)
+	c.acCutWords = acCutWord
 	return nil
 }
 
@@ -125,19 +128,23 @@ func (c *Center) InitTemplatesItemsFromDB() error {
 
 //amendMessage ...模板匹配前，需要提出辅助词
 func (c *Center) amendMessage(msg string) string {
-	//var newMessage []rune
-	//for _,v := range []rune(msg){
-	//	if (v > 'A' && v <= 'Z') || (v > 'a' && v <= 'z') || (v > '0' && v <= '9'){
-	//		continue
-	//	}
-	//	newMessage = append(newMessage,v)
-	//}
 	//剔除空格
 	msg = strings.ReplaceAll(msg, " ", "")
-	for _, v := range c.cutWords {
-		msg = strings.ReplaceAll(msg, v, "")
+	//删除字母或者数字
+	var rWords []rune
+	for _, v := range []rune(msg) {
+		if (v >= 'A' && v <= 'Z') || (v >= 'a' && v <= 'z') || (v >= '0' && v <= '9') {
+			continue
+		}
+		rWords = append(rWords, v)
 	}
-	return msg
+	amendMessage := string(rWords)
+	//开启副助词ac自动机匹配，然后删除
+	matchIndex := c.acCutWords.Match(string(amendMessage))
+	for _, v := range matchIndex {
+		amendMessage = strings.ReplaceAll(amendMessage, c.cutWords[v], "")
+	}
+	return amendMessage
 }
 
 //acFindPhoneNum ...寻找
