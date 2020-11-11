@@ -17,6 +17,10 @@ func Test_amendMessage(t *testing.T) {
 	testMsg := "爸爸我在外面北京遇到点事，不方便接听电话和短信，给我打10000元到我的工商银行，户主李奇，账号12121212121111"
 	v := c.amendMessage(testMsg)
 	t.Log(v)
+
+	testMsg = "尊敬的工商银行客户，一张闪电贷专属礼券为你呈上！用券条款可享受专属利率优惠，优惠日截止2020年11月30日，请点击wap.cmbc188.com登录招商银行官网查看【工商银行】"
+	v = c.amendMessage(testMsg)
+	t.Log(v)
 }
 
 func Test_matchEngineRate(t *testing.T) {

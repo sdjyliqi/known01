@@ -123,6 +123,7 @@ func (c *Center) InitTemplatesItemsFromDB() error {
 		}
 	}
 	c.messageTemplates = templateDic
+	c.messageTemplatesItems = items
 	return nil
 }
 
@@ -181,11 +182,12 @@ func (c *Center) getEngineByIndexWord(index string) (utils.EngineType, bool) {
 func (c *Center) matchEngineRate(msg string) (utils.EngineType, float64) {
 	matchRate := 0.0
 	engineName := utils.EngineUnknown
-	for k, v := range c.messageTemplates {
-		rate := utils.SimilarDegree(msg, k)
+	for _, v := range c.messageTemplatesItems {
+		simValue := utils.SimHashTool.Hash(msg)
+		rate := utils.SimHashTool.Similarity(simValue, v.SimHash)
 		if rate > matchRate {
 			matchRate = rate
-			engineName = v
+			engineName = v.CategoryId
 		}
 	}
 	return engineName, matchRate
@@ -193,7 +195,7 @@ func (c *Center) matchEngineRate(msg string) (utils.EngineType, float64) {
 
 //GetEngineName ... 根据提交的信息，判断最符合那个鉴别引擎
 func (c *Center) GetEngineName(msg string) (utils.EngineType, string) {
-	minMatchLevel := 0.5
+	minMatchLevel := 0.6
 	//第二步，判断是否有官方电话号码,如果找到，返回类型和电话即可。
 	phoneID, ok := c.acFindPhoneID(msg)
 	if ok {
@@ -203,7 +205,6 @@ func (c *Center) GetEngineName(msg string) (utils.EngineType, string) {
 		}
 	}
 	//第二部，修正短信数据，提出副助词，英文字母或者数字
-
 	amendMessage := c.amendMessage(msg)
 	//第三步顺序匹配模板，选择匹配最高分
 	engineName, score := c.matchEngineRate(amendMessage)

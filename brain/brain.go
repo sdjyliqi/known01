@@ -24,7 +24,10 @@ var indexWordDic = map[utils.EngineType][]string{
 
 type Center struct {
 	messageTemplates map[string]utils.EngineType //短信模块内容列表
-	cutWords         []string                    //副助词列表
+
+	messageTemplatesItems []*models.Templates //短信模块内容列表
+
+	cutWords []string //副助词列表
 
 	acCustomerPhoneMatch *ahocorasick.Matcher         //提取官方客服电话的ac自动机
 	customerPhoneDic     map[string]*models.Reference //银行类短信模块内容列表
