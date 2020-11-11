@@ -13,5 +13,5 @@ func main() {
 	r := gin.Default()
 	// register the `/metrics` route.
 	router.InitRouter(r)
-	r.Run(":8080")
+	r.Run("0.0.0.0:8080")
 }

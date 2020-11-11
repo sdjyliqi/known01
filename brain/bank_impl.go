@@ -9,6 +9,9 @@ import (
 	"strings"
 )
 
+var messageTest = "[招商银行]尊敬的客户，一张闪电贷专属礼券为你呈上！用券条款可享受专属利率优惠，优惠日截止2020年10月31日。" +
+	"点击http://a.cmbchina.com/personal/cmhkas13快速申请，详情请咨询95599,400-66666888,15210510285"
+
 //getBankNameByPhoneID ...通过客服电话查找银行名称
 func (bb *bankBrain) Init(items []*models.Reference) error {
 	//初始化 PhoneNumDic，aliasNames
@@ -43,7 +46,6 @@ func (bb *bankBrain) Init(items []*models.Reference) error {
 	bb.allNames = bankAllNames
 	ac.Build(bankAllNames)
 	bb.acMatch = ac
-
 	return nil
 }
 
@@ -88,11 +90,8 @@ func (bb *bankBrain) PickupProperties(msg, phoneID string) (propertiesVec, bool)
 //pickupName ... 寻找银行名称，返回值为标准名称
 func (bb *bankBrain) pickupName(msg string) (string, bool) {
 	matchIndex := bb.acMatch.Match(msg)
-	fmt.Println(matchIndex)
-	fmt.Println(bb.allNames)
 	if len(matchIndex) > 0 {
 		idx := bb.allNames[matchIndex[0]]
-		fmt.Println("name is :", idx)
 		v, ok := bb.aliasNames[idx]
 		if !ok {
 			glog.Exitf("Do not find the key %s in dic.", idx)
@@ -115,11 +114,64 @@ func (bb *bankBrain) pickupMobilePhone(msg string) (string, bool) {
 
 func (bb *bankBrain) JudgeMessage(msg, phoneID string) (float64, string) {
 	v, ok := bb.PickupProperties(msg, phoneID)
-	fmt.Println("bank JudgeMessage:", v, ok)
 	if !ok {
 		return 0, ""
 	}
-	return bb.MatchScore(v)
+	return bb.MatchScoreV2(v)
+}
+
+//createMatchScoreIndex ...创建匹配字符串
+func (bb *bankBrain) createMatchScoreIndex(pickup propertiesVec) (string, *models.Reference) {
+	domainIdx, msgIDIdx, phoneIDIdx := "D0", "M0", "P0"
+	if pickup.govName == "" {
+		return "", nil
+	}
+	item, ok := bb.bankDic[pickup.govName]
+	if !ok {
+		return "", nil
+	}
+	//checkout website domain
+	if item.Domain == pickup.webDomain {
+		domainIdx = "D1"
+	} else {
+		domainIdx = "D2"
+	}
+	//checkout message sender id
+	if strings.HasSuffix(pickup.senderID, item.MessageId) {
+		msgIDIdx = "M1"
+	} else {
+		msgIDIdx = "M2"
+	}
+
+	//checkout customer phone id
+	if len(pickup.customerPhone) > 0 {
+		_, ok := bb.phoneNumDic[pickup.customerPhone]
+		if ok {
+			phoneIDIdx = "P1"
+		} else {
+			phoneIDIdx = "P2"
+		}
+	}
+	return domainIdx + msgIDIdx + phoneIDIdx, item
+}
+
+func (bb *bankBrain) MatchScoreV2(pickup propertiesVec) (float64, string) {
+	notFindMessage := "尊敬的用户，是真是假APP提示您，你接收的短信类型为【金融】，目前未识别出关键信息，请加强安全意识，切勿泄露个人信息，认准官方。"
+	matchMessage := "尊敬的用户，是真是假APP提示您，你接收的短信类型为【金融】，目前判断短信内容可信度为%d%%，请致电官方客服%s或登录官方网站%s进行再次确认，避免上当，谢谢您使用时真是假APP。。"
+	matchScore := 0.0
+
+	idx, bankItem := bb.createMatchScoreIndex(pickup)
+	fmt.Println("==================", idx, bankItem)
+	if idx == "" {
+		return matchScore, notFindMessage
+	}
+	scoreItem, err := models.Score{}.GetItemByIdx(idx, utils.GetMysqlClient())
+	if err != nil {
+		return matchScore, notFindMessage
+	}
+	suggest := fmt.Sprintf(matchMessage, int(scoreItem.Score), bankItem.ManualPhone, bankItem.Website)
+	return matchScore, suggest
+
 }
 
 //MatchScore ...计算匹配分数，分支越高，可信度越高。
@@ -127,14 +179,10 @@ func (bb *bankBrain) MatchScore(pickup propertiesVec) (float64, string) {
 	notFindMessage := "尊敬的用户，是真是假APP提示您，你接收的短信类型为【金融】，目前未识别出关键信息，请加强安全意识，切勿泄露个人信息，认准官方。"
 	matchMessage := "尊敬的用户，是真是假APP提示您，你接收的短信类型为【金融】，目前判断短信内容可信度为%d%%，请致电官方客服%s或登录官方网站%s进行再次确认，避免上当，谢谢您使用时真是假APP。。"
 	matchScore := 0.0
-	//fakeMessage:= "尊敬的用户，是真是假APP提示您，你接收的短信类型为【金融】，目前判断短信内容可信度为%f%%，请致电官方客服%s或登录官方网站%s进行再次确认，避免上当，谢谢您使用时真是假APP。。"
-
 	if pickup.govName == "" {
 		return 0, notFindMessage
 	}
 	referenceItem, ok := bb.bankDic[pickup.govName]
-	fmt.Println("=======参考值=============", referenceItem, ok, pickup.govName)
-	fmt.Printf("===========================%+v", pickup)
 	if !ok {
 		return 0, notFindMessage
 	}
@@ -162,7 +210,6 @@ func (bb *bankBrain) MatchScore(pickup propertiesVec) (float64, string) {
 
 	//如果提交的sender_id为空
 	if pickup.webDomain != "" {
-		fmt.Println("\n------------------------------------------", pickup.webDomain, referenceItem.Domain)
 		if pickup.webDomain == referenceItem.Domain {
 			matchScore = 0.6
 		}
@@ -174,6 +221,5 @@ func (bb *bankBrain) MatchScore(pickup propertiesVec) (float64, string) {
 		}
 	}
 	suggest := fmt.Sprintf(matchMessage, int(matchScore*100), referenceItem.ManualPhone, referenceItem.Website)
-	fmt.Println("XXXXXXXXXXXXXXXXXXXX", matchScore, suggest)
 	return matchScore, suggest
 }

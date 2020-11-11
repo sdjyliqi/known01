@@ -27,13 +27,6 @@ func Test_matchEngineRate(t *testing.T) {
 	t.Log(rate, engine)
 }
 
-func Test_aaa(t *testing.T) {
-	c := CreateCenter()
-	testMsg := "尊敬的用户：您的电子密码器于次日失效，请速登录手机维护网站wap.icbcsap.com进行更新。给你带来不变，敬请谅解,,具体请咨询95588！【工商银行】"
-	rate, engine := c.matchEngineRate(testMsg)
-	t.Log(rate, engine)
-}
-
 func Test_acFindIndexWord(t *testing.T) {
 	c := CreateCenter()
 	testMsg := "尊敬的用户：给我转点钱吧，敬请谅解！【工商银行】"
@@ -50,6 +43,7 @@ func Test_GetEngineName(t *testing.T) {
 	t.Log(name, phoneID)
 	assert.Equal(t, utils.EngineBank, name)
 	assert.Equal(t, "95595", phoneID)
+
 	//测试匹配模板的
 	testMsg = "尊敬的客户，一张闪电贷专属礼券为你呈上！用券条款可享受专属利率优惠，优惠日截止年月日。"
 	name, phoneID = c.GetEngineName(testMsg)
@@ -66,7 +60,7 @@ func Test_GetEngineName(t *testing.T) {
 }
 
 func Test_JudgeMessage(t *testing.T) {
-	testMsg := "尊敬的用户：您的电子密码器于次日失效，请速登录手机维护网站wap.icbc.com进行更新。给你带来不变，敬请谅解,,具体请咨询95588！【工商银行】"
+	testMsg := "尊敬的用户：您的电子密码器于次日失效，请速登录手机维护网站wap.icbc.com进行更新。给你带来不变，敬请谅解,具体请咨询95588！【工商银行】"
 	c := CreateCenter()
 	suggest, score := c.JudgeMessage(testMsg)
 	t.Log(suggest, score)
