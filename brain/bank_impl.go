@@ -46,6 +46,25 @@ func (bb *bankBrain) Init(items []*models.Reference) error {
 	bb.allNames = bankAllNames
 	ac.Build(bankAllNames)
 	bb.acMatch = ac
+	//初始化分数字典
+	err := bb.InitScoreItems()
+	if err != nil {
+		glog.Errorf("call InitScoreItems failed,err:%+v", err)
+		return err
+	}
+	return nil
+}
+
+func (bb *bankBrain) InitScoreItems() error {
+	scoreDic := map[string]*models.Score{}
+	items, err := models.Score{}.GetItems(utils.GetMysqlClient())
+	if err != nil {
+		return err
+	}
+	for _, v := range items {
+		scoreDic[v.Dimension] = v
+	}
+	bb.scoreDict = scoreDic
 	return nil
 }
 
@@ -159,13 +178,12 @@ func (bb *bankBrain) MatchScoreV2(pickup propertiesVec) (float64, string) {
 	notFindMessage := "尊敬的用户，是真是假APP提示您，你接收的短信类型为【金融】，目前未识别出关键信息，请加强安全意识，切勿泄露个人信息，认准官方。"
 	matchMessage := "尊敬的用户，是真是假APP提示您，你接收的短信类型为【金融】，目前判断短信内容可信度为%d%%，请致电官方客服%s或登录官方网站%s进行再次确认，避免上当，谢谢您使用时真是假APP。。"
 	matchScore := 0.0
-
 	idx, bankItem := bb.createMatchScoreIndex(pickup)
 	if idx == "" {
 		return matchScore, notFindMessage
 	}
-	scoreItem, err := models.Score{}.GetItemByIdx(idx, utils.GetMysqlClient())
-	if err != nil {
+	scoreItem, ok := bb.scoreDict[idx]
+	if !ok {
 		return matchScore, notFindMessage
 	}
 	suggest := fmt.Sprintf(matchMessage, int(scoreItem.Score), bankItem.ManualPhone, bankItem.Website)

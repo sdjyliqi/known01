@@ -19,11 +19,13 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="91f69e01-107a-433a-b190-0e176ab79e31" name="Default Changelist" comment="控制中心完毕">
+    <list default="true" id="91f69e01-107a-433a-b190-0e176ab79e31" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/brain/brain.go" beforeDir="false" afterPath="$PROJECT_DIR$/brain/brain.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/brain/brain_impl.go" beforeDir="false" afterPath="$PROJECT_DIR$/brain/brain_impl.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/brain/brain_impl_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/brain/brain_impl_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/brain/bank.go" beforeDir="false" afterPath="$PROJECT_DIR$/brain/bank.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/brain/bank_impl.go" beforeDir="false" afterPath="$PROJECT_DIR$/brain/bank_impl.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,31 +57,57 @@
   <component name="PropertiesComponent">
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="DefaultGoTemplateProperty" value="Go File" />
+    <property name="GO_FMT" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="go.import.settings.migrated" value="true" />
     <property name="go.sdk.automatically.set" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/models" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../ovgo" />
     <property name="settings.editor.selected.configurable" value="go.vgo" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\gowork\src\known01\models" />
-      <recent name="D:\gowork\src\known01\brain" />
+      <recent name="D:\gowork\src\known01\modelsbbb" />
       <recent name="D:\gowork\src\known01\utils" />
+      <recent name="D:\gowork\src\known01\data" />
+      <recent name="D:\gowork\src\known01\modelsbb" />
     </key>
   </component>
-  <component name="RunManager" selected="Go Test.Test_amendMessage in known01/brain (1)">
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Go Test.Test_JudgeMessage in known01/brain (1)">
     <configuration name="Test_GetEngineName in known01/brain" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="known01" />
       <working_directory value="$PROJECT_DIR$/brain" />
       <framework value="gotest" />
       <kind value="PACKAGE" />
       <package value="known01/brain" />
-      <directory value="$PROJECT_DIR$" />
-      <filePath value="$PROJECT_DIR$" />
-      <pattern value="^\QTest_GetEngineName\E$" />
+      <directory value="$PROJECT_DIR$/" />
+      <filePath value="$PROJECT_DIR$/" />
+      <pattern value="^Test_GetEngineName$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Test_JudgeMessage in known01/brain (1)" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="known01" />
+      <working_directory value="$PROJECT_DIR$/brain" />
+      <framework value="gotest" />
+      <kind value="PACKAGE" />
+      <package value="known01/brain" />
+      <directory value="$PROJECT_DIR$/" />
+      <filePath value="$PROJECT_DIR$/" />
+      <pattern value="^Test_JudgeMessage$" />
       <method v="2" />
     </configuration>
     <configuration name="Test_JudgeMessage in known01/brain" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
@@ -88,9 +116,9 @@
       <framework value="gotest" />
       <kind value="PACKAGE" />
       <package value="known01/brain" />
-      <directory value="$PROJECT_DIR$" />
-      <filePath value="$PROJECT_DIR$" />
-      <pattern value="^\QTest_JudgeMessage\E$" />
+      <directory value="$PROJECT_DIR$/" />
+      <filePath value="$PROJECT_DIR$/" />
+      <pattern value="^Test_JudgeMessage$" />
       <method v="2" />
     </configuration>
     <configuration name="Test_TemplatesGetItems in known01/models" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
@@ -99,20 +127,9 @@
       <framework value="gotest" />
       <kind value="PACKAGE" />
       <package value="known01/models" />
-      <directory value="$PROJECT_DIR$" />
-      <filePath value="$PROJECT_DIR$" />
-      <pattern value="^\QTest_TemplatesGetItems\E$" />
-      <method v="2" />
-    </configuration>
-    <configuration name="Test_amendMessage in known01/brain (1)" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
-      <module name="known01" />
-      <working_directory value="$PROJECT_DIR$/brain" />
-      <framework value="gotest" />
-      <kind value="PACKAGE" />
-      <package value="known01/brain" />
-      <directory value="$PROJECT_DIR$" />
-      <filePath value="$PROJECT_DIR$" />
-      <pattern value="^\QTest_amendMessage\E$" />
+      <directory value="$PROJECT_DIR$/" />
+      <filePath value="$PROJECT_DIR$/" />
+      <pattern value="^Test_TemplatesGetItems$" />
       <method v="2" />
     </configuration>
     <configuration name="Test_pickupProperties in known01/brain" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
@@ -121,22 +138,22 @@
       <framework value="gotest" />
       <kind value="PACKAGE" />
       <package value="known01/brain" />
-      <directory value="$PROJECT_DIR$" />
-      <filePath value="$PROJECT_DIR$" />
-      <pattern value="^\QTest_pickupProperties\E$" />
+      <directory value="$PROJECT_DIR$/" />
+      <filePath value="$PROJECT_DIR$/" />
+      <pattern value="^Test_pickupProperties$" />
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Go Test.Test_amendMessage in known01/brain (1)" />
-        <item itemvalue="Go Test.Test_JudgeMessage in known01/brain" />
+        <item itemvalue="Go Test.Test_JudgeMessage in known01/brain (1)" />
         <item itemvalue="Go Test.Test_pickupProperties in known01/brain" />
-        <item itemvalue="Go Test.Test_TemplatesGetItems in known01/models" />
+        <item itemvalue="Go Test.Test_JudgeMessage in known01/brain" />
         <item itemvalue="Go Test.Test_GetEngineName in known01/brain" />
+        <item itemvalue="Go Test.Test_TemplatesGetItems in known01/models" />
       </list>
     </recent_temporary>
   </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SpellCheckerSettings" BundledDictionaries="0" Folders="0" CustomDictionaries="0" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="application-level" UseSingleDictionary="true" />
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
@@ -145,49 +162,38 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="控制中心完毕" />
-    <option name="LAST_COMMIT_MESSAGE" value="控制中心完毕" />
+    <MESSAGE value="gin" />
+    <MESSAGE value="del ut" />
+    <option name="LAST_COMMIT_MESSAGE" value="del ut" />
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>
   </component>
   <component name="WindowStateProjectService">
-    <state width="1877" height="522" key="GridCell.Tab.0.bottom" timestamp="1605101845656">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="522" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1605101845656" />
-    <state width="1877" height="522" key="GridCell.Tab.0.center" timestamp="1605101845656">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="522" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1605101845656" />
-    <state width="1877" height="522" key="GridCell.Tab.0.left" timestamp="1605101845656">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="522" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1605101845656" />
-    <state width="1877" height="522" key="GridCell.Tab.0.right" timestamp="1605101845656">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="522" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1605101845656" />
-    <state x="461" y="164" key="SettingsEditor" timestamp="1604068286438">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="461" y="164" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1604068286438" />
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1604844677688">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1604844677688" />
-    <state x="682" y="431" key="vcs.readOnlyHandler.ReadOnlyStatusDialog" timestamp="1604144625526">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="682" y="431" key="vcs.readOnlyHandler.ReadOnlyStatusDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1604144625526" />
+    <state width="1877" height="151" key="GridCell.Tab.0.bottom" />
+    <state width="1877" height="151" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" />
+    <state width="1877" height="151" key="GridCell.Tab.0.center" />
+    <state width="1877" height="151" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" />
+    <state width="1877" height="151" key="GridCell.Tab.0.left" />
+    <state width="1877" height="151" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" />
+    <state width="1877" height="151" key="GridCell.Tab.0.right" />
+    <state width="1877" height="151" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" />
+    <state x="461" y="164" key="SettingsEditor" />
+    <state x="461" y="164" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" />
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2" />
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" />
+    <state x="682" y="431" key="vcs.readOnlyHandler.ReadOnlyStatusDialog" />
+    <state x="682" y="431" key="vcs.readOnlyHandler.ReadOnlyStatusDialog/0.0.1920.1040@0.0.1920.1040" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -206,6 +212,11 @@
           <url>file://$PROJECT_DIR$/utils/mysql_test.go</url>
           <line>7</line>
           <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/brain/brain_impl_test.go</url>
+          <line>64</line>
+          <option name="timeStamp" value="6" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

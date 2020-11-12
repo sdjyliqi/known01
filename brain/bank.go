@@ -12,7 +12,7 @@ type bankBrain struct {
 	phoneNumDic     map[string]string            //存储客服电话到标准名称的映射。
 	bankDic         map[string]*models.Reference //名称到详情的映射表
 	referencesItems []*models.Reference          //基准数据
-
+	scoreDict       map[string]*models.Score
 }
 
 //CreateBankBrain ... 创建银行鉴别引擎
@@ -23,6 +23,7 @@ func CreateBankBrain(items []*models.Reference) *bankBrain {
 		phoneNumDic: map[string]string{},
 		bankDic:     map[string]*models.Reference{},
 		acMatch:     nil,
+		scoreDict:   map[string]*models.Score{},
 	}
 	brain.Init(items)
 	return &brain
