@@ -5,10 +5,16 @@ import (
 	"known01/models"
 	"known01/utils"
 	"net/http"
+	"strconv"
 )
 
+//GetNews ...获取信息列表，优先从GET中获取页码，如果GET参数中，无发现，从POST中获取参数
 func GetNews(c *gin.Context) {
-	pageID := c.GetInt("page") //page 编码id
+	strPage := c.GetString("page")
+	if strPage == "" {
+		strPage = c.PostForm("page")
+	}
+	pageID, _ := strconv.Atoi(strPage)
 	items, err := models.News{}.GetItems(utils.GetMysqlClient(), pageID)
 	if err != nil {
 		c.JSON(http.StatusOK, gin.H{"code": 1, "msg": err.Error()})

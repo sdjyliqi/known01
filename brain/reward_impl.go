@@ -9,11 +9,8 @@ import (
 	"strings"
 )
 
-var messageTest = "[招商银行]尊敬的客户，一张闪电贷专属礼券为你呈上！用券条款可享受专属利率优惠，优惠日截止2020年10月31日。" +
-	"点击http://a.cmbchina.com/personal/cmhkas13快速申请，详情请咨询95599,400-66666888,15210510285"
-
 //getBankNameByPhoneID ...通过客服电话查找银行名称
-func (bb *bankBrain) Init(items []*models.Reference) error {
+func (bb *rewardBrain) Init(items []*models.Reference) error {
 	//初始化 PhoneNumDic，aliasNames
 	aliasNamesDic := map[string]string{}
 	var bankAllNames []string
@@ -55,7 +52,7 @@ func (bb *bankBrain) Init(items []*models.Reference) error {
 	return nil
 }
 
-func (bb *bankBrain) InitScoreItems() error {
+func (bb *rewardBrain) InitScoreItems() error {
 	scoreDic := map[string]*models.Score{}
 	items, err := models.Score{}.GetItems(utils.GetMysqlClient())
 	if err != nil {
@@ -69,7 +66,7 @@ func (bb *bankBrain) InitScoreItems() error {
 }
 
 //getBankNameByPhoneID ...通过客服电话查找银行名称
-func (bb *bankBrain) getBankNameByPhoneID(phone string) (string, bool) {
+func (bb *rewardBrain) getBankNameByPhoneID(phone string) (string, bool) {
 	v, ok := bb.phoneNumDic[phone]
 	if !ok {
 		glog.Errorf("Do not find the bank-name by customer phone %s", phone)
@@ -79,8 +76,8 @@ func (bb *bankBrain) getBankNameByPhoneID(phone string) (string, bool) {
 }
 
 //PickupProperties ... 摘取核心内容
-func (bb *bankBrain) PickupProperties(msg, phoneID, sender string) (propertiesVec, bool) {
-	pickVal := propertiesVec{senderID: sender}
+func (bb *rewardBrain) PickupProperties(msg, phoneID string) (propertiesVec, bool) {
+	pickVal := propertiesVec{}
 	//优先通过客服电话id获取银行名称，如果找不到，只能通过ac自动机来寻找银行关键字。
 	if len(phoneID) > 0 {
 		govName, ok := bb.getBankNameByPhoneID(phoneID)
@@ -103,12 +100,11 @@ func (bb *bankBrain) PickupProperties(msg, phoneID, sender string) (propertiesVe
 	if ok {
 		pickVal.mobilePhone = mobilePhone
 	}
-
 	return pickVal, true
 }
 
 //pickupName ... 寻找银行名称，返回值为标准名称
-func (bb *bankBrain) pickupName(msg string) (string, bool) {
+func (bb *rewardBrain) pickupName(msg string) (string, bool) {
 	matchIndex := bb.acMatch.Match(msg)
 	if len(matchIndex) > 0 {
 		idx := bb.allNames[matchIndex[0]]
@@ -123,17 +119,17 @@ func (bb *bankBrain) pickupName(msg string) (string, bool) {
 }
 
 //pickupWebDomain ...寻找一级域名，返回值中已经剔除.com，.cn等辅助信息
-func (bb *bankBrain) pickupWebDomain(msg string) (string, bool) {
+func (bb *rewardBrain) pickupWebDomain(msg string) (string, bool) {
 	return utils.ExtractWebFirstDomain(msg)
 }
 
 //pickupMobilePhone ...寻找手机号码
-func (bb *bankBrain) pickupMobilePhone(msg string) (string, bool) {
+func (bb *rewardBrain) pickupMobilePhone(msg string) (string, bool) {
 	return utils.ExtractMobilePhone(msg)
 }
 
-func (bb *bankBrain) JudgeMessage(msg, phoneID, sender string) (int, string) {
-	v, ok := bb.PickupProperties(msg, phoneID, sender)
+func (bb *rewardBrain) JudgeMessage(msg, phoneID string) (float64, string) {
+	v, ok := bb.PickupProperties(msg, phoneID)
 	if !ok {
 		return 0, ""
 	}
@@ -141,7 +137,7 @@ func (bb *bankBrain) JudgeMessage(msg, phoneID, sender string) (int, string) {
 }
 
 //createMatchScoreIndex ...创建匹配字符串
-func (bb *bankBrain) createMatchScoreIndex(pickup propertiesVec) (string, *models.Reference) {
+func (bb *rewardBrain) createMatchScoreIndex(pickup propertiesVec) (string, *models.Reference) {
 	domainIdx, msgIDIdx, phoneIDIdx := "D0", "M0", "P0"
 	if pickup.govName == "" {
 		return "", nil
@@ -175,27 +171,19 @@ func (bb *bankBrain) createMatchScoreIndex(pickup propertiesVec) (string, *model
 	return domainIdx + msgIDIdx + phoneIDIdx, item
 }
 
-func (bb *bankBrain) MatchScoreV2(pickup propertiesVec) (int, string) {
-	findMobilePhoneScore := -10
+func (bb *rewardBrain) MatchScoreV2(pickup propertiesVec) (float64, string) {
 	notFindMessage := "尊敬的用户，是真是假APP提示您，你接收的短信类型为【金融】，目前未识别出关键信息，请加强安全意识，切勿泄露个人信息，认准官方。"
 	matchMessage := "尊敬的用户，是真是假APP提示您，你接收的短信类型为【金融】，目前判断短信内容可信度为%d%%，请致电官方客服%s或登录官方网站%s进行再次确认，避免上当，谢谢您使用时真是假APP。。"
-	matchScore := 0
+	matchScore := 0.0
 	idx, bankItem := bb.createMatchScoreIndex(pickup)
 	if idx == "" {
-		return 0, notFindMessage
+		return matchScore, notFindMessage
 	}
 	scoreItem, ok := bb.scoreDict[idx]
 	if !ok {
-		return 0, notFindMessage
+		return matchScore, notFindMessage
 	}
-	//如果出现手机号，减分项目
-	matchScore = scoreItem.Score
-	if len(pickup.mobilePhone) > 1 {
-		matchScore = matchScore + findMobilePhoneScore
-	}
-	if matchScore < 0 {
-		matchScore = 0
-	}
-	suggest := fmt.Sprintf(matchMessage, matchScore, bankItem.ManualPhone, bankItem.Website)
+	suggest := fmt.Sprintf(matchMessage, int(scoreItem.Score), bankItem.ManualPhone, bankItem.Website)
 	return matchScore, suggest
+
 }
