@@ -137,7 +137,8 @@ func (bb *bankBrain) JudgeMessage(msg, phoneID, sender string) (int, string) {
 	if !ok {
 		return 0, ""
 	}
-	return bb.MatchScoreV2(v)
+	score, suggest := bb.MatchScoreV2(v)
+	return score, suggest
 }
 
 //createMatchScoreIndex ...创建匹配字符串

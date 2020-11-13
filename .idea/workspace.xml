@@ -20,18 +20,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="91f69e01-107a-433a-b190-0e176ab79e31" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/brain/reward_impl.go" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/models/results_test.go" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/modelsbak.zip" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/xorm" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/brain/bank_impl.go" beforeDir="false" afterPath="$PROJECT_DIR$/brain/bank_impl.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/brain/brain_impl.go" beforeDir="false" afterPath="$PROJECT_DIR$/brain/brain_impl.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/brain/express.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/brain/reward.go" beforeDir="false" afterPath="$PROJECT_DIR$/brain/reward.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/brain/brain_impl_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/brain/brain_impl_test.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/handle/judge.go" beforeDir="false" afterPath="$PROJECT_DIR$/handle/judge.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/handle/news.go" beforeDir="false" afterPath="$PROJECT_DIR$/handle/news.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/results.go" beforeDir="false" afterPath="$PROJECT_DIR$/models/results.go" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -73,13 +70,13 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="go.import.settings.migrated" value="true" />
     <property name="go.sdk.automatically.set" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/brain" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/models" />
     <property name="settings.editor.selected.configurable" value="go.vgo" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\gowork\src\known01\brain" />
       <recent name="D:\gowork\src\known01\models" />
+      <recent name="D:\gowork\src\known01\brain" />
       <recent name="D:\gowork\src\known01\modelsbbb" />
       <recent name="D:\gowork\src\known01\utils" />
       <recent name="D:\gowork\src\known01\data" />
@@ -97,7 +94,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Go Build.go build known01">
+  <component name="RunManager" selected="Go Test.Test_ResultsStore in known01/models">
     <configuration name="go build known01" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="known01" />
       <working_directory value="$PROJECT_DIR$" />
@@ -105,17 +102,6 @@
       <filePath value="$PROJECT_DIR$/main.go" />
       <package value="known01" />
       <directory value="$PROJECT_DIR$/" />
-      <method v="2" />
-    </configuration>
-    <configuration name="Test_GetEngineName in known01/brain" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
-      <module name="known01" />
-      <working_directory value="$PROJECT_DIR$/brain" />
-      <framework value="gotest" />
-      <kind value="PACKAGE" />
-      <package value="known01/brain" />
-      <directory value="$PROJECT_DIR$/" />
-      <filePath value="$PROJECT_DIR$/" />
-      <pattern value="^Test_GetEngineName$" />
       <method v="2" />
     </configuration>
     <configuration name="Test_JudgeMessage in known01/brain (1)" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
@@ -129,7 +115,7 @@
       <pattern value="^Test_JudgeMessage$" />
       <method v="2" />
     </configuration>
-    <configuration name="Test_JudgeMessage in known01/brain" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+    <configuration name="Test_JudgeMessage in known01/brain (2)" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="known01" />
       <working_directory value="$PROJECT_DIR$/brain" />
       <framework value="gotest" />
@@ -140,7 +126,18 @@
       <pattern value="^Test_JudgeMessage$" />
       <method v="2" />
     </configuration>
-    <configuration name="Test_pickupProperties in known01/brain" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+    <configuration name="Test_ResultsStore in known01/models" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="known01" />
+      <working_directory value="$PROJECT_DIR$/models" />
+      <framework value="gotest" />
+      <kind value="PACKAGE" />
+      <package value="known01/models" />
+      <directory value="$PROJECT_DIR$/" />
+      <filePath value="$PROJECT_DIR$/" />
+      <pattern value="^Test_ResultsStore$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Test_pickupProperties in known01/brain (1)" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="known01" />
       <working_directory value="$PROJECT_DIR$/brain" />
       <framework value="gotest" />
@@ -153,11 +150,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Go Test.Test_ResultsStore in known01/models" />
+        <item itemvalue="Go Test.Test_pickupProperties in known01/brain (1)" />
+        <item itemvalue="Go Test.Test_JudgeMessage in known01/brain (2)" />
         <item itemvalue="Go Build.go build known01" />
         <item itemvalue="Go Test.Test_JudgeMessage in known01/brain (1)" />
-        <item itemvalue="Go Test.Test_pickupProperties in known01/brain" />
-        <item itemvalue="Go Test.Test_JudgeMessage in known01/brain" />
-        <item itemvalue="Go Test.Test_GetEngineName in known01/brain" />
       </list>
     </recent_temporary>
   </component>
@@ -183,7 +180,8 @@
     <MESSAGE value="控制中心完毕" />
     <MESSAGE value="gin" />
     <MESSAGE value="del ut" />
-    <option name="LAST_COMMIT_MESSAGE" value="del ut" />
+    <MESSAGE value="发信息的id，手机号" />
+    <option name="LAST_COMMIT_MESSAGE" value="发信息的id，手机号" />
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>

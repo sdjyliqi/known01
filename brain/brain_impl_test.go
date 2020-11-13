@@ -65,10 +65,10 @@ func Test_GetEngineName(t *testing.T) {
 func Test_JudgeMessage(t *testing.T) {
 	testMsg := "尊敬的用户：您的电子密码器于次日失效，请速登录手机维护网站wap.icbc.com进行更新。给你带来不变，敬请谅解,具体请咨询95588！【工商银行】"
 	c := CreateCenter()
-	suggest, score := c.JudgeMessage(testMsg)
+	suggest, score := c.JudgeMessage(testMsg, "95588")
 	t.Log(suggest, score)
 
 	testMsg = "今天阳光明媚，可以小酌一杯"
-	suggest, score = c.JudgeMessage(testMsg)
+	suggest, score = c.JudgeMessage(testMsg, "15210510285")
 	t.Log(suggest, score)
 }
