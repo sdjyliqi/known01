@@ -11,6 +11,7 @@ type News struct {
 	Id      int       `json:"id" xorm:"not null pk INT(11)"`
 	Title   string    `json:"title" xorm:"not null VARCHAR(128)"`
 	Status  int       `json:"status" xorm:"comment('0 初始值   1 发布  2 下架') TINYINT(4)"`
+	Thumb   string    `json:"thumb" xorm:"not null  VARCHAR(256)"`
 	Url     string    `json:"url" xorm:"not null VARCHAR(256)"`
 	IsReal  int       `json:"is_real" xorm:"not null TINYINT(4)"`
 	Publish time.Time `json:"publish" xorm:"not null DATETIME"`
