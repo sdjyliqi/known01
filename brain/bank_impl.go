@@ -9,16 +9,15 @@ import (
 	"strings"
 )
 
-var messageTest = "[招商银行]尊敬的客户，一张闪电贷专属礼券为你呈上！用券条款可享受专属利率优惠，优惠日截止2020年10月31日。" +
-	"点击http://a.cmbchina.com/personal/cmhkas13快速申请，详情请咨询95599,400-66666888,15210510285"
-
 //getBankNameByPhoneID ...通过客服电话查找银行名称
 func (bb *bankBrain) Init(items []*models.Reference) error {
 	//初始化 PhoneNumDic，aliasNames
 	aliasNamesDic := map[string]string{}
 	var bankAllNames []string
 	for _, v := range items {
-		//初始化银行名称的映射关系和关键字列表
+		if v.CategoryId != utils.EngineBank {
+			continue
+		}
 		aliasNamesDic[v.Name] = v.Name
 		bankAllNames = append(bankAllNames, v.Name)
 		if len(v.AliasNames) > 0 {

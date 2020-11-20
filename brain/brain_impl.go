@@ -1,6 +1,7 @@
 package brain
 
 import (
+	"fmt"
 	"github.com/gansidui/ahocorasick"
 	"github.com/golang/glog"
 	"known01/models"
@@ -185,6 +186,7 @@ func (c *Center) matchEngineRate(msg string) (utils.EngineType, float64) {
 	for _, v := range c.messageTemplatesItems {
 		simValue := utils.SimHashTool.Hash(msg)
 		rate := utils.SimHashTool.Similarity(simValue, v.SimHash)
+		fmt.Println(simValue, v.SimHash, rate, v.Id, v.CategoryId)
 		if rate > matchRate {
 			matchRate = rate
 			engineName = v.CategoryId
@@ -224,13 +226,14 @@ func (c *Center) GetEngineName(msg string) (utils.EngineType, string) {
 
 func (c *Center) JudgeMessage(msg, sender string) (int, string) {
 	engineName, phoneID := c.GetEngineName(msg)
+	fmt.Println("=========================", engineName, phoneID)
 	switch engineName {
 	case utils.EngineBank:
 		return c.bank.JudgeMessage(msg, phoneID, sender)
 	case utils.EngineReward:
-		return c.bank.JudgeMessage(msg, phoneID, sender)
+		return c.reward.JudgeMessage(msg, phoneID, sender)
 	default:
-		return 0.0, "尊敬的用户,是真是假APP无法鉴别短信内容真假，并提示您加强安全防范意识，切勿泄露个人数据，避免财产损失。"
+		return -1, "尊敬的用户,是真是假APP无法鉴别短信内容真假，并提示您加强安全防范意识，切勿泄露个人数据，避免财产损失。"
 	}
 	return 0, ""
 }

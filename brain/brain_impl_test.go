@@ -71,4 +71,8 @@ func Test_JudgeMessage(t *testing.T) {
 	testMsg = "今天阳光明媚，可以小酌一杯"
 	suggest, score = c.JudgeMessage(testMsg, "15210510285")
 	t.Log(suggest, score)
+
+	testMsg = "恭喜！您的手机号码15210510288已经被栏目组随机抽取为场外的幸运用户。将获得由赞助商提供的奖金:价值元的笔记本电脑！详情请登录活动网站:验证码请牢记[中国好声音]"
+	suggest, score = c.JudgeMessage(testMsg, "800-12344444")
+	t.Log(suggest, score)
 }

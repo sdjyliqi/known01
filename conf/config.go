@@ -9,7 +9,6 @@ type Known01Config struct {
 
 // DefaultConfig .
 var DefaultConfig = Known01Config{
-	DBMysql: "root:Bit0123456789!@tcp(114.55.139.105:3306)/brain?charset=utf8mb4",
-	DBRedis: "redis://1:@127.0.0.1:6379",
+	DBMysql: "wdzHhOX/SSdWWziV4TDy0AYqXfr0dwPoVWNGPbgg26gLOoV0731EyR/b49lfJSSf6dnK0C9s5Il4QyRmaFsNTc6XOtu1ApToSaYGns+OVasYdbGpKsbRqyYRroZ0sirBC8VEyx8FbcWlXQ==",
 	WordDic: "D:\\gowork\\src\\known01\\data\\dictionary.txt",
 }

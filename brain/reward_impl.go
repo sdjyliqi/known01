@@ -9,13 +9,15 @@ import (
 	"strings"
 )
 
-//getBankNameByPhoneID ...通过客服电话查找银行名称
+//getBankNameByPhoneID ...通过客服电话查找中奖单位名称
 func (bb *rewardBrain) Init(items []*models.Reference) error {
 	//初始化 PhoneNumDic，aliasNames
 	aliasNamesDic := map[string]string{}
 	var bankAllNames []string
 	for _, v := range items {
-		//初始化银行名称的映射关系和关键字列表
+		if v.CategoryId != utils.EngineReward {
+			continue
+		}
 		aliasNamesDic[v.Name] = v.Name
 		bankAllNames = append(bankAllNames, v.Name)
 		if len(v.AliasNames) > 0 {
@@ -38,7 +40,6 @@ func (bb *rewardBrain) Init(items []*models.Reference) error {
 		}
 	}
 	bb.aliasNames = aliasNamesDic
-	//基于银行名称创建ac自动机
 	ac := ahocorasick.NewMatcher()
 	bb.allNames = bankAllNames
 	ac.Build(bankAllNames)
@@ -76,8 +77,8 @@ func (bb *rewardBrain) getBankNameByPhoneID(phone string) (string, bool) {
 }
 
 //PickupProperties ... 摘取核心内容
-func (bb *rewardBrain) PickupProperties(msg, phoneID string) (propertiesVec, bool) {
-	pickVal := propertiesVec{}
+func (bb *rewardBrain) PickupProperties(msg, phoneID, sender string) (propertiesVec, bool) {
+	pickVal := propertiesVec{senderID: sender}
 	//优先通过客服电话id获取银行名称，如果找不到，只能通过ac自动机来寻找银行关键字。
 	if len(phoneID) > 0 {
 		govName, ok := bb.getBankNameByPhoneID(phoneID)
@@ -100,6 +101,7 @@ func (bb *rewardBrain) PickupProperties(msg, phoneID string) (propertiesVec, boo
 	if ok {
 		pickVal.mobilePhone = mobilePhone
 	}
+
 	return pickVal, true
 }
 
@@ -128,12 +130,13 @@ func (bb *rewardBrain) pickupMobilePhone(msg string) (string, bool) {
 	return utils.ExtractMobilePhone(msg)
 }
 
-func (bb *rewardBrain) JudgeMessage(msg, phoneID string) (float64, string) {
-	v, ok := bb.PickupProperties(msg, phoneID)
+func (bb *rewardBrain) JudgeMessage(msg, phoneID, sender string) (int, string) {
+	v, ok := bb.PickupProperties(msg, phoneID, sender)
 	if !ok {
 		return 0, ""
 	}
-	return bb.MatchScoreV2(v)
+	score, suggest := bb.MatchScoreV2(v)
+	return score, suggest
 }
 
 //createMatchScoreIndex ...创建匹配字符串
@@ -171,19 +174,27 @@ func (bb *rewardBrain) createMatchScoreIndex(pickup propertiesVec) (string, *mod
 	return domainIdx + msgIDIdx + phoneIDIdx, item
 }
 
-func (bb *rewardBrain) MatchScoreV2(pickup propertiesVec) (float64, string) {
-	notFindMessage := "尊敬的用户，是真是假APP提示您，你接收的短信类型为【金融】，目前未识别出关键信息，请加强安全意识，切勿泄露个人信息，认准官方。"
-	matchMessage := "尊敬的用户，是真是假APP提示您，你接收的短信类型为【金融】，目前判断短信内容可信度为%d%%，请致电官方客服%s或登录官方网站%s进行再次确认，避免上当，谢谢您使用时真是假APP。。"
-	matchScore := 0.0
+func (bb *rewardBrain) MatchScoreV2(pickup propertiesVec) (int, string) {
+	findMobilePhoneScore := -5
+	notFindMessage := "尊敬的用户，是真是假APP提示您，你接收的短信类型为【中奖】，目前未识别出关键信息，请加强安全意识，切勿泄露个人信息，认准官方。"
+	matchMessage := "尊敬的用户，是真是假APP提示您，你接收的短信类型为【中奖】，目前判断短信内容可信度为%d%%，请致电官方客服%s或登录官方网站%s进行再次确认，避免上当，谢谢您使用时真是假APP。。"
+	matchScore := 0
 	idx, bankItem := bb.createMatchScoreIndex(pickup)
 	if idx == "" {
-		return matchScore, notFindMessage
+		return 0, notFindMessage
 	}
 	scoreItem, ok := bb.scoreDict[idx]
 	if !ok {
-		return matchScore, notFindMessage
+		return 0, notFindMessage
 	}
-	suggest := fmt.Sprintf(matchMessage, int(scoreItem.Score), bankItem.ManualPhone, bankItem.Website)
+	//如果出现手机号，减分项目
+	matchScore = scoreItem.Score
+	if len(pickup.mobilePhone) > 1 {
+		matchScore = matchScore + findMobilePhoneScore
+	}
+	if matchScore < 0 {
+		matchScore = 0
+	}
+	suggest := fmt.Sprintf(matchMessage, matchScore, bankItem.ManualPhone, bankItem.Website)
 	return matchScore, suggest
-
 }

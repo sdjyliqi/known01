@@ -15,7 +15,7 @@ type rewardBrain struct {
 	scoreDict       map[string]*models.Score
 }
 
-//CreateBankBrain ... 创建银行鉴别引擎
+//CreateBankBrain ... 创建中奖鉴别引擎
 func CreateRewardBrain(items []*models.Reference) *rewardBrain {
 	brain := rewardBrain{
 		aliasNames:  map[string]string{},

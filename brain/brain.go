@@ -38,6 +38,7 @@ type Center struct {
 	acIndexWords  *ahocorasick.Matcher //提取官方客服电话的ac自动机
 	indexWordsDic map[string]utils.EngineType
 	bank          *bankBrain
+	reward        *rewardBrain
 
 	referencesItems []*models.Reference
 
@@ -54,5 +55,6 @@ func CreateCenter() Center {
 	}
 	c.init()
 	c.bank = CreateBankBrain(c.referencesItems)
+	c.reward = CreateRewardBrain(c.referencesItems)
 	return c
 }
