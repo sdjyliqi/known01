@@ -16,6 +16,7 @@ type News struct {
 	IsReal  int       `json:"is_real" xorm:"not null TINYINT(4)"`
 	Publish time.Time `json:"publish" xorm:"not null DATETIME"`
 	Author  string    `json:"author" xorm:"not null VARCHAR(32)"`
+	Comment string    `json:"comment" xorm:"not null VARCHAR(256)"`
 }
 
 func (t News) TableName() string {
