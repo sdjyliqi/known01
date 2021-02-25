@@ -33,3 +33,7 @@ func TestAESGCM(t *testing.T) {
 
 	assert.Equal(t, ostr, decrypted)
 }
+
+func TestAESGCMMysql(t *testing.T) {
+
+}
