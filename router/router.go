@@ -18,4 +18,12 @@ func InitRouter(r *gin.Engine) {
 		GroupV2.POST("/brain", handle.JudgeMessage) //获取信息详情
 	}
 
+	//管理后台相关的接口
+	GroupV1 := r.Group("/admin")
+	{
+		GroupV1.GET("/login", handle.UCLogin) //用户登录
+		GroupV1.POST("/login", handle.UCLogin)
+		GroupV1.POST("/logout", handle.GetNews) //用户注销
+	}
+
 }

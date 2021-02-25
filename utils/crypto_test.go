@@ -10,6 +10,11 @@ func TestEncrypt(t *testing.T) {
 	s, err := Encrypt(a)
 	assert.Nil(t, err)
 	t.Logf(s)
+
+	a = "root:Bit0123456789!@tcp(10.233.146.47:16315)/brain?charset=utf8mb4"
+	s, err = Encrypt(a)
+	assert.Nil(t, err)
+	t.Logf(s)
 }
 
 func TestDecrypt(t *testing.T) {
