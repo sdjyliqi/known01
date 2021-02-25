@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"github.com/gansidui/ahocorasick"
 	"github.com/golang/glog"
-	"known01/models"
+	"known01/model"
 	"known01/utils"
 	"strings"
 )
@@ -34,7 +34,7 @@ func (c *Center) init() error {
 }
 
 func (c *Center) InitCutWordsFromDB() error {
-	items, err := models.Assist{}.GetItems(utils.GetMysqlClient())
+	items, err := model.Assist{}.GetItems(utils.GetMysqlClient())
 	if err != nil {
 		return err
 	}
@@ -55,8 +55,8 @@ func (c *Center) InitCutWordsFromDB() error {
 //getReferencesItemsFromDB ...
 func (c *Center) InitReferencesItemsFromDB() error {
 	//初始化customerPhoneDic
-	phoneNumsDic := map[string]*models.Reference{}
-	items, err := models.Reference{}.GetItems(utils.GetMysqlClient())
+	phoneNumsDic := map[string]*model.Reference{}
+	items, err := model.Reference{}.GetItems(utils.GetMysqlClient())
 	if err != nil {
 		return err
 	}
@@ -114,7 +114,7 @@ func (c *Center) InitReferencesItemsFromDB() error {
 //InitTemplatesItemsFromDB ...初始化短信模板相关的内容
 func (c *Center) InitTemplatesItemsFromDB() error {
 	templateDic := map[string]utils.EngineType{}
-	items, err := models.Templates{}.GetItems(utils.GetMysqlClient())
+	items, err := model.Templates{}.GetItems(utils.GetMysqlClient())
 	if err != nil {
 		return err
 	}

@@ -1,4 +1,4 @@
-package models
+package model
 
 //type DBGate interface {
 //	GetNewsItems() ([]*Assist, error)

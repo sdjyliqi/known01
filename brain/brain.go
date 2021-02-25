@@ -2,7 +2,7 @@ package brain
 
 import (
 	"github.com/gansidui/ahocorasick"
-	"known01/models"
+	"known01/model"
 	"known01/utils"
 )
 
@@ -25,13 +25,13 @@ var indexWordDic = map[utils.EngineType][]string{
 type Center struct {
 	messageTemplates map[string]utils.EngineType //短信模块内容列表
 
-	messageTemplatesItems []*models.Templates //短信模块内容列表
+	messageTemplatesItems []*model.Templates //短信模块内容列表
 
 	cutWords []string //副助词列表
 
-	acCustomerPhoneMatch *ahocorasick.Matcher         //提取官方客服电话的ac自动机
-	customerPhoneDic     map[string]*models.Reference //银行类短信模块内容列表
-	customerPhones       []string                     //客服电话列表，ac自动机匹配查询使用
+	acCustomerPhoneMatch *ahocorasick.Matcher        //提取官方客服电话的ac自动机
+	customerPhoneDic     map[string]*model.Reference //银行类短信模块内容列表
+	customerPhones       []string                    //客服电话列表，ac自动机匹配查询使用
 
 	//构建分类的关键词ac自动机
 	indexWords    []string             //客服电话列表，ac自动机匹配查询使用
@@ -40,7 +40,7 @@ type Center struct {
 	bank          *bankBrain
 	reward        *rewardBrain
 
-	referencesItems []*models.Reference
+	referencesItems []*model.Reference
 
 	acCutWords *ahocorasick.Matcher //副助词匹配自动机，作用，进行模板匹配前，需要将辅助词剔除。
 
@@ -51,7 +51,7 @@ func CreateCenter() Center {
 	c := Center{
 		messageTemplates: map[string]utils.EngineType{},
 		indexWordsDic:    map[string]utils.EngineType{},
-		customerPhoneDic: map[string]*models.Reference{},
+		customerPhoneDic: map[string]*model.Reference{},
 	}
 	c.init()
 	c.bank = CreateBankBrain(c.referencesItems)

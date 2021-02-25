@@ -2,7 +2,7 @@ package handle
 
 import (
 	"github.com/gin-gonic/gin"
-	"known01/models"
+	"known01/model"
 	"known01/utils"
 	"net/http"
 	"strconv"
@@ -15,7 +15,7 @@ func GetNews(c *gin.Context) {
 		strPage = c.PostForm("page")
 	}
 	pageID, _ := strconv.Atoi(strPage)
-	items, err := models.News{}.GetItems(utils.GetMysqlClient(), pageID)
+	items, err := model.News{}.GetItems(utils.GetMysqlClient(), pageID)
 	if err != nil {
 		c.JSON(http.StatusOK, gin.H{"code": 1, "msg": err.Error()})
 		return

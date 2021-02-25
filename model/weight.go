@@ -1,4 +1,4 @@
-package models
+package model
 
 type Weight struct {
 	Id           int     `json:"id" xorm:"not null pk INT(11)"`

@@ -4,13 +4,13 @@ import (
 	"fmt"
 	"github.com/gansidui/ahocorasick"
 	"github.com/golang/glog"
-	"known01/models"
+	"known01/model"
 	"known01/utils"
 	"strings"
 )
 
 //getBankNameByPhoneID ...通过客服电话查找中奖单位名称
-func (bb *rewardBrain) Init(items []*models.Reference) error {
+func (bb *rewardBrain) Init(items []*model.Reference) error {
 	//初始化 PhoneNumDic，aliasNames
 	aliasNamesDic := map[string]string{}
 	var bankAllNames []string
@@ -54,8 +54,8 @@ func (bb *rewardBrain) Init(items []*models.Reference) error {
 }
 
 func (bb *rewardBrain) InitScoreItems() error {
-	scoreDic := map[string]*models.Score{}
-	items, err := models.Score{}.GetItems(utils.GetMysqlClient())
+	scoreDic := map[string]*model.Score{}
+	items, err := model.Score{}.GetItems(utils.GetMysqlClient())
 	if err != nil {
 		return err
 	}
@@ -140,7 +140,7 @@ func (bb *rewardBrain) JudgeMessage(msg, phoneID, sender string) (int, string) {
 }
 
 //createMatchScoreIndex ...创建匹配字符串
-func (bb *rewardBrain) createMatchScoreIndex(pickup propertiesVec) (string, *models.Reference) {
+func (bb *rewardBrain) createMatchScoreIndex(pickup propertiesVec) (string, *model.Reference) {
 	domainIdx, msgIDIdx, phoneIDIdx := "D0", "M0", "P0"
 	if pickup.govName == "" {
 		return "", nil
