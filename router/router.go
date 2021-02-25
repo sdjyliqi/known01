@@ -23,7 +23,7 @@ func InitRouter(r *gin.Engine) {
 	{
 		GroupV1.GET("/login", handle.UCLogin) //用户登录
 		GroupV1.POST("/login", handle.UCLogin)
-		GroupV1.POST("/logout", handle.GetNews) //用户注销
+		GroupV1.POST("/users", handle.UCUsers) //获取全部用户列表
 	}
 
 }

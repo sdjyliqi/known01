@@ -22,7 +22,7 @@
     <list default="true" id="91f69e01-107a-433a-b190-0e176ab79e31" name="Default Changelist" comment="add thumb">
       <change afterPath="$PROJECT_DIR$/xorm" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/handle/login.go" beforeDir="false" afterPath="$PROJECT_DIR$/handle/login.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/user.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -265,9 +265,9 @@
     <MESSAGE value="1113" />
     <MESSAGE value="news 增加字段" />
     <MESSAGE value="uc login" />
-    <MESSAGE value="add thumb" />
     <MESSAGE value="todo  增加全局error" />
-    <option name="LAST_COMMIT_MESSAGE" value="todo  增加全局error" />
+    <MESSAGE value="add thumb" />
+    <option name="LAST_COMMIT_MESSAGE" value="add thumb" />
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>

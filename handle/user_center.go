@@ -32,3 +32,13 @@ func UCLogin(c *gin.Context) {
 	}
 	c.JSON(http.StatusOK, gin.H{"code": 4001, "msg": "the username or password invalid"})
 }
+
+//UCLogin ...用户登录
+func UCUsers(c *gin.Context) {
+	pageID := c.GetInt("page")
+	items, err := model.User{}.GetItems(pageID, 10)
+	if err != nil {
+		c.JSON(http.StatusOK, gin.H{"code": 4002, "msg": err.Error()})
+	}
+	c.JSON(http.StatusOK, gin.H{"code": 0, "msg": "succ", "data": items})
+}
