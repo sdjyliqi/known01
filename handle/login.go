@@ -10,9 +10,9 @@ import (
 //UCLogin ...用户登录
 func UCLogin(c *gin.Context) {
 	token := "000011111122222"
-	name := c.GetString("name")
-	password := c.GetString("password")
-
+	name := c.DefaultQuery("name", "")
+	//nil
+	password := c.DefaultQuery("password", "")
 	if name == "" || password == "" {
 		c.JSON(http.StatusOK, gin.H{"code": 0, "msg": "the user name or password must not be empty."})
 		return

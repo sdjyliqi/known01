@@ -20,44 +20,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="91f69e01-107a-433a-b190-0e176ab79e31" name="Default Changelist" comment="add thumb">
-      <change afterPath="$PROJECT_DIR$/model/assist.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/model/category.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/model/news.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/model/reference.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/model/results.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/model/score.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/model/templates.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/model/user.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/models/raw_data.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/models/sensitive_words.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/models/training_data.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/models/user.go" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/xorm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/brain/bank.go" beforeDir="false" afterPath="$PROJECT_DIR$/brain/bank.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/brain/bank_impl.go" beforeDir="false" afterPath="$PROJECT_DIR$/brain/bank_impl.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/brain/bank_impl_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/brain/bank_impl_test.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/brain/brain.go" beforeDir="false" afterPath="$PROJECT_DIR$/brain/brain.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/brain/brain_impl.go" beforeDir="false" afterPath="$PROJECT_DIR$/brain/brain_impl.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/brain/reward.go" beforeDir="false" afterPath="$PROJECT_DIR$/brain/reward.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/brain/reward_impl.go" beforeDir="false" afterPath="$PROJECT_DIR$/brain/reward_impl.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/handle/login.go" beforeDir="false" afterPath="$PROJECT_DIR$/handle/login.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/handle/news.go" beforeDir="false" afterPath="$PROJECT_DIR$/handle/news.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/assist.go" beforeDir="false" afterPath="$PROJECT_DIR$/models/assist.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/assist_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/assist_test.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/db.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/db.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/news.go" beforeDir="false" afterPath="$PROJECT_DIR$/models/news.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/news_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/news_test.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/reference.go" beforeDir="false" afterPath="$PROJECT_DIR$/models/reference.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/results.go" beforeDir="false" afterPath="$PROJECT_DIR$/models/results.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/results_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/results_test.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/score.go" beforeDir="false" afterPath="$PROJECT_DIR$/models/score.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/score_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/score_test.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/templates.go" beforeDir="false" afterPath="$PROJECT_DIR$/models/templates.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/templates_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/templates_test.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/weight.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/weight.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/xorm.reverse" beforeDir="false" afterPath="$PROJECT_DIR$/xorm.reverse" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -301,7 +266,8 @@
     <MESSAGE value="news 增加字段" />
     <MESSAGE value="uc login" />
     <MESSAGE value="add thumb" />
-    <option name="LAST_COMMIT_MESSAGE" value="add thumb" />
+    <MESSAGE value="todo  增加全局error" />
+    <option name="LAST_COMMIT_MESSAGE" value="todo  增加全局error" />
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>
