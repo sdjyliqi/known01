@@ -6,7 +6,7 @@ import (
 
 type User struct {
 	Id         int       `json:"id" xorm:"not null pk INT(11)"`
-	Key        string    `json:"key" xorm:"not null pk comment('api请求分配的账号id') unique VARCHAR(64)"`
+	Name       string    `json:"Name" xorm:"not null pk comment('api请求分配的账号id') unique VARCHAR(64)"`
 	Password   string    `json:"password" xorm:"not null comment('登录密码') VARCHAR(64)"`
 	Manager    string    `json:"manager" xorm:"comment('负责人') VARCHAR(255)"`
 	Phone      string    `json:"phone" xorm:"default '' comment('负责人电话') VARCHAR(32)"`
