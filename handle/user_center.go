@@ -34,7 +34,7 @@ func UCLogin(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{"code": 4001, "msg": "the username or password invalid"})
 }
 
-//UCLogin ...用户登录
+//UCUsers ...分页查询用户
 func UCUsers(c *gin.Context) {
 	page := c.DefaultQuery("page", "0")
 	entry := c.DefaultQuery("entry", "0")
@@ -50,4 +50,23 @@ func UCUsers(c *gin.Context) {
 	//	return
 	//}
 	c.JSON(http.StatusOK, gin.H{"code": 0, "msg": "succ", "data": items})
+}
+
+//UsersStatus ...改变用户状态，传入参数为用户登录ID
+func UsersStatus(c *gin.Context) {
+	name := c.PostForm("name")
+	enable := c.PostForm("enable")
+	if enable == "1" || enable == "0" {
+		res, _ := model.User{}.ModifyEnable(name)
+		if res == true {
+			//用户状态修改成功
+			c.JSON(http.StatusOK, gin.H{"code": 0, "msg": "succ"})
+			return
+		}
+		c.JSON(http.StatusOK, gin.H{"code": 4001, "msg": "user doesn't exist"})
+	} else {
+		c.JSON(http.StatusOK, gin.H{"code": 0, "msg": "Unknown parameter.", "enable": enable})
+		return
+	}
+
 }

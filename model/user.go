@@ -60,18 +60,18 @@ func (t User) ModifyEnable(name string) (bool, error) {
 		glog.Errorf("Get items from table %s failed, err: %+v", t.TableName(), err)
 		return false, err
 	}
-	if ok || item.Enable == 1 {
+	if ok && item.Enable == 1 {
 		sql := "update user set enable = ? where name = ?"
-		_, err := utils.GetMysqlClient().Exec(sql, 1, name)
+		_, err := utils.GetMysqlClient().Exec(sql, 0, name)
 		if err != nil {
 			glog.Errorf("%s table update data is failed, err: %+v", t.TableName(), err)
 			return false, err
 		}
 		return true, nil
 	}
-	if ok || item.Enable == 0 {
+	if ok && item.Enable == 0 {
 		sql := "update user set enable = ? where name = ?"
-		_, err := utils.GetMysqlClient().Exec(sql, 0, name)
+		_, err := utils.GetMysqlClient().Exec(sql, 1, name)
 		if err != nil {
 			glog.Errorf("%s table update data is failed, err: %+v", t.TableName(), err)
 			return false, err
