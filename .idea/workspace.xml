@@ -19,10 +19,11 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="91f69e01-107a-433a-b190-0e176ab79e31" name="Default Changelist" comment="返回值改为string，items类型设为[]User">
+    <list default="true" id="91f69e01-107a-433a-b190-0e176ab79e31" name="Default Changelist" comment="No change">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/handle/user_center.go" beforeDir="false" afterPath="$PROJECT_DIR$/handle/user_center.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/user.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/router/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/router/router.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,6 +45,14 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
   </component>
   <component name="GoLibraries">
     <option name="indexEntireGoPath" value="false" />
@@ -295,7 +304,9 @@
     <MESSAGE value="修改user表中字段key为name，字段名为Key与mysql关键字冲突，会报错" />
     <MESSAGE value="用户信息分页查询设为get请求" />
     <MESSAGE value="返回值改为string，items类型设为[]User" />
-    <option name="LAST_COMMIT_MESSAGE" value="返回值改为string，items类型设为[]User" />
+    <MESSAGE value="设置page、entry查询参数，转化为int型执行" />
+    <MESSAGE value="No change" />
+    <option name="LAST_COMMIT_MESSAGE" value="No change" />
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>
