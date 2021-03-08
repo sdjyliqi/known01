@@ -5,6 +5,7 @@ import (
 	"github.com/golang/glog"
 	"known01/model"
 	"net/http"
+	"strconv"
 )
 
 //UCLogin ...用户登录
@@ -35,10 +36,18 @@ func UCLogin(c *gin.Context) {
 
 //UCLogin ...用户登录
 func UCUsers(c *gin.Context) {
-	pageID := c.GetInt("page")
-	items, err := model.User{}.GetItems(pageID, 10)
-	if err != nil {
-		c.JSON(http.StatusOK, gin.H{"code": 4002, "msg": err.Error()})
+	page := c.DefaultQuery("page", "0")
+	entry := c.DefaultQuery("entry", "0")
+	page1, _ := strconv.Atoi(page)
+	entry1, _ := strconv.Atoi(entry)
+	if page1 <= 0 || entry1 <= 0 {
+		c.JSON(http.StatusOK, gin.H{"code": 0, "msg": "Page and entry must be integers greater than 0."})
+		return
 	}
+	items, _ := model.User{}.GetItems(page1, entry1)
+	//if err != errors.New("not-find") {
+	//	c.JSON(http.StatusOK, gin.H{"code": 4002, "msg": err.Error()})
+	//	return
+	//}
 	c.JSON(http.StatusOK, gin.H{"code": 0, "msg": "succ", "data": items})
 }
