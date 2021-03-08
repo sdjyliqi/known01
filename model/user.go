@@ -1,6 +1,7 @@
 package model
 
 import (
+	"encoding/json"
 	"errors"
 	"github.com/golang/glog"
 	"known01/utils"
@@ -36,12 +37,17 @@ func (t User) ChkPassword(name, password string) (bool, error) {
 }
 
 //GetItems ...按页获取数据库中的数据，page从0开始
-func (t User) GetItems(page, entry int) ([]*User, error) {
-	var items []*User
-	err := utils.GetMysqlClient().Limit(page*entry, entry).Find(items)
+//返items类型为[]User ，原来的[]*User报错
+func (t User) GetItems(page, entry int) (string, error) {
+	var items []User
+	err := utils.GetMysqlClient().Limit(entry, (page-1)*entry).Find(&items)
 	if err != nil {
 		glog.Errorf("Get items from table %s failed,err:%+v", t.TableName(), err)
-		return nil, err
+		return "nil", err
 	}
-	return items, errors.New("not-find")
+	result, err := json.Marshal(&items)
+	if err != nil {
+		return "nil", err
+	}
+	return string(result), errors.New("not-find")
 }
