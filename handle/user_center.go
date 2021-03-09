@@ -11,9 +11,9 @@ import (
 //UCLogin ...用户登录
 func UCLogin(c *gin.Context) {
 	token := "000011111122222"
-	name := c.DefaultQuery("name", "")
+	name := c.DefaultPostForm("name", "")
 	//nil
-	password := c.DefaultQuery("password", "")
+	password := c.DefaultPostForm("password", "")
 	if name == "" || password == "" {
 		c.JSON(http.StatusOK, gin.H{"code": 0, "msg": "the user name or password must not be empty."})
 		return
