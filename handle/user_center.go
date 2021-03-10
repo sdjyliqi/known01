@@ -121,3 +121,46 @@ func UCResetPassword(c *gin.Context) {
 	}
 	c.JSON(http.StatusOK, gin.H{"code": 4001, "msg": "user doesn't exist"})
 }
+
+//UCChangePassword   ... 用户修改密码
+func UCChangePassword(c *gin.Context) {
+	name := c.DefaultPostForm("name", "")
+	oldpas := c.DefaultPostForm("oldpas", "")
+	newpas := c.DefaultPostForm("newpas", "")
+	confirmpas := c.DefaultPostForm("confirmpas", "")
+	if name == "" {
+		c.JSON(http.StatusOK, gin.H{"code": 0, "msg": "Name cann't be empty"})
+		return
+	}
+	if oldpas == "" || newpas == "" || confirmpas == "" {
+		c.JSON(http.StatusOK, gin.H{"code": 0, "msg": "Password cannot be empty"})
+		return
+	}
+	if oldpas == newpas || oldpas == confirmpas {
+		c.JSON(http.StatusOK, gin.H{"code": 0, "msg": "The new password and the old password cannot be the same"})
+		return
+	}
+	if newpas != confirmpas {
+		c.JSON(http.StatusOK, gin.H{"code": 0, "msg": "The new password is not the same as the confirmation password"})
+		return
+	}
+	invalidFlag, err := model.User{}.ChkPassword(name, oldpas)
+	//如果错误的时候，返回前端异常
+	if err != nil {
+		//todo
+		glog.Info(invalidFlag)
+
+	}
+	if invalidFlag != true {
+		//如果旧密码错误
+		c.JSON(http.StatusOK, gin.H{"code": 0, "msg": "Wrong password"})
+		return
+	}
+	res, _ := model.User{}.ChangePas(name, newpas)
+	if res == true {
+		//用户修改密码成功
+		c.JSON(http.StatusOK, gin.H{"code": 0, "msg": "succ"})
+		return
+	}
+	c.JSON(http.StatusOK, gin.H{"code": 4001, "msg": "user doesn't exist"})
+}

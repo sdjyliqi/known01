@@ -19,7 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="91f69e01-107a-433a-b190-0e176ab79e31" name="Default Changelist" comment="添加管理员重置用户密码功能">
+    <list default="true" id="91f69e01-107a-433a-b190-0e176ab79e31" name="Default Changelist" comment="添加用户详情信息展示功能">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/handle/user_center.go" beforeDir="false" afterPath="$PROJECT_DIR$/handle/user_center.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/model/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/user.go" afterDir="false" />
@@ -312,7 +312,8 @@
     <MESSAGE value="增加数据库连接时区配置" />
     <MESSAGE value="增加用户添加接口" />
     <MESSAGE value="添加管理员重置用户密码功能" />
-    <option name="LAST_COMMIT_MESSAGE" value="添加管理员重置用户密码功能" />
+    <MESSAGE value="添加用户详情信息展示功能" />
+    <option name="LAST_COMMIT_MESSAGE" value="添加用户详情信息展示功能" />
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>
