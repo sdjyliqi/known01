@@ -9,6 +9,6 @@ type Known01Config struct {
 
 // DefaultConfig .
 var DefaultConfig = Known01Config{
-	DBMysql: "wdzHhOX/SSdWWziV4TDy0AYqXfr0dwPoVWNGPbgg26gLOoV0731EyR/b49lfJSSf6dnK0C9s5Il4QyRmaFsNTc6XOtu1ApToSaYGns+OVasYdbGpKsbRqyYRroZ0sirBC8VEyx8FbcWlXQ==",
+	DBMysql: "ba0A1eeS3EWffh4vqPk1ni97oJfTXxWajESBsjSKOUgKu+OpPp4oFSUkcoGoxGfLH/YFCy5g6PgaN9iwiBNQ/2ADQG2q2H1a8N0AfeMWS7axkbTA8eJy7kBrQMCaqNvwfD17xs9KmiAWPvSEBHPBoIROUYc=",
 	WordDic: "D:\\learn\\gowork\\known01\\data\\dictionary.txt",
 }
