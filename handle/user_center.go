@@ -4,6 +4,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/golang/glog"
 	"known01/model"
+	"log"
 	"net/http"
 	"strconv"
 )
@@ -44,29 +45,46 @@ func UCUsers(c *gin.Context) {
 		c.JSON(http.StatusOK, gin.H{"code": 0, "msg": "Page and entry must be integers greater than 0."})
 		return
 	}
-	items, _ := model.User{}.GetItems(page1, entry1)
-	//if err != errors.New("not-find") {
-	//	c.JSON(http.StatusOK, gin.H{"code": 4002, "msg": err.Error()})
-	//	return
-	//}
+	items, err := model.User{}.GetItems(page1, entry1)
+	if err != nil {
+		c.JSON(http.StatusOK, gin.H{"code": 4001, "msg": "Failed to get list from table"})
+	}
 	c.JSON(http.StatusOK, gin.H{"code": 0, "msg": "succ", "data": items})
 }
 
 //UsersStatus ...改变用户状态，传入参数为用户登录ID
-func UsersStatus(c *gin.Context) {
-	name := c.PostForm("name")
-	enable := c.PostForm("enable")
-	if enable == "1" || enable == "0" {
-		res, _ := model.User{}.ModifyEnable(name)
-		if res == true {
-			//用户状态修改成功
-			c.JSON(http.StatusOK, gin.H{"code": 0, "msg": "succ"})
-			return
-		}
-		c.JSON(http.StatusOK, gin.H{"code": 4001, "msg": "user doesn't exist"})
-	} else {
-		c.JSON(http.StatusOK, gin.H{"code": 0, "msg": "Unknown parameter.", "enable": enable})
+func UCUsersStatus(c *gin.Context) {
+	name := c.DefaultPostForm("name", "")
+	if name == "" {
+		c.JSON(http.StatusOK, gin.H{"code": 0, "msg": "Name cann't be empty"})
 		return
 	}
+	res, _ := model.User{}.ModifyEnable(name)
+	if res == true {
+		//用户状态修改成功
+		c.JSON(http.StatusOK, gin.H{"code": 0, "msg": "succ"})
+		return
+	}
+	c.JSON(http.StatusOK, gin.H{"code": 4001, "msg": "user doesn't exist"})
+
+}
+func UCAddUsers(c *gin.Context) {
+	json := model.AddUser{}
+	err := c.BindJSON(&json)
+	log.Printf("%v", &json)
+	if err != nil {
+		c.JSON(http.StatusOK, gin.H{"code": 4001, "msg": "parse error"})
+		return
+	}
+	if json.Name == "" {
+		c.JSON(http.StatusOK, gin.H{"code": 4005, "msg": "Name cannot be empty"})
+		return
+	}
+	res, _ := model.User{}.AddData(json)
+	if res == true {
+		c.JSON(http.StatusOK, gin.H{"code": 0, "msg": "succ"})
+		return
+	}
+	c.JSON(http.StatusOK, gin.H{"code": 4001, "msg": "User already exists"})
 
 }

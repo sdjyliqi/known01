@@ -1,7 +1,6 @@
 package model
 
 import (
-	"encoding/json"
 	"errors"
 	"github.com/golang/glog"
 	"known01/utils"
@@ -17,6 +16,12 @@ type User struct {
 	Enable     int       `json:"enable" xorm:"comment('是否禁用') TINYINT(4)"`
 	Department string    `json:"department" xorm:"default '' comment('部门名称') VARCHAR(128)"`
 	LastLogin  time.Time `json:"last_login" xorm:"comment('最后一次登录日期') DATETIME"`
+}
+type AddUser struct {
+	Name       string `Name:"Name" xorm:"not null pk comment('api请求分配的账号id') unique VARCHAR(64)"`
+	Manager    string `json:"manager" xorm:"comment('负责人') VARCHAR(255)"`
+	Phone      string `json:"phone" xorm:"default '' comment('负责人电话') VARCHAR(32)"`
+	Department string `json:"department" xorm:"default '' comment('部门名称') VARCHAR(128)"`
 }
 
 func (t User) TableName() string {
@@ -38,18 +43,14 @@ func (t User) ChkPassword(name, password string) (bool, error) {
 
 //GetItems ...按页获取数据库中的数据，page从0开始
 //返items类型为[]User ，原来的[]*User报错
-func (t User) GetItems(page, entry int) (string, error) {
+func (t User) GetItems(page, entry int) ([]User, error) {
 	var items []User
 	err := utils.GetMysqlClient().Limit(entry, (page-1)*entry).Find(&items)
 	if err != nil {
 		glog.Errorf("Get items from table %s failed,err:%+v", t.TableName(), err)
-		return "nil", err
+		return items, err
 	}
-	result, err := json.Marshal(&items)
-	if err != nil {
-		return "nil", err
-	}
-	return string(result), errors.New("not-find")
+	return items, nil
 }
 
 //ModifyEnable ...修改用户状态，账号是否可以使用
@@ -79,4 +80,16 @@ func (t User) ModifyEnable(name string) (bool, error) {
 		return true, nil
 	}
 	return false, errors.New("not-find")
+}
+
+func (t User) AddData(AddUser AddUser) (bool, error) {
+	enable := 1
+	sql := "Insert into user(name, password, manager, phone, enable, department, last_login) " +
+		"values (?, ?, ?, ?, ?, ?, ?)"
+	_, err := utils.GetMysqlClient().Exec(sql, AddUser.Name, "ITpp2732@", AddUser.Manager, AddUser.Phone, enable, AddUser.Department, time.Now().Local())
+	if err != nil {
+		glog.Errorf("%s table insert data is failed, err: %+v", t.TableName(), err)
+		return false, err
+	}
+	return true, nil
 }

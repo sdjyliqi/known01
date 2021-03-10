@@ -21,9 +21,10 @@ func InitRouter(r *gin.Engine) {
 	//管理后台相关的接口
 	GroupV1 := r.Group("/admin")
 	{
-		GroupV1.POST("/login", handle.UCLogin)            //用户登录
-		GroupV1.GET("/users", handle.UCUsers)             //获取全部用户列表
-		GroupV1.POST("/users/status", handle.UsersStatus) //用户禁用激活状态设置
+		GroupV1.POST("/login", handle.UCLogin)              //用户登录
+		GroupV1.GET("/users/list", handle.UCUsers)          //获取全部用户列表
+		GroupV1.POST("/users/status", handle.UCUsersStatus) //用户禁用激活状态设置
+		GroupV1.POST("/users/add", handle.UCAddUsers)       //添加用户
 	}
 
 }
