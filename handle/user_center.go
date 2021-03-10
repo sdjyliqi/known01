@@ -52,6 +52,22 @@ func UCUsers(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{"code": 0, "msg": "succ", "data": items})
 }
 
+//UCShowInformation ... 展示用户详细信息
+func UCShowInformation(c *gin.Context) {
+	name := c.DefaultPostForm("name", "")
+	if name == "" {
+		c.JSON(http.StatusOK, gin.H{"code": 0, "msg": "Name cann't be empty"})
+		return
+	}
+	res, err := model.User{}.ShowInf(name)
+	if err != nil {
+		//成功查询用户详细信息
+		c.JSON(http.StatusOK, gin.H{"code": 4001, "msg": "user doesn't exist"})
+		return
+	}
+	c.JSON(http.StatusOK, gin.H{"code": 0, "msg": "succ", "data": res})
+}
+
 //UsersStatus ...改变用户状态，传入参数为用户登录ID
 func UCUsersStatus(c *gin.Context) {
 	name := c.DefaultPostForm("name", "")

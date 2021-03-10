@@ -23,6 +23,14 @@ type AddUser struct {
 	Phone      string `json:"phone" xorm:"default '' comment('负责人电话') VARCHAR(32)"`
 	Department string `json:"department" xorm:"default '' comment('部门名称') VARCHAR(128)"`
 }
+type UserInf struct {
+	Name       string    `Name:"Name" xorm:"not null pk comment('api请求分配的账号id') unique VARCHAR(64)"`
+	Manager    string    `json:"manager" xorm:"comment('负责人') VARCHAR(255)"`
+	Phone      string    `json:"phone" xorm:"default '' comment('负责人电话') VARCHAR(32)"`
+	Enable     int       `json:"enable" xorm:"comment('是否禁用') TINYINT(4)"`
+	Department string    `json:"department" xorm:"default '' comment('部门名称') VARCHAR(128)"`
+	LastLogin  time.Time `json:"last_login" xorm:"comment('最后一次登录日期') DATETIME"`
+}
 
 func (t User) TableName() string {
 	return "user"
@@ -51,6 +59,19 @@ func (t User) GetItems(page, entry int) ([]User, error) {
 		return items, err
 	}
 	return items, nil
+}
+func (t User) ShowInf(name string) (UserInf, error) {
+	var inf UserInf
+	sql := "Select name, manager, phone, enable, department, last_login from user where name = ?"
+	ok, err := utils.GetMysqlClient().SQL(sql, name).Get(&inf)
+	if err != nil {
+		glog.Errorf("Get item from table %s failed,err:%+v", t.TableName(), err)
+		return inf, err
+	}
+	if ok {
+		return inf, nil
+	}
+	return inf, errors.New("not-find")
 }
 
 //ModifyEnable ...修改用户状态，账号是否可以使用
