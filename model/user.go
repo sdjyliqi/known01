@@ -97,11 +97,16 @@ func (t User) AddData(AddUser AddUser) (bool, error) {
 
 //
 func (t User) ResetPas(name string) (bool, error) {
-	sql := "update user set password = ? where name = ?"
-	_, err := utils.GetMysqlClient().Exec(sql, "Ceb2732@", name)
-	if err != nil {
-		glog.Errorf("%s table update data is failed, err: %+v", t.TableName(), err)
-		return false, err
+	var item User
+	ok, err := utils.GetMysqlClient().Where("name = ?", name).Get(&item)
+	if ok {
+		sql := "update user set password = ? where name = ?"
+		_, err := utils.GetMysqlClient().Exec(sql, "Ceb2732@", name)
+		if err != nil {
+			glog.Errorf("%s table update data is failed, err: %+v", t.TableName(), err)
+			return false, err
+		}
+		return true, nil
 	}
-	return true, nil
+	return false, err
 }
