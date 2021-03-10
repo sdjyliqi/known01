@@ -19,8 +19,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="91f69e01-107a-433a-b190-0e176ab79e31" name="Default Changelist" comment="No change">
+    <list default="true" id="91f69e01-107a-433a-b190-0e176ab79e31" name="Default Changelist" comment="登录改为POST请求">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/conf/config.go" beforeDir="false" afterPath="$PROJECT_DIR$/conf/config.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/handle/user_center.go" beforeDir="false" afterPath="$PROJECT_DIR$/handle/user_center.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/model/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/user.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/router/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/router/router.go" afterDir="false" />
@@ -129,7 +130,7 @@
     <property name="go.gopath.indexing.explicitly.defined" value="true" />
     <property name="go.import.settings.migrated" value="true" />
     <property name="go.sdk.automatically.set" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../introduction" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -306,7 +307,10 @@
     <MESSAGE value="返回值改为string，items类型设为[]User" />
     <MESSAGE value="设置page、entry查询参数，转化为int型执行" />
     <MESSAGE value="No change" />
-    <option name="LAST_COMMIT_MESSAGE" value="No change" />
+    <MESSAGE value="禁用用户接口V1" />
+    <MESSAGE value="加入改变用户状态" />
+    <MESSAGE value="登录改为POST请求" />
+    <option name="LAST_COMMIT_MESSAGE" value="登录改为POST请求" />
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>
