@@ -68,6 +68,8 @@ func UCUsersStatus(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{"code": 4001, "msg": "user doesn't exist"})
 
 }
+
+//UCAddUsers ...添加用户
 func UCAddUsers(c *gin.Context) {
 	json := model.AddUser{}
 	err := c.BindJSON(&json)
@@ -86,5 +88,20 @@ func UCAddUsers(c *gin.Context) {
 		return
 	}
 	c.JSON(http.StatusOK, gin.H{"code": 4001, "msg": "User already exists"})
+}
 
+//UCResetPassword  ... 用户重置密码
+func UCResetPassword(c *gin.Context) {
+	name := c.DefaultPostForm("name", "")
+	if name == "" {
+		c.JSON(http.StatusOK, gin.H{"code": 0, "msg": "Name cann't be empty"})
+		return
+	}
+	res, _ := model.User{}.ResetPas(name)
+	if res == true {
+		//用户密码重置成功
+		c.JSON(http.StatusOK, gin.H{"code": 0, "msg": "succ"})
+		return
+	}
+	c.JSON(http.StatusOK, gin.H{"code": 4001, "msg": "user doesn't exist"})
 }

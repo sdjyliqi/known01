@@ -82,13 +82,25 @@ func (t User) ModifyEnable(name string) (bool, error) {
 	return false, errors.New("not-find")
 }
 
+//AddData  ... 增加用户
 func (t User) AddData(AddUser AddUser) (bool, error) {
 	enable := 1
 	sql := "Insert into user(name, password, manager, phone, enable, department, last_login) " +
 		"values (?, ?, ?, ?, ?, ?, ?)"
-	_, err := utils.GetMysqlClient().Exec(sql, AddUser.Name, "ITpp2732@", AddUser.Manager, AddUser.Phone, enable, AddUser.Department, time.Now().Local())
+	_, err := utils.GetMysqlClient().Exec(sql, AddUser.Name, "Ceb2732@", AddUser.Manager, AddUser.Phone, enable, AddUser.Department, time.Now().Local())
 	if err != nil {
 		glog.Errorf("%s table insert data is failed, err: %+v", t.TableName(), err)
+		return false, err
+	}
+	return true, nil
+}
+
+//
+func (t User) ResetPas(name string) (bool, error) {
+	sql := "update user set password = ? where name = ?"
+	_, err := utils.GetMysqlClient().Exec(sql, "Ceb2732@", name)
+	if err != nil {
+		glog.Errorf("%s table update data is failed, err: %+v", t.TableName(), err)
 		return false, err
 	}
 	return true, nil
