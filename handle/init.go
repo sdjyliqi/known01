@@ -1,7 +1,6 @@
 package handle
 
 import (
-	"fmt"
 	"known01/brain"
 	"sync"
 )
@@ -11,7 +10,6 @@ var baCenter brain.Center
 
 func init() {
 	onceControl.Do(func() {
-		fmt.Println("Init handle")
 		baCenter = brain.CreateCenter()
 	})
 }

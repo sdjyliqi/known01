@@ -6,7 +6,7 @@ import (
 )
 
 func TestEncrypt(t *testing.T) {
-	a := "user:passport@tcp(114.55.139.105:3306)/brain?charset=utf8mb4"
+	a := "user:passport@tcp(114.55.139.105:3306)/brain?charset=utf8mb4&"
 	s, err := Encrypt(a)
 	assert.Nil(t, err)
 	t.Logf(s)

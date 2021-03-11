@@ -3,7 +3,7 @@ module known01
 go 1.15
 
 require (
-	github.com/DeanThompson/ginpprof v0.0.0-20201112072838-007b1e56b2e1 // indirect
+	github.com/DeanThompson/ginpprof v0.0.0-20201112072838-007b1e56b2e1
 	github.com/adamzy/cedar-go v0.0.0-20170805034717-80a9c64b256d // indirect
 	github.com/bitly/go-simplejson v0.5.0 // indirect
 	github.com/gansidui/ahocorasick v0.0.0-20141022153900-5a4d7fb3524f
@@ -18,4 +18,5 @@ require (
 	github.com/satori/go.uuid v1.2.0
 	github.com/sdjyliqi/feirars v1.0.39
 	github.com/stretchr/testify v1.6.1
+	gopkg.in/yaml.v2 v2.2.8
 )

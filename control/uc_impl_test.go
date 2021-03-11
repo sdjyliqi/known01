@@ -4,7 +4,6 @@ import (
 	"testing"
 )
 
-
 func Test_UserAuthChn(t *testing.T) {
 	//ucUtil := CreateUserCenter(&testutil.TestCfg)
 	//chn := ucUtil.UserAuthChn("admin", "all")
@@ -15,4 +14,3 @@ func Test_UserAuthChn(t *testing.T) {
 	//chn = ucUtil.UserAuthChn("liqi", "")
 	//t.Log(chn)
 }
-

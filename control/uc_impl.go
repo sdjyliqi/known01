@@ -1,7 +1,6 @@
 package control
 
 type userCenter struct {
-
 }
 
 func (uc *userCenter) Login(userID, passport string) error {
