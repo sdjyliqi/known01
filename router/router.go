@@ -27,7 +27,8 @@ func InitRouter(r *gin.Engine) {
 		GroupV1.POST("/users/add", handle.UCAddUsers)                //添加用户
 		GroupV1.POST("/users/resetpas", handle.UCResetPassword)      //重置用户密码
 		GroupV1.POST("/users/information", handle.UCShowInformation) //展示用户详细信息
-		GroupV1.POST("/users/chapas", handle.UCChangePassword)       //用户修改密码
+		GroupV1.POST("/users/changepas", handle.UCChangePassword)    //用户修改密码
+		GroupV1.POST("/users/update", handle.UCUpdateInformation)    //用户更新个人信息
 	}
 
 }

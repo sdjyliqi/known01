@@ -60,6 +60,8 @@ func (t User) GetItems(page, entry int) ([]User, error) {
 	}
 	return items, nil
 }
+
+//ShowInf   ...查看用户详细信息
 func (t User) ShowInf(name string) (UserInf, error) {
 	var inf UserInf
 	sql := "Select name, manager, phone, enable, department, last_login from user where name = ?"
@@ -146,4 +148,20 @@ func (t User) ChangePas(name, newpas string) (bool, error) {
 		return true, nil
 	}
 	return false, err
+}
+
+//
+func (t User) UpdateInf(name, phone, department string) (bool, error) {
+	var item User
+	ok, _ := utils.GetMysqlClient().Where("name = ?", name).Get(&item)
+	if ok {
+		sql := "update user set phone = ?, department = ? where name = ?"
+		_, err := utils.GetMysqlClient().Exec(sql, phone, department, name)
+		if err != nil {
+			glog.Errorf("%s table update data is failed, err: %+v", t.TableName(), err)
+			return false, err
+		}
+		return true, nil
+	}
+	return false, errors.New("not found")
 }
