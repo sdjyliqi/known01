@@ -7,35 +7,62 @@ import (
 	"time"
 )
 
+//User  ...数据库表结构
 type User struct {
-	Id         int       `json:"id" xorm:"not null pk INT(11)"`
-	Name       string    `Name:"Name" xorm:"not null pk comment('api请求分配的账号id') unique VARCHAR(64)"`
-	Password   string    `json:"password" xorm:"not null comment('登录密码') VARCHAR(64)"`
-	Manager    string    `json:"manager" xorm:"comment('负责人') VARCHAR(255)"`
-	Phone      string    `json:"phone" xorm:"default '' comment('负责人电话') VARCHAR(32)"`
-	Enable     int       `json:"enable" xorm:"comment('是否禁用') TINYINT(4)"`
-	Department string    `json:"department" xorm:"default '' comment('部门名称') VARCHAR(128)"`
-	LastLogin  time.Time `json:"last_login" xorm:"comment('最后一次登录日期') DATETIME"`
+	Id           int       `json:"id" xorm:"not null pk INT(11)"`
+	Name         string    `json:"name":"Name" xorm:"not null pk comment('api请求分配的账号id') unique VARCHAR(64)"`
+	Password     string    `json:"password" xorm:"not null comment('登录密码') VARCHAR(64)"`
+	Manager      string    `json:"manager" xorm:"default '' comment('负责人') VARCHAR(255)"`
+	Mobilephone  string    `json:"mobilephone" xorm:"default '' comment('负责人手机号') VARCHAR(32)"`
+	Telephone    string    `json:"telephone" xorm:"default '' comment('负责人座机号') VARCHAR(32)"`
+	Email        string    `json:"email" xorm:"default '' comment('负责人邮箱') VARCHAR(64)"`
+	Enable       int       `json:"enable" xorm:"comment('是否禁用') TINYINT(4)"`
+	Organization string    `json:"organization" xorm:"default '' comment('机构名称') VARCHAR(64)"`
+	Department   string    `json:"department" xorm:"default '' comment('部门名称') VARCHAR(64)"`
+	Office       string    `json:"office" xorm:"default '' comment('处室名称') VARCHAR(64)"`
+	LastLogin    time.Time `json:"last_login" xorm:"comment('最后一次登录日期') DATETIME"`
 }
+
+//AddUser   ... 管理员添加用户前台传入数据
 type AddUser struct {
-	Name       string `Name:"Name" xorm:"not null pk comment('api请求分配的账号id') unique VARCHAR(64)"`
-	Manager    string `json:"manager" xorm:"comment('负责人') VARCHAR(255)"`
-	Phone      string `json:"phone" xorm:"default '' comment('负责人电话') VARCHAR(32)"`
-	Department string `json:"department" xorm:"default '' comment('部门名称') VARCHAR(128)"`
+	Name         string `Json:"Name" xorm:"not null pk comment('api请求分配的账号id') unique VARCHAR(64)"`
+	Manager      string `json:"manager" xorm:"comment('负责人') VARCHAR(255)"`
+	Mobilephone  string `json:"mobilephone" xorm:"default '' comment('负责人手机号') VARCHAR(32)"`
+	Telephone    string `json:"telephone" xorm:"default '' comment('负责人座机号') VARCHAR(32)"`
+	Email        string `json:"email" xorm:"default '' comment('负责人邮箱') VARCHAR(64)"`
+	Organization string `json:"organization" xorm:"default '' comment('机构名称') VARCHAR(64)"`
+	Department   string `json:"department" xorm:"default '' comment('部门名称') VARCHAR(64)"`
+	Office       string `json:"office" xorm:"default '' comment('处室名称') VARCHAR(64)"`
 }
+
+//UserInf  ... 查看用户详细信息
 type UserInf struct {
-	Name       string    `Name:"Name" xorm:"not null pk comment('api请求分配的账号id') unique VARCHAR(64)"`
-	Manager    string    `json:"manager" xorm:"comment('负责人') VARCHAR(255)"`
-	Phone      string    `json:"phone" xorm:"default '' comment('负责人电话') VARCHAR(32)"`
-	Enable     int       `json:"enable" xorm:"comment('是否禁用') TINYINT(4)"`
-	Department string    `json:"department" xorm:"default '' comment('部门名称') VARCHAR(128)"`
-	LastLogin  time.Time `json:"last_login" xorm:"comment('最后一次登录日期') DATETIME"`
+	Name         string    `json:"name":"Name" xorm:"not null pk comment('api请求分配的账号id') unique VARCHAR(64)"`
+	Manager      string    `json:"manager" xorm:"default '' comment('负责人') VARCHAR(255)"`
+	Mobilephone  string    `json:"mobilephone" xorm:"default '' comment('负责人手机号') VARCHAR(32)"`
+	Telephone    string    `json:"telephone" xorm:"default '' comment('负责人座机号') VARCHAR(32)"`
+	Email        string    `json:"email" xorm:"default '' comment('负责人邮箱') VARCHAR(64)"`
+	Enable       int       `json:"enable" xorm:"comment('是否禁用') TINYINT(4)"`
+	Organization string    `json:"organization" xorm:"default '' comment('机构名称') VARCHAR(64)"`
+	Department   string    `json:"department" xorm:"default '' comment('部门名称') VARCHAR(64)"`
+	Office       string    `json:"office" xorm:"default '' comment('处室名称') VARCHAR(64)"`
+	LastLogin    time.Time `json:"last_login" xorm:"comment('最后一次登录日期') DATETIME"`
+}
+
+//UserUpdate  ... 用户更新个人信息
+type UserUpdate struct {
+	Name        string `json:"name":"Name" xorm:"not null pk comment('api请求分配的账号id') unique VARCHAR(64)"`
+	Mobilephone string `json:"mobilephone" xorm:"default '' comment('负责人手机号') VARCHAR(32)"`
+	Telephone   string `json:"telephone" xorm:"default '' comment('负责人座机号') VARCHAR(32)"`
+	Email       string `json:"email" xorm:"default '' comment('负责人邮箱') VARCHAR(64)"`
+	Office      string `json:"office" xorm:"default '' comment('处室名称') VARCHAR(64)"`
 }
 
 func (t User) TableName() string {
 	return "user"
 }
 
+//ChkPassword   ...核对用户密码
 func (t User) ChkPassword(name, password string) (bool, error) {
 	var item User
 	ok, err := utils.GetMysqlClient().Where("name = ?", name).Get(&item)
@@ -64,7 +91,8 @@ func (t User) GetItems(page, entry int) ([]User, error) {
 //ShowInf   ...查看用户详细信息
 func (t User) ShowInf(name string) (UserInf, error) {
 	var inf UserInf
-	sql := "Select name, manager, phone, enable, department, last_login from user where name = ?"
+	sql := "Select name, manager, mobilephone, telephone, email, enable, organization, " +
+		"department, office, last_login from user where name = ?"
 	ok, err := utils.GetMysqlClient().SQL(sql, name).Get(&inf)
 	if err != nil {
 		glog.Errorf("Get item from table %s failed,err:%+v", t.TableName(), err)
@@ -108,9 +136,10 @@ func (t User) ModifyEnable(name string) (bool, error) {
 //AddData  ... 增加用户
 func (t User) AddData(AddUser AddUser) (bool, error) {
 	enable := 1
-	sql := "Insert into user(name, password, manager, phone, enable, department, last_login) " +
-		"values (?, ?, ?, ?, ?, ?, ?)"
-	_, err := utils.GetMysqlClient().Exec(sql, AddUser.Name, "Ceb2732@", AddUser.Manager, AddUser.Phone, enable, AddUser.Department, time.Now().Local())
+	sql := "Insert into user(name, password, manager, mobilephone, telephone, email, enable, organization, " +
+		"department, office, last_login) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
+	_, err := utils.GetMysqlClient().Exec(sql, AddUser.Name, "Ceb2732@", AddUser.Manager, AddUser.Mobilephone,
+		AddUser.Telephone, AddUser.Email, enable, AddUser.Organization, AddUser.Department, AddUser.Office, time.Now().Local())
 	if err != nil {
 		glog.Errorf("%s table insert data is failed, err: %+v", t.TableName(), err)
 		return false, err
@@ -150,13 +179,14 @@ func (t User) ChangePas(name, newpas string) (bool, error) {
 	return false, err
 }
 
-//
-func (t User) UpdateInf(name, phone, department string) (bool, error) {
+//UpdateInf   ...用户修改个人信息
+func (t User) UpdateInf(UserUpdate UserUpdate) (bool, error) {
 	var item User
-	ok, _ := utils.GetMysqlClient().Where("name = ?", name).Get(&item)
+	ok, _ := utils.GetMysqlClient().Where("name = ?", UserUpdate.Name).Get(&item)
 	if ok {
-		sql := "update user set phone = ?, department = ? where name = ?"
-		_, err := utils.GetMysqlClient().Exec(sql, phone, department, name)
+		sql := "update user set mobilephone = ?, telephone = ?, email = ?, office = ? where name = ?"
+		_, err := utils.GetMysqlClient().Exec(sql, UserUpdate.Mobilephone, UserUpdate.Telephone,
+			UserUpdate.Email, UserUpdate.Office, UserUpdate.Name)
 		if err != nil {
 			glog.Errorf("%s table update data is failed, err: %+v", t.TableName(), err)
 			return false, err

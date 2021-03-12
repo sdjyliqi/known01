@@ -61,7 +61,7 @@ func UCShowInformation(c *gin.Context) {
 	}
 	res, err := model.User{}.ShowInf(name)
 	if err != nil {
-		//成功查询用户详细信息
+		//未找到该用户
 		c.JSON(http.StatusOK, gin.H{"code": 4001, "msg": "user doesn't exist"})
 		return
 	}
@@ -144,6 +144,12 @@ func UCChangePassword(c *gin.Context) {
 		c.JSON(http.StatusOK, gin.H{"code": 0, "msg": "The new password is not the same as the confirmation password"})
 		return
 	}
+	_, err := model.User{}.ShowInf(name) //通过name值查询用户是否在数据库中
+	if err != nil {
+		//未找到该用户
+		c.JSON(http.StatusOK, gin.H{"code": 4001, "msg": "user doesn't exist"})
+		return
+	}
 	invalidFlag, _ := model.User{}.ChkPassword(name, oldpas)
 	if invalidFlag != true {
 		//如果旧密码错误
@@ -161,24 +167,18 @@ func UCChangePassword(c *gin.Context) {
 
 //UCUpdateInformation   ...用户更新个人信息
 func UCUpdateInformation(c *gin.Context) {
-	name := c.DefaultPostForm("name", "")
-	phone := c.DefaultPostForm("phone", "")
-	department := c.DefaultPostForm("department", "")
-	if name == "" {
+	json := model.UserUpdate{}
+	err := c.BindJSON(&json)
+	log.Printf("%v", &json)
+	if err != nil {
+		c.JSON(http.StatusOK, gin.H{"code": 4001, "msg": "parse error"})
+		return
+	}
+	if json.Name == "" {
 		c.JSON(http.StatusOK, gin.H{"code": 0, "msg": "Name cann't be empty"})
 		return
 	}
-	//如果用户没有修改手机号、部门信息点击提交，怎么进行更新？
-	//是前端把查询到的信息给传到后台，还是什么？？？
-	if phone == "" {
-		c.JSON(http.StatusOK, gin.H{"code": 0, "msg": "Phone cannot be empty"})
-		return
-	}
-	if department == "" {
-		c.JSON(http.StatusOK, gin.H{"code": 0, "msg": "Department cannot be empty"})
-		return
-	}
-	res, _ := model.User{}.UpdateInf(name, phone, department)
+	res, _ := model.User{}.UpdateInf(json)
 	if res == true {
 		//用户个人信息更新成功
 		c.JSON(http.StatusOK, gin.H{"code": 0, "msg": "succ"})
