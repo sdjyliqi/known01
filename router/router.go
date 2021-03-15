@@ -7,7 +7,8 @@ import (
 )
 
 func InitRouter(r *gin.Engine) {
-	//r.Use(middleware.Cors())
+	//middleware.Cors   ... 跨域设置
+	r.Use(middleware.Cors())
 	r.Use(middleware.Logger())
 
 	GroupV2 := r.Group("/v1")
