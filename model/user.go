@@ -10,7 +10,7 @@ import (
 //User  ...数据库表结构
 type User struct {
 	Id           int       `json:"id" xorm:"not null pk INT(11)"`
-	Name         string    `json:"name":"Name" xorm:"not null pk comment('api请求分配的账号id') unique VARCHAR(64)"`
+	Name         string    `json:"name" xorm:"not null pk comment('api请求分配的账号id') unique VARCHAR(64)"`
 	Password     string    `json:"password" xorm:"not null comment('登录密码') VARCHAR(64)"`
 	Manager      string    `json:"manager" xorm:"default '' comment('负责人') VARCHAR(255)"`
 	Mobilephone  string    `json:"mobilephone" xorm:"default '' comment('负责人手机号') VARCHAR(32)"`
@@ -21,6 +21,16 @@ type User struct {
 	Department   string    `json:"department" xorm:"default '' comment('部门名称') VARCHAR(64)"`
 	Office       string    `json:"office" xorm:"default '' comment('处室名称') VARCHAR(64)"`
 	LastLogin    time.Time `json:"last_login" xorm:"comment('最后一次登录日期') DATETIME"`
+}
+
+//ListUser   ...列表展示用户详情页
+type ListUser struct {
+	Name         string `Json:"Name" xorm:"not null pk comment('api请求分配的账号id') unique VARCHAR(64)"`
+	Manager      string `json:"manager" xorm:"comment('负责人') VARCHAR(255)"`
+	Mobilephone  string `json:"mobilephone" xorm:"default '' comment('负责人手机号') VARCHAR(32)"`
+	Email        string `json:"email" xorm:"default '' comment('负责人邮箱') VARCHAR(64)"`
+	Organization string `json:"organization" xorm:"default '' comment('机构名称') VARCHAR(64)"`
+	Department   string `json:"department" xorm:"default '' comment('部门名称') VARCHAR(64)"`
 }
 
 //AddUser   ... 管理员添加用户前台传入数据
@@ -37,7 +47,7 @@ type AddUser struct {
 
 //UserInf  ... 查看用户详细信息
 type UserInf struct {
-	Name         string    `json:"name":"Name" xorm:"not null pk comment('api请求分配的账号id') unique VARCHAR(64)"`
+	Name         string    `json:"name" xorm:"not null pk comment('api请求分配的账号id') unique VARCHAR(64)"`
 	Manager      string    `json:"manager" xorm:"default '' comment('负责人') VARCHAR(255)"`
 	Mobilephone  string    `json:"mobilephone" xorm:"default '' comment('负责人手机号') VARCHAR(32)"`
 	Telephone    string    `json:"telephone" xorm:"default '' comment('负责人座机号') VARCHAR(32)"`
@@ -51,7 +61,7 @@ type UserInf struct {
 
 //UserUpdate  ... 用户更新个人信息
 type UserUpdate struct {
-	Name        string `json:"name":"Name" xorm:"not null pk comment('api请求分配的账号id') unique VARCHAR(64)"`
+	Name        string `json:"name" xorm:"not null pk comment('api请求分配的账号id') unique VARCHAR(64)"`
 	Mobilephone string `json:"mobilephone" xorm:"default '' comment('负责人手机号') VARCHAR(32)"`
 	Telephone   string `json:"telephone" xorm:"default '' comment('负责人座机号') VARCHAR(32)"`
 	Email       string `json:"email" xorm:"default '' comment('负责人邮箱') VARCHAR(64)"`
@@ -71,16 +81,25 @@ func (t User) ChkPassword(name, password string) (bool, error) {
 		return false, err
 	}
 	if ok {
+		//更新last_login
+		sql := "update user set last_login = ? where name = ?"
+		_, err := utils.GetMysqlClient().Exec(sql, time.Now().Local(), name)
+		if err != nil {
+			glog.Errorf("%s table update data is failed, err: %+v", t.TableName(), err)
+			return false, err
+		}
 		return password == item.Password, nil
+
 	}
 	return false, errors.New("not-find")
 }
 
 //GetItems ...按页获取数据库中的数据，page从0开始
 //返items类型为[]User ，原来的[]*User报错
-func (t User) GetItems(page, entry int) ([]User, error) {
-	var items []User
-	err := utils.GetMysqlClient().Limit(entry, (page-1)*entry).Find(&items)
+func (t User) GetItems(page, entry int) ([]ListUser, error) {
+	var items []ListUser
+	sql := "Select * from user Limit ? OFFSET ?"
+	err := utils.GetMysqlClient().SQL(sql, entry, (page-1)*entry).Find(&items)
 	if err != nil {
 		glog.Errorf("Get items from table %s failed,err:%+v", t.TableName(), err)
 		return items, err
