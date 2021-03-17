@@ -2,22 +2,28 @@ package handle
 
 import (
 	"github.com/gin-gonic/gin"
+	"github.com/golang/glog"
 	"net/http"
 )
 
 func JudgeMessage(c *gin.Context) {
 	minLevelScore := 50
-	message := c.DefaultQuery("content", "") //page 编码id
-	sender := c.DefaultQuery("sender", "")   //page 编码id
-	if message == "" {
-		message = c.PostForm("content")
-		sender = c.PostForm("sender")
+	type SubmitContent struct {
+		Content string `json:"content"`
+		Sender  string `json:"sender"`
 	}
-	if len(message) < 1 {
-		c.JSON(http.StatusOK, gin.H{"code": 1, "msg": "You must submit the invalid message"})
+	reqJson := SubmitContent{}
+	err := c.ShouldBindJSON(&reqJson)
+	if err != nil {
+		glog.Errorf("The request %+v is invalid,please check.", c.Request)
+		c.JSON(http.StatusOK, gin.H{"code": 1, "msg": "bind json failed."})
 		return
 	}
-	score, suggest := baCenter.JudgeMessage(message, sender)
+	if len(reqJson.Content) < 1 {
+		c.JSON(http.StatusOK, gin.H{"code": 1, "msg": "You must submit the invalid message11"})
+		return
+	}
+	score, suggest := baCenter.JudgeMessage(reqJson.Content, reqJson.Sender)
 	flag := 0
 	if score > minLevelScore {
 		flag = 1
