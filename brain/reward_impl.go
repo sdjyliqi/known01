@@ -78,7 +78,10 @@ func (bb *rewardBrain) getBankNameByPhoneID(phone string) (string, bool) {
 
 //PickupProperties ... 摘取核心内容
 func (bb *rewardBrain) PickupProperties(msg, phoneID, sender string) (propertiesVec, bool) {
-	pickVal := propertiesVec{senderID: sender}
+	pickVal := propertiesVec{
+		senderID:   sender,
+		fixedPhone: phoneID,
+	}
 	//优先通过客服电话id获取银行名称，如果找不到，只能通过ac自动机来寻找银行关键字。
 	if len(phoneID) > 0 {
 		govName, ok := bb.getBankNameByPhoneID(phoneID)
@@ -101,7 +104,6 @@ func (bb *rewardBrain) PickupProperties(msg, phoneID, sender string) (properties
 	if ok {
 		pickVal.mobilePhone = mobilePhone
 	}
-
 	return pickVal, true
 }
 
@@ -177,7 +179,7 @@ func (bb *rewardBrain) createMatchScoreIndex(pickup propertiesVec) (string, *mod
 func (bb *rewardBrain) MatchScoreV2(pickup propertiesVec) (int, string) {
 	findMobilePhoneScore := -5
 	notFindMessage := "尊敬的用户，是真是假APP提示您，你接收的短信类型为【中奖】，目前未识别出关键信息，请加强安全意识，切勿泄露个人信息，认准官方。"
-	matchMessage := "尊敬的用户，是真是假APP提示您，你接收的短信类型为【中奖】，目前判断短信内容可信度为%d%%，请致电官方客服%s或登录官方网站%s进行再次确认，避免上当，谢谢您使用时真是假APP。。"
+	matchMessage := "尊敬的用户，是真是假APP提示您，你接收的短信类型为【中奖】，目前判断短信内容可信度为%d%%，请致电官方客服%s或登录官方网站%s进行再次确认，避免上当，谢谢您使用是真是假APP。"
 	matchScore := 0
 	idx, bankItem := bb.createMatchScoreIndex(pickup)
 	if idx == "" {

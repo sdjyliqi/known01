@@ -1,8 +1,9 @@
 package middleware
 
 import (
+	"fmt"
 	"github.com/gin-gonic/gin"
-	"github.com/golang/glog"
+
 	"time"
 )
 
@@ -15,16 +16,13 @@ func Logger() gin.HandlerFunc {
 		path := c.Request.URL.Path
 		clientIP := c.ClientIP()
 		method := c.Request.Method
-		statusCode := c.Writer.Status()
-		requestID := c.GetHeader("X-Request-Id")
-		glog.Infof("| %3d | %13v | %15s | %s  %s | %5d| %s |",
-			statusCode,
+		fmt.Printf("| Header:%+v | %13v | %15s | %s  %s | %5d \n",
+			c.Request.Header,
 			latency,
 			clientIP,
 			method,
 			path,
 			c.Writer.Size(),
-			requestID,
 		)
 	}
 }

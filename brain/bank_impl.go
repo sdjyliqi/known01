@@ -79,7 +79,7 @@ func (bb *bankBrain) getBankNameByPhoneID(phone string) (string, bool) {
 
 //PickupProperties ... 摘取核心内容
 func (bb *bankBrain) PickupProperties(msg, phoneID, sender string) (propertiesVec, bool) {
-	pickVal := propertiesVec{senderID: sender}
+	pickVal := propertiesVec{senderID: sender, fixedPhone: phoneID}
 	//优先通过客服电话id获取银行名称，如果找不到，只能通过ac自动机来寻找银行关键字。
 	if len(phoneID) > 0 {
 		govName, ok := bb.getBankNameByPhoneID(phoneID)
@@ -97,7 +97,6 @@ func (bb *bankBrain) PickupProperties(msg, phoneID, sender string) (propertiesVe
 	if ok {
 		pickVal.webDomain = firstDomain
 	}
-
 	mobilePhone, ok := bb.pickupMobilePhone(msg)
 	if ok {
 		pickVal.mobilePhone = mobilePhone
@@ -151,21 +150,32 @@ func (bb *bankBrain) createMatchScoreIndex(pickup propertiesVec) (string, *model
 		return "", nil
 	}
 	//checkout website domain
-	if item.Domain == pickup.webDomain {
-		domainIdx = "D1"
-	} else {
-		domainIdx = "D2"
+	if pickup.webDomain != "" {
+		domains := strings.Split(item.Domain, ",")
+		domainDic := map[string]bool{}
+		for _, v := range domains {
+			if len(v) > 1 {
+				domainDic[strings.ToLower(v)] = true
+			}
+		}
+		_, ok = domainDic[strings.ToLower(pickup.webDomain)]
+		if ok {
+			domainIdx = "D1"
+		} else {
+			domainIdx = "D2"
+		}
 	}
 	//checkout message sender id
-	if strings.HasSuffix(pickup.senderID, item.MessageId) {
-		msgIDIdx = "M1"
-	} else {
-		msgIDIdx = "M2"
+	if pickup.senderID != "" {
+		if strings.HasSuffix(pickup.senderID, item.MessageId) {
+			msgIDIdx = "M1"
+		} else {
+			msgIDIdx = "M2"
+		}
 	}
-
 	//checkout customer phone id
-	if len(pickup.customerPhone) > 0 {
-		_, ok := bb.phoneNumDic[pickup.customerPhone]
+	if len(pickup.fixedPhone) > 0 {
+		_, ok := bb.phoneNumDic[pickup.fixedPhone]
 		if ok {
 			phoneIDIdx = "P1"
 		} else {
@@ -177,8 +187,8 @@ func (bb *bankBrain) createMatchScoreIndex(pickup propertiesVec) (string, *model
 
 func (bb *bankBrain) MatchScoreV2(pickup propertiesVec) (int, string) {
 	findMobilePhoneScore := -10
-	notFindMessage := "尊敬的用户，是真是假APP提示您，你接收的短信类型为【金融】，目前未识别出关键信息，请加强安全意识，切勿泄露个人信息，认准官方。"
-	matchMessage := "尊敬的用户，是真是假APP提示您，你接收的短信类型为【金融】，目前判断短信内容可信度为%d%%，请致电官方客服%s或登录官方网站%s进行再次确认，避免上当，谢谢您使用时真是假APP。。"
+	notFindMessage := "尊敬的用户，是真是假APP提示您，你接收的短信类型为，目前未识别出关键信息，请加强安全意识，切勿泄露个人信息，认准官方。"
+	matchMessage := "尊敬的用户，是真是假APP提示您，你接收的短信类型为，目前判断短信内容可信度为%d%%，请致电官方客服%s或登录官方网站%s进行再次确认，避免上当，谢谢您使用时真是假APP。"
 	matchScore := 0
 	idx, bankItem := bb.createMatchScoreIndex(pickup)
 	if idx == "" {

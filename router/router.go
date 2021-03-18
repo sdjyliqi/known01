@@ -10,5 +10,4 @@ func InitRouter(r *gin.Engine) {
 	r.Use(middleware.Cors())
 	r.Use(middleware.Logger())
 	r.POST("/brain", handle.JudgeMessage) //获取信息详情
-
 }

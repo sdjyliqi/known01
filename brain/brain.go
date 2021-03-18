@@ -19,7 +19,7 @@ type propertiesVec struct {
 //indexWordDid ... 还需要融合mysql中结构名称的相关信息。
 var indexWordDic = map[utils.EngineType][]string{
 	utils.EngineBank:   []string{"汇款", "转账", "打钱", "存款", "银行", "储蓄", "取款", "ATM", "信贷", "信用卡", "储蓄卡", "利息", "贷款", "利率", "负债"},
-	utils.EngineReward: []string{"10086", "中国好声音", "电话费", "充值卡", "流量卡", "手机"},
+	utils.EngineReward: []string{"中奖"},
 }
 
 type Center struct {
@@ -41,8 +41,7 @@ type Center struct {
 	reward        *rewardBrain
 
 	referencesItems []*model.Reference
-
-	acCutWords *ahocorasick.Matcher //副助词匹配自动机，作用，进行模板匹配前，需要将辅助词剔除。
+	acCutWords      *ahocorasick.Matcher //副助词匹配自动机，作用，进行模板匹配前，需要将辅助词剔除。
 
 }
 

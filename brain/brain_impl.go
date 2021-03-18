@@ -85,10 +85,9 @@ func (c *Center) InitReferencesItemsFromDB() error {
 			names := strings.Split(v.AliasNames, ",")
 			indexWordDic[v.CategoryId] = append(indexWordDic[v.CategoryId], names...)
 		}
-		//初始化模板
+		//把别名和昵称初始化到分类词表中
 	}
 	c.customerPhoneDic = phoneNumsDic
-
 	//create customer phone numbers for ac
 	acPhoneIDs := ahocorasick.NewMatcher()
 	c.customerPhones = allPhoneIDs
@@ -208,12 +207,7 @@ func (c *Center) GetEngineName(msg string) (utils.EngineType, string) {
 	}
 	//第二部，修正短信数据，提出副助词，英文字母或者数字
 	amendMessage := c.amendMessage(msg)
-	//第三步顺序匹配模板，选择匹配最高分
-	engineName, score := c.matchEngineRate(amendMessage)
-	if score > minMatchLevel {
-		return engineName, ""
-	}
-	//第四步，寻找关键字
+	//第三步，寻找关键字
 	indexWord, ok := c.acFindIndexWord(amendMessage)
 	if ok {
 		engineName, ok := c.getEngineByIndexWord(indexWord)
@@ -221,17 +215,19 @@ func (c *Center) GetEngineName(msg string) (utils.EngineType, string) {
 			return engineName, ""
 		}
 	}
+	//第四步  顺序匹配模板，选择匹配最高分
+	engineName, score := c.matchEngineRate(amendMessage)
+	if score > minMatchLevel {
+		return engineName, ""
+	}
 	return utils.EngineUnknown, ""
 }
 
 func (c *Center) JudgeMessage(msg, sender string) (int, string) {
 	engineName, phoneID := c.GetEngineName(msg)
-	fmt.Println("=========================", engineName, phoneID)
 	switch engineName {
 	case utils.EngineBank:
 		return c.bank.JudgeMessage(msg, phoneID, sender)
-	case utils.EngineReward:
-		return c.reward.JudgeMessage(msg, phoneID, sender)
 	default:
 		return -1, "尊敬的用户,是真是假APP无法鉴别短信内容真假，并提示您加强安全防范意识，切勿泄露个人数据，避免财产损失。"
 	}
