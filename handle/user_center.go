@@ -57,12 +57,18 @@ func UCUsers(c *gin.Context) {
 
 //UCShowInformation ... 展示用户详细信息
 func UCShowInformation(c *gin.Context) {
-	keyid := c.DefaultPostForm("keyid", "")
-	if keyid == "" {
+	//json格式，只包含Keyid字段
+	userkeyid := model.UserKeyid{}
+	err := c.BindJSON(&userkeyid)
+	if err != nil {
+		c.JSON(http.StatusOK, gin.H{"code": 4001, "msg": "parse error"})
+		return
+	}
+	if userkeyid.Keyid == "" {
 		c.JSON(http.StatusOK, gin.H{"code": 0, "msg": "keyid can not be empty"})
 		return
 	}
-	res, err := model.User{}.ShowInf(keyid)
+	res, err := model.User{}.ShowInf(userkeyid.Keyid)
 	if err != nil {
 		//未找到该用户
 		c.JSON(http.StatusOK, gin.H{"code": 4001, "msg": "user doesn't exist"})
@@ -73,12 +79,17 @@ func UCShowInformation(c *gin.Context) {
 
 //UsersStatus ...改变用户状态，传入参数为用户登录ID
 func UCUsersStatus(c *gin.Context) {
-	keyid := c.DefaultPostForm("keyid", "")
-	if keyid == "" {
+	userkeyid := model.UserKeyid{}
+	err := c.BindJSON(&userkeyid)
+	if err != nil {
+		c.JSON(http.StatusOK, gin.H{"code": 4001, "msg": "parse error"})
+		return
+	}
+	if userkeyid.Keyid == "" {
 		c.JSON(http.StatusOK, gin.H{"code": 0, "msg": "Keyid cann't be empty"})
 		return
 	}
-	res, _ := model.User{}.ModifyEnable(keyid)
+	res, _ := model.User{}.ModifyEnable(userkeyid.Keyid)
 	if res == true {
 		//用户状态修改成功
 		c.JSON(http.StatusOK, gin.H{"code": 0, "msg": "succ"})
@@ -108,14 +119,19 @@ func UCAddUsers(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{"code": 4001, "msg": "User already exists"})
 }
 
-//UCResetPassword  ... 用户重置密码
+//UCResetPassword  ... 管理员重置用户密码
 func UCResetPassword(c *gin.Context) {
-	keyid := c.DefaultPostForm("keyid", "")
-	if keyid == "" {
+	userkeyid := model.UserKeyid{}
+	err := c.BindJSON(&userkeyid)
+	if err != nil {
+		c.JSON(http.StatusOK, gin.H{"code": 4001, "msg": "parse error"})
+		return
+	}
+	if userkeyid.Keyid == "" {
 		c.JSON(http.StatusOK, gin.H{"code": 0, "msg": "Keyid cann't be empty"})
 		return
 	}
-	res, _ := model.User{}.ResetPas(keyid)
+	res, _ := model.User{}.ResetPas(userkeyid.Keyid)
 	if res == true {
 		//用户密码重置成功
 		c.JSON(http.StatusOK, gin.H{"code": 0, "msg": "succ"})
@@ -126,39 +142,41 @@ func UCResetPassword(c *gin.Context) {
 
 //UCChangePassword   ... 用户修改密码
 func UCChangePassword(c *gin.Context) {
-	keyid := c.DefaultPostForm("keyid", "")
-	oldpas := c.DefaultPostForm("oldpas", "")
-	newpas := c.DefaultPostForm("newpas", "")
-	confirmpas := c.DefaultPostForm("confirmpas", "")
-	if keyid == "" {
+	pasinf := model.ChangePasInf{}
+	err1 := c.BindJSON(&pasinf)
+	if err1 != nil {
+		c.JSON(http.StatusOK, gin.H{"code": 4001, "msg": "parse error"})
+		return
+	}
+	if pasinf.Keyid == "" {
 		c.JSON(http.StatusOK, gin.H{"code": 0, "msg": "Keyid cann't be empty"})
 		return
 	}
-	if oldpas == "" || newpas == "" || confirmpas == "" {
+	if pasinf.Oldpas == "" || pasinf.Newpas == "" || pasinf.Confirmpas == "" {
 		c.JSON(http.StatusOK, gin.H{"code": 0, "msg": "Password cannot be empty"})
 		return
 	}
-	if oldpas == newpas || oldpas == confirmpas {
+	if pasinf.Oldpas == pasinf.Newpas || pasinf.Oldpas == pasinf.Confirmpas {
 		c.JSON(http.StatusOK, gin.H{"code": 0, "msg": "The new password and the old password cannot be the same"})
 		return
 	}
-	if newpas != confirmpas {
+	if pasinf.Newpas != pasinf.Confirmpas {
 		c.JSON(http.StatusOK, gin.H{"code": 0, "msg": "The new password is not the same as the confirmation password"})
 		return
 	}
-	_, err := model.User{}.ShowInf(keyid) //通过keyid值查询用户是否在数据库中
-	if err != nil {
+	_, err2 := model.User{}.ShowInf(pasinf.Keyid) //通过keyid值查询用户是否在数据库中
+	if err2 != nil {
 		//未找到该用户
 		c.JSON(http.StatusOK, gin.H{"code": 4001, "msg": "user doesn't exist"})
 		return
 	}
-	invalidFlag, _ := model.User{}.ChkPassword(keyid, oldpas)
+	invalidFlag, _ := model.User{}.ChkPassword(pasinf.Keyid, pasinf.Oldpas)
 	if invalidFlag != true {
 		//如果旧密码错误
 		c.JSON(http.StatusOK, gin.H{"code": 0, "msg": "Wrong password"})
 		return
 	}
-	res, _ := model.User{}.ChangePas(keyid, newpas)
+	res, _ := model.User{}.ChangePas(pasinf.Keyid, pasinf.Newpas)
 	if res == true {
 		//用户修改密码成功
 		c.JSON(http.StatusOK, gin.H{"code": 0, "msg": "succ"})
