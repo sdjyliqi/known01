@@ -12,14 +12,17 @@ import (
 //UCLogin ...用户登录
 func UCLogin(c *gin.Context) {
 	token := "000011111122222"
-	keyid := c.DefaultPostForm("keyid", "")
-	//nil
-	password := c.DefaultPostForm("password", "")
-	if keyid == "" || password == "" {
+	userlogin := model.UserLogin{}
+	err := c.BindJSON(&userlogin)
+	if err != nil {
+		c.JSON(http.StatusOK, gin.H{"code": 4001, "msg": "parse error"})
+		return
+	}
+	if userlogin.Keyid == "" || userlogin.Password == "" {
 		c.JSON(http.StatusOK, gin.H{"code": 0, "msg": "the user name or password must not be empty."})
 		return
 	}
-	invalidFlag, err := model.User{}.ChkPassword(keyid, password)
+	invalidFlag, err := model.User{}.ChkPassword(userlogin.Keyid, userlogin.Password)
 	//如果错误的时候，返回前端异常
 	if err != nil {
 		//todo
@@ -32,7 +35,7 @@ func UCLogin(c *gin.Context) {
 		c.JSON(http.StatusOK, gin.H{"code": 0, "msg": "succ", "data": token})
 		return
 	}
-	c.JSON(http.StatusOK, gin.H{"code": 4001, "msg": "the username or password invalid"})
+	c.JSON(http.StatusOK, gin.H{"code": 4001, "msg": "the username or password wrong"})
 }
 
 //UCUsers ...分页查询用户

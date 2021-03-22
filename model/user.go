@@ -24,6 +24,12 @@ type User struct {
 	LastLogin    time.Time `json:"last_login" xorm:"comment('最后一次登录日期') DATETIME"`
 }
 
+//UserLogin   ...用户登录
+type UserLogin struct {
+	Keyid    string `Json:"keyid" xorm:"not null pk comment('api请求分配的账号id') unique VARCHAR(64)"`
+	Password string `json:"password" xorm:"not null comment('登录密码') VARCHAR(64)"`
+}
+
 //ListUser   ...列表展示用户详情页
 type ListUser struct {
 	Keyid        string `Json:"keyid" xorm:"not null pk comment('api请求分配的账号id') unique VARCHAR(64)"`

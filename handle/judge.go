@@ -7,6 +7,7 @@ import (
 
 func JudgeMessage(c *gin.Context) {
 	minLevelScore := 50
+
 	message := c.DefaultQuery("content", "") //page 编码id
 	sender := c.DefaultQuery("sender", "")   //page 编码id
 	if message == "" {
