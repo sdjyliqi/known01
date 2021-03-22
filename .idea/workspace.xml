@@ -19,11 +19,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="91f69e01-107a-433a-b190-0e176ab79e31" name="Default Changelist" comment="支持用户修改密码">
+    <list default="true" id="91f69e01-107a-433a-b190-0e176ab79e31" name="Default Changelist" comment="name字段改为keyid，添加roles字段">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/handle/user_center.go" beforeDir="false" afterPath="$PROJECT_DIR$/handle/user_center.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/user.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/router/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/router/router.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/brain/reward.go" beforeDir="false" afterPath="$PROJECT_DIR$/brain/reward.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -129,14 +127,14 @@
     <property name="go.gopath.indexing.explicitly.defined" value="true" />
     <property name="go.import.settings.migrated" value="true" />
     <property name="go.sdk.automatically.set" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../introduction" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
-    <property name="settings.editor.selected.configurable" value="com.goide.configuration.GoLibrariesConfigurableProvider" />
+    <property name="settings.editor.selected.configurable" value="go.vgo" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -292,8 +290,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="控制中心完毕" />
-    <MESSAGE value="gin" />
     <MESSAGE value="del ut" />
     <MESSAGE value="发信息的id，手机号" />
     <MESSAGE value="1113" />
@@ -314,10 +310,20 @@
     <MESSAGE value="添加管理员重置用户密码功能" />
     <MESSAGE value="添加用户详情信息展示功能" />
     <MESSAGE value="支持用户修改密码" />
-    <option name="LAST_COMMIT_MESSAGE" value="支持用户修改密码" />
+    <MESSAGE value="支持用户修改个人信息" />
+    <MESSAGE value="数据库表增加字段" />
+    <MESSAGE value="修改列表查询数据，增加登录时间" />
+    <MESSAGE value="打开跨域设置" />
+    <MESSAGE value="name字段改为keyid，添加roles字段" />
+    <option name="LAST_COMMIT_MESSAGE" value="name字段改为keyid，添加roles字段" />
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>
+    <environment>
+      <map>
+        <entry key="GOPROXY" value="https://goproxy.cn" />
+      </map>
+    </environment>
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
