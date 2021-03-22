@@ -56,7 +56,7 @@ func UCUsers(c *gin.Context) {
 func UCShowInformation(c *gin.Context) {
 	keyid := c.DefaultPostForm("keyid", "")
 	if keyid == "" {
-		c.JSON(http.StatusOK, gin.H{"code": 0, "msg": "keyid cann't be empty"})
+		c.JSON(http.StatusOK, gin.H{"code": 0, "msg": "keyid can not be empty"})
 		return
 	}
 	res, err := model.User{}.ShowInf(keyid)
