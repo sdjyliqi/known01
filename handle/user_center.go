@@ -2,12 +2,19 @@ package handle
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/golang/glog"
 	"known01/model"
 	"log"
 	"net/http"
 	"strconv"
 )
+
+//ChangePasInf  ... 用户自己修改密码提交内容
+type ChangePasInf struct {
+	Keyid      string `json:"keyid" xorm:"not null pk comment('api请求分配的账号id') unique VARCHAR(64)"`
+	Oldpas     string `json:"oldpas"`
+	Newpas     string `json:"newpas"`
+	Confirmpas string `json:"confirmpas"`
+}
 
 //UCLogin ...用户登录
 func UCLogin(c *gin.Context) {
@@ -91,7 +98,7 @@ func UCShowInformation(c *gin.Context) {
 
 //UsersStatus ...改变用户状态，传入参数为用户登录ID
 func UCUsersStatus(c *gin.Context) {
-	userkeyid := model.UserKeyid{}
+	userkeyid := model.User{}
 	err := c.BindJSON(&userkeyid)
 	if err != nil {
 		c.JSON(http.StatusOK, gin.H{"code": 4001, "msg": "parse error"})
@@ -141,17 +148,17 @@ func UCAddUsers(c *gin.Context) {
 
 //UCResetPassword  ... 管理员重置用户密码
 func UCResetPassword(c *gin.Context) {
-	userkeyid := model.UserKeyid{}
-	err := c.BindJSON(&userkeyid)
+	item := model.User{}
+	err := c.BindJSON(&item)
 	if err != nil {
 		c.JSON(http.StatusOK, gin.H{"code": 4001, "msg": "parse error"})
 		return
 	}
-	if userkeyid.Keyid == "" {
+	if item.Keyid == "" {
 		c.JSON(http.StatusOK, gin.H{"code": 4006, "msg": "Keyid can't be empty"})
 		return
 	}
-	res, _ := model.User{}.ResetPas(userkeyid.Keyid)
+	res, _ := model.User{}.ResetPas(item.Keyid)
 	if res == true {
 		//用户密码重置成功
 		c.JSON(http.StatusOK, gin.H{"code": 0, "msg": "succ"})
@@ -162,7 +169,7 @@ func UCResetPassword(c *gin.Context) {
 
 //UCChangePassword   ... 用户修改密码
 func UCChangePassword(c *gin.Context) {
-	pasinf := model.ChangePasInf{}
+	pasinf := ChangePasInf{} //用户输入的修改密码信息
 	err1 := c.BindJSON(&pasinf)
 	if err1 != nil {
 		c.JSON(http.StatusOK, gin.H{"code": 4001, "msg": "parse error"})
@@ -184,14 +191,13 @@ func UCChangePassword(c *gin.Context) {
 		c.JSON(http.StatusOK, gin.H{"code": 4013, "msg": "The new password is not the same as the confirmation password"})
 		return
 	}
-	_, err2 := model.User{}.ShowInf(pasinf.Keyid) //通过keyid值查询用户是否在数据库中
+	item, err2 := model.User{}.GetItemById(pasinf.Keyid) //通过keyid值查询用户是否在数据库中
 	if err2 != nil {
 		//未找到该用户
 		c.JSON(http.StatusOK, gin.H{"code": 4007, "msg": "user doesn't exist"})
 		return
 	}
-	invalidFlag, _ := model.User{}.ChkPassword(pasinf.Keyid, pasinf.Oldpas)
-	if invalidFlag != true {
+	if item.Password != pasinf.Oldpas {
 		//如果旧密码错误
 		c.JSON(http.StatusOK, gin.H{"code": 4014, "msg": "Wrong password"})
 		return
@@ -215,11 +221,7 @@ func UCUpdateInformation(c *gin.Context) {
 		return
 	}
 	if json.Keyid == "" {
-		m := map[string]string{
-			"token": "asasas",
-			"role":  "admin",
-		}
-		c.JSON(http.StatusOK, gin.H{"code": 4006, "msg": "Keyid can't be empty", "data": m})
+		c.JSON(http.StatusOK, gin.H{"code": 4006, "msg": "Keyid can't be empty"})
 		return
 	}
 	res, _ := model.User{}.UpdateItemById(json)
