@@ -16,10 +16,10 @@ func InitMySQL(addr string, showSQL bool) (*xorm.Engine, error) {
 	addrDecode, _ := Decrypt(addr)
 	mysqlOnce.Do(func() {
 		msqlEngine, err = xorm.NewEngine("mysql", addrDecode)
-		msqlEngine.ShowSQL(showSQL)
-
+		msqlEngine.ShowSQL(showSQL) //将查询语句展示在控制台
 		if err != nil {
 			glog.Errorf("[init] Initialize mysql client for addr %s failed,err:%+v,please check the config.", addr, err)
+
 		}
 	})
 	return msqlEngine, err

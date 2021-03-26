@@ -15,5 +15,5 @@ func main() {
 	// register the `/metrics` route.
 	router.InitRouter(r)
 	ginpprof.Wrapper(r)
-	r.Run("0.0.0.0:8080")
+	r.Run("0.0.0.0:9508")
 }
