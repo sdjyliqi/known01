@@ -24,10 +24,9 @@ type User struct {
 	LastLogin    time.Time `json:"last_login" xorm:"comment('最后一次登录日期') DATETIME"`
 }
 
-//UserLogin   ...用户登录
-type UserLogin struct {
-	Keyid    string `Json:"keyid" xorm:"not null pk comment('api请求分配的账号id') unique VARCHAR(64)"`
-	Password string `json:"password" xorm:"not null comment('登录密码') VARCHAR(64)"`
+// keyid   ...用户Keyid信息，适用于修改用户禁用状态、展示用户详细信息
+type UserKeyid struct {
+	Keyid string `Json:"keyid" xorm:"not null pk comment('api请求分配的账号id') unique VARCHAR(64)"`
 }
 
 //ListUser   ...列表展示用户详情页
@@ -81,34 +80,26 @@ func (t User) TableName() string {
 	return "user"
 }
 
-//ChkPassword   ...核对用户密码
-func (t User) ChkPassword(keyid, password string) (bool, error) {
+//
+func (t User) GetItemById(keyid string) (User, error) {
 	var item User
 	ok, err := utils.GetMysqlClient().Where("keyid = ?", keyid).Get(&item)
 	if err != nil {
 		glog.Errorf("Get item from table %s failed,err:%+v", t.TableName(), err)
-		return false, err
+		return item, err
 	}
 	if ok {
-		//更新last_login
-		sql := "update user set last_login = ? where keyid = ?"
-		_, err := utils.GetMysqlClient().Exec(sql, time.Now().Local(), keyid)
-		if err != nil {
-			glog.Errorf("%s table update data is failed, err: %+v", t.TableName(), err)
-			return false, err
-		}
-		return password == item.Password, nil
-
+		return item, nil
 	}
-	return false, errors.New("not-find")
+	return item, errors.New("not-find")
 }
 
 //GetItems ...按页获取数据库中的数据，page从0开始
 //返items类型为[]User ，原来的[]*User报错
 func (t User) GetItems(page, entry int) ([]ListUser, error) {
 	var items []ListUser
-	sql := "Select * from user Limit ? OFFSET ?"
-	err := utils.GetMysqlClient().SQL(sql, entry, (page-1)*entry).Find(&items)
+	cols := []string{"keyid", "manager", "mobilephone", "email", "organization", "department"}
+	err := utils.GetMysqlClient().Table("user").Cols(cols...).Limit(entry, (page-1)*entry).Find(&items)
 	if err != nil {
 		glog.Errorf("Get items from table %s failed,err:%+v", t.TableName(), err)
 		return items, err
@@ -119,9 +110,9 @@ func (t User) GetItems(page, entry int) ([]ListUser, error) {
 //ShowInf   ...查看用户详细信息
 func (t User) ShowInf(keyid string) (UserInf, error) {
 	var inf UserInf
-	sql := "Select keyid, manager, roles, mobilephone, telephone, email, enable, organization, " +
-		"department, office, last_login from user where keyid = ?"
-	ok, err := utils.GetMysqlClient().SQL(sql, keyid).Get(&inf)
+	cols := []string{"keyid", "manager", "roles", "mobilephone", "telephone", "email", "enable", "organization",
+		"department", "office", "last_login"}
+	ok, err := utils.GetMysqlClient().Cols(cols...).Table("user").Where("keyid", keyid).Get(&inf)
 	if err != nil {
 		glog.Errorf("Get item from table %s failed,err:%+v", t.TableName(), err)
 		return inf, err
@@ -140,9 +131,10 @@ func (t User) ModifyEnable(keyid string) (bool, error) {
 		glog.Errorf("Get items from table %s failed, err: %+v", t.TableName(), err)
 		return false, err
 	}
+	//如果原来的状态为1则改为0.如果为0改为1
 	if ok && item.Enable == 1 {
-		sql := "update user set enable = ? where keyid = ?"
-		_, err := utils.GetMysqlClient().Exec(sql, 0, keyid)
+		item.Enable = 0
+		_, err := utils.GetMysqlClient().Cols("enable").Where("keyid", item.Keyid).Update(&item)
 		if err != nil {
 			glog.Errorf("%s table update data is failed, err: %+v", t.TableName(), err)
 			return false, err
@@ -150,8 +142,8 @@ func (t User) ModifyEnable(keyid string) (bool, error) {
 		return true, nil
 	}
 	if ok && item.Enable == 0 {
-		sql := "update user set enable = ? where keyid = ?"
-		_, err := utils.GetMysqlClient().Exec(sql, 1, keyid)
+		item.Enable = 1
+		_, err := utils.GetMysqlClient().Cols("enable").Where("keyid", item.Keyid).Update(&item)
 		if err != nil {
 			glog.Errorf("%s table update data is failed, err: %+v", t.TableName(), err)
 			return false, err
@@ -162,12 +154,10 @@ func (t User) ModifyEnable(keyid string) (bool, error) {
 }
 
 //AddData  ... 增加用户
-func (t User) AddData(AddUser AddUser) (bool, error) {
-	enable := 1
-	sql := "Insert into user(keyid, password, manager, roles, mobilephone, telephone, email, enable, organization, " +
-		"department, office, last_login) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
-	_, err := utils.GetMysqlClient().Exec(sql, AddUser.Keyid, "Ceb2732@", AddUser.Manager, AddUser.Roles, AddUser.Mobilephone,
-		AddUser.Telephone, AddUser.Email, enable, AddUser.Organization, AddUser.Department, AddUser.Office, time.Now().Local())
+func (t User) InsertItem(AddUser User) (bool, error) {
+	AddUser.Enable = 1
+	AddUser.Password = "Ceb2732@"
+	_, err := utils.GetMysqlClient().Insert(&AddUser)
 	if err != nil {
 		glog.Errorf("%s table insert data is failed, err: %+v", t.TableName(), err)
 		return false, err
@@ -178,43 +168,42 @@ func (t User) AddData(AddUser AddUser) (bool, error) {
 //ResetPas ... 重置密码
 func (t User) ResetPas(keyid string) (bool, error) {
 	var item User
-	ok, err := utils.GetMysqlClient().Where("keyid = ?", keyid).Get(&item)
+	ok, err1 := utils.GetMysqlClient().Cols("password").Where("keyid = ?", keyid).Get(&item)
 	if ok {
-		sql := "update user set password = ? where keyid = ?"
-		_, err := utils.GetMysqlClient().Exec(sql, "Ceb2732@", keyid)
-		if err != nil {
-			glog.Errorf("%s table update data is failed, err: %+v", t.TableName(), err)
-			return false, err
+		item.Password = "Ceb2732@" // 将初始密码赋给查询到的Item中，然后进行更新
+		_, err2 := utils.GetMysqlClient().Cols("password").Where("keyid", item.Keyid).Update(&item)
+		if err2 != nil {
+			glog.Errorf("%s table update data is failed, err: %+v", t.TableName(), err2)
+			return false, err2
 		}
 		return true, nil
 	}
-	return false, err
+	return false, err1
 }
 
 //ChangePas   ... 用户自己修改密码
 func (t User) ChangePas(keyid, newpas string) (bool, error) {
 	var item User
-	ok, err := utils.GetMysqlClient().Where("keyid = ?", keyid).Get(&item)
+	ok, err1 := utils.GetMysqlClient().Where("keyid = ?", keyid).Get(&item)
 	if ok {
-		sql := "update user set password = ? where keyid = ?"
-		_, err := utils.GetMysqlClient().Exec(sql, newpas, keyid)
-		if err != nil {
-			glog.Errorf("%s table update data is failed, err: %+v", t.TableName(), err)
-			return false, err
+		item.Password = newpas // 将新密码赋给查询到的Item中，然后进行更新
+		_, err2 := utils.GetMysqlClient().Cols("password").Where("keyid", item.Keyid).Update(&item)
+		if err2 != nil {
+			glog.Errorf("%s table update data is failed, err: %+v", t.TableName(), err2)
+			return false, err2
 		}
 		return true, nil
 	}
-	return false, err
+	return false, err1
 }
 
-//UpdateInf   ...用户修改个人信息
-func (t User) UpdateInf(UserUpdate UserUpdate) (bool, error) {
+//UpdateInf   ...用户更新个人信息
+func (t User) UpdateItemById(UserUpdate User) (bool, error) {
 	var item User
 	ok, _ := utils.GetMysqlClient().Where("keyid = ?", UserUpdate.Keyid).Get(&item)
 	if ok {
-		sql := "update user set mobilephone = ?, telephone = ?, email = ?, office = ? where keyid = ?"
-		_, err := utils.GetMysqlClient().Exec(sql, UserUpdate.Mobilephone, UserUpdate.Telephone,
-			UserUpdate.Email, UserUpdate.Office, UserUpdate.Keyid)
+		cols := []string{"mobilephone", "telephone", "email", "office"}
+		_, err := utils.GetMysqlClient().Cols(cols...).Where("keyid", UserUpdate.Keyid).Update(&UserUpdate)
 		if err != nil {
 			glog.Errorf("%s table update data is failed, err: %+v", t.TableName(), err)
 			return false, err
