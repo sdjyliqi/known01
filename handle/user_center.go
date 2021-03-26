@@ -32,7 +32,11 @@ func UCLogin(c *gin.Context) {
 	item, err2 := model.User{}.GetItemById(frontmsg.Keyid)
 	//如果错误的时候，返回前端异常
 	if err2 == nil && frontmsg.Password == item.Password {
-		c.JSON(http.StatusOK, gin.H{"code": 0, "msg": "succ", "data": token})
+		data := map[string]string{
+			"role":  item.Roles,
+			"token": token,
+		}
+		c.JSON(http.StatusOK, gin.H{"code": 0, "msg": "succ", "data": data})
 		return
 	}
 	c.JSON(http.StatusOK, gin.H{"code": 4003, "msg": "the username or password wrong"})
