@@ -24,11 +24,6 @@ type User struct {
 	LastLogin    time.Time `json:"last_login" xorm:"comment('最后一次登录日期') DATETIME"`
 }
 
-// keyid   ...用户Keyid信息，适用于修改用户禁用状态、展示用户详细信息
-type UserKeyid struct {
-	Keyid string `Json:"keyid" xorm:"not null pk comment('api请求分配的账号id') unique VARCHAR(64)"`
-}
-
 //ListUser   ...列表展示用户详情页
 type ListUser struct {
 	Keyid        string `Json:"keyid" xorm:"not null pk comment('api请求分配的账号id') unique VARCHAR(64)"`
@@ -37,19 +32,6 @@ type ListUser struct {
 	Email        string `json:"email" xorm:"default '' comment('负责人邮箱') VARCHAR(64)"`
 	Organization string `json:"organization" xorm:"default '' comment('机构名称') VARCHAR(64)"`
 	Department   string `json:"department" xorm:"default '' comment('部门名称') VARCHAR(64)"`
-}
-
-//AddUser   ... 管理员添加用户前台传入数据
-type AddUser struct {
-	Keyid        string `Json:"keyid" xorm:"not null pk comment('api请求分配的账号id') unique VARCHAR(64)"`
-	Manager      string `json:"manager" xorm:"comment('负责人') VARCHAR(255)"`
-	Roles        string `json:"roles" xorm:"not null comment('用户权限') VARCHAR(32)"`
-	Mobilephone  string `json:"mobilephone" xorm:"default '' comment('负责人手机号') VARCHAR(32)"`
-	Telephone    string `json:"telephone" xorm:"default '' comment('负责人座机号') VARCHAR(32)"`
-	Email        string `json:"email" xorm:"default '' comment('负责人邮箱') VARCHAR(64)"`
-	Organization string `json:"organization" xorm:"default '' comment('机构名称') VARCHAR(64)"`
-	Department   string `json:"department" xorm:"default '' comment('部门名称') VARCHAR(64)"`
-	Office       string `json:"office" xorm:"default '' comment('处室名称') VARCHAR(64)"`
 }
 
 //UserInf  ... 查看用户详细信息
@@ -65,15 +47,6 @@ type UserInf struct {
 	Department   string    `json:"department" xorm:"default '' comment('部门名称') VARCHAR(64)"`
 	Office       string    `json:"office" xorm:"default '' comment('处室名称') VARCHAR(64)"`
 	LastLogin    time.Time `json:"last_login" xorm:"comment('最后一次登录日期') DATETIME"`
-}
-
-//UserUpdate  ... 用户更新个人信息
-type UserUpdate struct {
-	Keyid       string `json:"keyid" xorm:"not null pk comment('api请求分配的账号id') unique VARCHAR(64)"`
-	Mobilephone string `json:"mobilephone" xorm:"default '' comment('负责人手机号') VARCHAR(32)"`
-	Telephone   string `json:"telephone" xorm:"default '' comment('负责人座机号') VARCHAR(32)"`
-	Email       string `json:"email" xorm:"default '' comment('负责人邮箱') VARCHAR(64)"`
-	Office      string `json:"office" xorm:"default '' comment('处室名称') VARCHAR(64)"`
 }
 
 func (t User) TableName() string {
