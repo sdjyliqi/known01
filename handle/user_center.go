@@ -33,7 +33,7 @@ func UCLogin(c *gin.Context) {
 	//如果错误的时候，返回前端异常
 	if err2 == nil && frontmsg.Password == item.Password {
 		data := map[string]string{
-			"role":  item.Roles,
+			"roles": item.Roles,
 			"token": token,
 		}
 		c.JSON(http.StatusOK, gin.H{"code": 0, "msg": "succ", "data": data})
@@ -42,7 +42,7 @@ func UCLogin(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{"code": 4003, "msg": "the username or password wrong"})
 }
 
-//UCRoles  ...判断用户角色，管理员或普通用户
+//UCRoles  ...返回用户角色，管理员或普通用户
 func UCRoles(c *gin.Context) {
 	frontmsg := model.User{}
 	err1 := c.BindJSON(&frontmsg)
@@ -81,18 +81,13 @@ func UCUsers(c *gin.Context) {
 
 //UCShowInformation ... 展示用户详细信息
 func UCShowInformation(c *gin.Context) {
-	item := model.User{}
-	err1 := c.BindJSON(&item)
-	if err1 != nil {
-		c.JSON(http.StatusOK, gin.H{"code": 4001, "msg": "parse error"})
-		return
-	}
-	if item.Keyid == "" {
+	keyid := c.DefaultQuery("keyid", "")
+	if keyid == "" {
 		c.JSON(http.StatusOK, gin.H{"code": 4006, "msg": "keyid can not be empty"})
 		return
 	}
-	res, err2 := model.User{}.ShowInf(item.Keyid)
-	if err2 != nil {
+	res, err := model.User{}.ShowInf(keyid)
+	if err != nil {
 		//未找到该用户
 		c.JSON(http.StatusOK, gin.H{"code": 4007, "msg": "user doesn't exist"})
 		return
@@ -102,17 +97,12 @@ func UCShowInformation(c *gin.Context) {
 
 //UsersStatus ...改变用户状态，传入参数为用户登录ID
 func UCUsersStatus(c *gin.Context) {
-	userkeyid := model.User{}
-	err := c.BindJSON(&userkeyid)
-	if err != nil {
-		c.JSON(http.StatusOK, gin.H{"code": 4001, "msg": "parse error"})
-		return
-	}
-	if userkeyid.Keyid == "" {
+	keyid := c.DefaultQuery("keyid", "")
+	if keyid == "" {
 		c.JSON(http.StatusOK, gin.H{"code": 4006, "msg": "Keyid can't be empty"})
 		return
 	}
-	res, _ := model.User{}.ModifyEnable(userkeyid.Keyid)
+	res, _ := model.User{}.ModifyEnable(keyid)
 	if res == true {
 		//用户状态修改成功
 		c.JSON(http.StatusOK, gin.H{"code": 0, "msg": "succ"})
@@ -152,17 +142,12 @@ func UCAddUsers(c *gin.Context) {
 
 //UCResetPassword  ... 管理员重置用户密码
 func UCResetPassword(c *gin.Context) {
-	item := model.User{}
-	err := c.BindJSON(&item)
-	if err != nil {
-		c.JSON(http.StatusOK, gin.H{"code": 4001, "msg": "parse error"})
-		return
-	}
-	if item.Keyid == "" {
+	keyid := c.DefaultQuery("keyid", "")
+	if keyid == "" {
 		c.JSON(http.StatusOK, gin.H{"code": 4006, "msg": "Keyid can't be empty"})
 		return
 	}
-	res, _ := model.User{}.ResetPas(item.Keyid)
+	res, _ := model.User{}.ResetPas(keyid)
 	if res == true {
 		//用户密码重置成功
 		c.JSON(http.StatusOK, gin.H{"code": 0, "msg": "succ"})
@@ -228,7 +213,29 @@ func UCUpdateInformation(c *gin.Context) {
 		c.JSON(http.StatusOK, gin.H{"code": 4006, "msg": "Keyid can't be empty"})
 		return
 	}
-	res, _ := model.User{}.UpdateItemById(json)
+	res, _ := model.User{}.EditorUpdateItemById(json)
+	if res == true {
+		//用户个人信息更新成功
+		c.JSON(http.StatusOK, gin.H{"code": 0, "msg": "succ"})
+		return
+	}
+	c.JSON(http.StatusOK, gin.H{"code": 4007, "msg": "user doesn't exist"})
+}
+
+//UCAdminUpdateItem   ...管理员更新用户信息
+func UCAdminUpdateItem(c *gin.Context) {
+	json := model.User{}
+	err := c.BindJSON(&json)
+	log.Printf("%v", &json)
+	if err != nil {
+		c.JSON(http.StatusOK, gin.H{"code": 4001, "msg": "parse error"})
+		return
+	}
+	if json.Keyid == "" {
+		c.JSON(http.StatusOK, gin.H{"code": 4006, "msg": "Keyid can't be empty"})
+		return
+	}
+	res, _ := model.User{}.AdminUpdateItem(json)
 	if res == true {
 		//用户个人信息更新成功
 		c.JSON(http.StatusOK, gin.H{"code": 0, "msg": "succ"})

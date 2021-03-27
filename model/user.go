@@ -53,7 +53,7 @@ func (t User) TableName() string {
 	return "user"
 }
 
-//
+//GetItemById ...根据ID从数据库中查询一条数据
 func (t User) GetItemById(keyid string) (User, error) {
 	var item User
 	ok, err := utils.GetMysqlClient().Where("keyid = ?", keyid).Get(&item)
@@ -85,7 +85,7 @@ func (t User) ShowInf(keyid string) (UserInf, error) {
 	var inf UserInf
 	cols := []string{"keyid", "manager", "roles", "mobilephone", "telephone", "email", "enable", "organization",
 		"department", "office", "last_login"}
-	ok, err := utils.GetMysqlClient().Cols(cols...).Table("user").Where("keyid", keyid).Get(&inf)
+	ok, err := utils.GetMysqlClient().Cols(cols...).Table("user").Where("keyid = ?", keyid).Get(&inf)
 	if err != nil {
 		glog.Errorf("Get item from table %s failed,err:%+v", t.TableName(), err)
 		return inf, err
@@ -107,7 +107,7 @@ func (t User) ModifyEnable(keyid string) (bool, error) {
 	//如果原来的状态为1则改为0.如果为0改为1
 	if ok && item.Enable == 1 {
 		item.Enable = 0
-		_, err := utils.GetMysqlClient().Cols("enable").Where("keyid", item.Keyid).Update(&item)
+		_, err := utils.GetMysqlClient().Cols("enable").Where("keyid = ?", keyid).Update(&item)
 		if err != nil {
 			glog.Errorf("%s table update data is failed, err: %+v", t.TableName(), err)
 			return false, err
@@ -116,7 +116,7 @@ func (t User) ModifyEnable(keyid string) (bool, error) {
 	}
 	if ok && item.Enable == 0 {
 		item.Enable = 1
-		_, err := utils.GetMysqlClient().Cols("enable").Where("keyid", item.Keyid).Update(&item)
+		_, err := utils.GetMysqlClient().Cols("enable").Where("keyid = ?", keyid).Update(&item)
 		if err != nil {
 			glog.Errorf("%s table update data is failed, err: %+v", t.TableName(), err)
 			return false, err
@@ -144,7 +144,7 @@ func (t User) ResetPas(keyid string) (bool, error) {
 	ok, err1 := utils.GetMysqlClient().Cols("password").Where("keyid = ?", keyid).Get(&item)
 	if ok {
 		item.Password = "Ceb2732@" // 将初始密码赋给查询到的Item中，然后进行更新
-		_, err2 := utils.GetMysqlClient().Cols("password").Where("keyid", item.Keyid).Update(&item)
+		_, err2 := utils.GetMysqlClient().Cols("password").Where("keyid = ?", keyid).Update(&item)
 		if err2 != nil {
 			glog.Errorf("%s table update data is failed, err: %+v", t.TableName(), err2)
 			return false, err2
@@ -160,7 +160,7 @@ func (t User) ChangePas(keyid, newpas string) (bool, error) {
 	ok, err1 := utils.GetMysqlClient().Where("keyid = ?", keyid).Get(&item)
 	if ok {
 		item.Password = newpas // 将新密码赋给查询到的Item中，然后进行更新
-		_, err2 := utils.GetMysqlClient().Cols("password").Where("keyid", item.Keyid).Update(&item)
+		_, err2 := utils.GetMysqlClient().Cols("password").Where("keyid = ?", keyid).Update(&item)
 		if err2 != nil {
 			glog.Errorf("%s table update data is failed, err: %+v", t.TableName(), err2)
 			return false, err2
@@ -171,12 +171,29 @@ func (t User) ChangePas(keyid, newpas string) (bool, error) {
 }
 
 //UpdateInf   ...用户更新个人信息
-func (t User) UpdateItemById(UserUpdate User) (bool, error) {
+func (t User) EditorUpdateItemById(UserUpdate User) (bool, error) {
 	var item User
 	ok, _ := utils.GetMysqlClient().Where("keyid = ?", UserUpdate.Keyid).Get(&item)
 	if ok {
 		cols := []string{"mobilephone", "telephone", "email", "office"}
-		_, err := utils.GetMysqlClient().Cols(cols...).Where("keyid", UserUpdate.Keyid).Update(&UserUpdate)
+		_, err := utils.GetMysqlClient().Cols(cols...).Where("keyid = ?", UserUpdate.Keyid).Update(&UserUpdate)
+		if err != nil {
+			glog.Errorf("%s table update data is failed, err: %+v", t.TableName(), err)
+			return false, err
+		}
+		return true, nil
+	}
+	return false, errors.New("not found")
+}
+
+//UpdateInf   ...管理员修改用户信息
+func (t User) AdminUpdateItem(AdminUpdate User) (bool, error) {
+	var item User
+	ok, _ := utils.GetMysqlClient().Where("keyid = ?", AdminUpdate.Keyid).Get(&item)
+	if ok {
+		cols := []string{"keyid", "manager", "roles", "mobilephone", "telephone", "email", "enable", "organization",
+			"department", "office"}
+		_, err := utils.GetMysqlClient().Cols(cols...).Where("keyid = ?", AdminUpdate.Keyid).Update(&AdminUpdate)
 		if err != nil {
 			glog.Errorf("%s table update data is failed, err: %+v", t.TableName(), err)
 			return false, err
