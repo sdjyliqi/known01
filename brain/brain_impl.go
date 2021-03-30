@@ -9,6 +9,7 @@ import (
 	"strings"
 )
 
+//init() ...初始化鉴别引擎数据
 func (c *Center) init() error {
 	//load templates about bank
 	err := c.InitTemplatesItemsFromDB()
@@ -16,7 +17,6 @@ func (c *Center) init() error {
 		glog.Errorf("Call InitTemplatesItemsFromDB failed,err:%+v", err)
 		return err
 	}
-
 	//load cut-words from mysql
 	err = c.InitCutWordsFromDB()
 	if err != nil {
@@ -33,6 +33,7 @@ func (c *Center) init() error {
 	return nil
 }
 
+//InitCutWordsFromDB ...初始化辅助词，数据来源mysql
 func (c *Center) InitCutWordsFromDB() error {
 	items, err := model.Assist{}.GetItems(utils.GetMysqlClient())
 	if err != nil {
@@ -52,13 +53,16 @@ func (c *Center) InitCutWordsFromDB() error {
 	return nil
 }
 
-//getReferencesItemsFromDB ...
+//getReferencesItemsFromDB ...初始化鉴别基准数据
 func (c *Center) InitReferencesItemsFromDB() error {
 	//初始化customerPhoneDic
 	phoneNumsDic := map[string]*model.Reference{}
 	items, err := model.Reference{}.GetItems(utils.GetMysqlClient())
 	if err != nil {
 		return err
+	}
+	if len(items) == 0 {
+		glog.Fatal("The count of items from table reference is zero,please check the reference table in mysql.")
 	}
 	c.referencesItems = items //尽可能的复用此数据，交付给鉴别引擎
 	//定义全量电话号码
@@ -117,6 +121,9 @@ func (c *Center) InitTemplatesItemsFromDB() error {
 	if err != nil {
 		return err
 	}
+	if len(items) == 0 {
+		glog.Fatal("The count of items from table templates is zero,please check the templates table in mysql.")
+	}
 	for _, v := range items {
 		if v.Enable == 1 {
 			templateDic[v.Detail] = v.CategoryId
@@ -125,6 +132,13 @@ func (c *Center) InitTemplatesItemsFromDB() error {
 	c.messageTemplates = templateDic
 	c.messageTemplatesItems = items
 	return nil
+}
+
+//cutSpecialMessage ...为了统一化处理，剔除‘ ’，‘-’等符合
+func (c *Center) cutSpecialMessage(msg string) string {
+	msg = strings.ReplaceAll(msg, " ", "")
+	msg = strings.ReplaceAll(msg, "-", "")
+	return msg
 }
 
 //amendMessage ...模板匹配前，需要提出辅助词
@@ -148,7 +162,7 @@ func (c *Center) amendMessage(msg string) string {
 	return amendMessage
 }
 
-//acFindPhoneNum ...寻找
+//acFindPhoneNum ...通过AC自动机寻找客服电话
 func (c *Center) acFindPhoneID(msg string) (string, bool) {
 	matchIndex := c.acCustomerPhoneMatch.Match(msg)
 	if len(matchIndex) > 0 {
@@ -198,6 +212,7 @@ func (c *Center) matchEngineRate(msg string) (utils.EngineType, float64) {
 func (c *Center) GetEngineName(msg string) (utils.EngineType, string) {
 	minMatchLevel := 0.6
 	//第二步，判断是否有官方电话号码,如果找到，返回类型和电话即可。
+	msg = c.cutSpecialMessage(msg)
 	phoneID, ok := c.acFindPhoneID(msg)
 	if ok {
 		engineName, ok := c.getEngineByPhoneID(phoneID)
@@ -205,7 +220,7 @@ func (c *Center) GetEngineName(msg string) (utils.EngineType, string) {
 			return engineName, phoneID
 		}
 	}
-	//第二部，修正短信数据，提出副助词，英文字母或者数字
+	//第二部，修正短信数据，剔除副助词，英文字母或者数字
 	amendMessage := c.amendMessage(msg)
 	//第三步，寻找关键字
 	indexWord, ok := c.acFindIndexWord(amendMessage)
@@ -223,13 +238,16 @@ func (c *Center) GetEngineName(msg string) (utils.EngineType, string) {
 	return utils.EngineUnknown, ""
 }
 
-func (c *Center) JudgeMessage(msg, sender string) (int, string) {
+//JudgeMessage ... 鉴别短信的入口
+func (c *Center) JudgeMessage(msg, sender string) (int, *model.Reference, string) {
 	engineName, phoneID := c.GetEngineName(msg)
 	switch engineName {
 	case utils.EngineBank:
 		return c.bank.JudgeMessage(msg, phoneID, sender)
+	case utils.EngineReward:
+		return c.reward.JudgeMessage(msg, phoneID, sender)
 	default:
-		return -1, "尊敬的用户,是真是假APP无法鉴别短信内容真假，并提示您加强安全防范意识，切勿泄露个人数据，避免财产损失。"
+		return 0, nil, "尊敬的用户,是真是假APP无法鉴别短信内容真假，并提示您加强安全防范意识，切勿泄露个人数据，避免财产损失。"
 	}
-	return 0, ""
+	return 0, nil, ""
 }

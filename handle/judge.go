@@ -8,6 +8,8 @@ import (
 
 func JudgeMessage(c *gin.Context) {
 	minLevelScore := 50
+	var scoreRate = 0.0
+	customPhone, website := "", ""
 	type SubmitContent struct {
 		Content string `json:"content"`
 		Sender  string `json:"sender"`
@@ -23,7 +25,7 @@ func JudgeMessage(c *gin.Context) {
 		c.JSON(http.StatusOK, gin.H{"code": 1, "msg": "You must submit the invalid message11"})
 		return
 	}
-	score, suggest := baCenter.JudgeMessage(reqJson.Content, reqJson.Sender)
+	score, reference, suggest := baCenter.JudgeMessage(reqJson.Content, reqJson.Sender)
 	flag := 0
 	if score > minLevelScore {
 		flag = 1
@@ -31,5 +33,50 @@ func JudgeMessage(c *gin.Context) {
 	if score <= minLevelScore && score > 0 {
 		flag = 2
 	}
-	c.JSON(http.StatusOK, gin.H{"code": 0, "msg": "succ", "data": gin.H{"suggest": suggest, "flag": flag}})
+	if score > 0 && reference != nil {
+		customPhone, website = reference.ManualPhone, reference.Website
+	}
+
+	scoreRate = float64(score) / 100
+	c.JSON(http.StatusOK, gin.H{"code": 0, "msg": "succ",
+		"data": gin.H{
+			"suggest": suggest,
+			"flag":    flag,
+			"score":   scoreRate,
+			"website": website,
+			"hotline": customPhone,
+		}})
+}
+
+func JudgeMessageGET(c *gin.Context) {
+	minLevelScore := 50
+	var scoreRate = 0.0
+	customPhone, website := "", ""
+	submitContent := c.DefaultQuery("content", "")
+	submitSender := c.DefaultQuery("sender", "")
+	if len(submitContent) < 1 {
+		c.JSON(http.StatusOK, gin.H{"code": 1, "msg": "You must submit the invalid message"})
+		return
+	}
+	score, reference, suggest := baCenter.JudgeMessage(submitContent, submitSender)
+	flag := 0
+	if score > minLevelScore {
+		flag = 1
+	}
+	if score <= minLevelScore && score > 0 {
+		flag = 2
+	}
+	if score > 0 && reference != nil {
+		customPhone, website = reference.ManualPhone, reference.Website
+	}
+
+	scoreRate = float64(score) / 100
+	c.JSON(http.StatusOK, gin.H{"code": 0, "msg": "succ",
+		"data": gin.H{
+			"suggest": suggest,
+			"flag":    flag,
+			"score":   scoreRate,
+			"website": website,
+			"hotline": customPhone,
+		}})
 }

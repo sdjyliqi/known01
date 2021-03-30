@@ -13,7 +13,6 @@ type Reference struct {
 	SenderId     string    `json:"sender_id" xorm:"VARCHAR(32)"`
 	ManualPhone  string    `json:"manual_phone" xorm:"not null VARCHAR(32)"`
 	Website      string    `json:"website" xorm:"not null comment('官网地址') VARCHAR(255)"`
-	MessageId    string    `json:"message_id" xorm:"VARCHAR(1024)"`
 	Domain       string    `json:"domain" xorm:"not null comment('多个域名有英文，分割') VARCHAR(4096)"`
 	LastModified time.Time `json:"last_modified" xorm:"DATETIME"`
 }

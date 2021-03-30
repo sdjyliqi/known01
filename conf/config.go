@@ -35,9 +35,10 @@ func YAMLLoad(fn string, v *Known01Config) error {
 
 // Init 传入带有默认值的 config, 加载配置到 config 中
 func Init(f string, v *Known01Config) {
+	glog.Infof("Init the yaml:%", f)
 	err := YAMLLoad(f, v)
 	if err != nil {
-		glog.Errorf("Call YAMLLoad failed,err:%+v", err)
+		glog.Fatal("Call YAMLLoad failed,err:%+v", err)
 	}
 }
 

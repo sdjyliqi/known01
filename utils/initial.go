@@ -13,7 +13,7 @@ func init() {
 	flag.StringVar(&confFile, "c", "", "configuration file")
 	flag.Parse()
 	if confFile == "" {
-		glog.Fatal("You must input the conf....")
+		glog.Fatal("You must input path of the yml ....")
 	}
 	conf.Init(confFile, &conf.DefaultConfig)
 	rand.Seed(time.Now().UnixNano())

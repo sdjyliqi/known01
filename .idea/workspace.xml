@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="BranchesTreeState">
     <expand>
       <path>
@@ -19,10 +22,27 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="91f69e01-107a-433a-b190-0e176ab79e31" name="Default Changelist" comment="add thumb">
+    <list default="true" id="91f69e01-107a-433a-b190-0e176ab79e31" name="Default Changelist" comment="增加http get">
+      <change afterPath="$PROJECT_DIR$/known01.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/net_client.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/net_client_test.go" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/xorm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/brain/bank_impl.go" beforeDir="false" afterPath="$PROJECT_DIR$/brain/bank_impl.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/brain/brain_impl.go" beforeDir="false" afterPath="$PROJECT_DIR$/brain/brain_impl.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/brain/brain_impl_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/brain/brain_impl_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/brain/reward_impl.go" beforeDir="false" afterPath="$PROJECT_DIR$/brain/reward_impl.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/conf/config.go" beforeDir="false" afterPath="$PROJECT_DIR$/conf/config.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/conf/known01.yml" beforeDir="false" afterPath="$PROJECT_DIR$/conf/known01.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/user.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/handle/judge.go" beforeDir="false" afterPath="$PROJECT_DIR$/handle/judge.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/reference.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/reference.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/reference.go" beforeDir="false" afterPath="$PROJECT_DIR$/models/reference.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/router/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/router/router.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/initial.go" beforeDir="false" afterPath="$PROJECT_DIR$/utils/initial.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/mysql.go" beforeDir="false" afterPath="$PROJECT_DIR$/utils/mysql.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -115,51 +135,43 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="configurable..is.expanded" value="false" />
+    <property name="configurable.GoLibrariesConfigurable.is.expanded" value="true" />
     <property name="go.gopath.indexing.explicitly.defined" value="true" />
     <property name="go.import.settings.migrated" value="true" />
     <property name="go.sdk.automatically.set" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/model" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/conf" />
     <property name="settings.editor.selected.configurable" value="go.vgo" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\gowork\src\known01\conf" />
+      <recent name="D:\gowork\src\known01\utils" />
+      <recent name="D:\gowork\src\known01" />
       <recent name="D:\gowork\src\known01\model" />
       <recent name="D:\gowork\src\known01\handle" />
-      <recent name="D:\gowork\src\known01\brain" />
-      <recent name="D:\gowork\src\known01\crypt" />
-      <recent name="D:\gowork\src\known01\utils" />
     </key>
   </component>
-  <component name="RunManager" selected="Go Test.Test_ExtractMPhone in known01/utils">
-    <configuration name="go build known01" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Go Build.main">
+    <configuration name="main" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true">
       <module name="known01" />
       <working_directory value="$PROJECT_DIR$" />
+      <parameters value="-c D:\gowork\src\known01\conf\known01.yml" />
       <kind value="PACKAGE" />
       <filePath value="$PROJECT_DIR$/main.go" />
       <package value="known01" />
       <directory value="$PROJECT_DIR$/" />
       <method v="2" />
     </configuration>
-    <configuration name="TestAESGCM in known01/crypt" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
-      <module name="known01" />
-      <working_directory value="$PROJECT_DIR$/crypt" />
-      <framework value="gotest" />
-      <kind value="PACKAGE" />
-      <package value="known01/crypt" />
-      <directory value="$PROJECT_DIR$/" />
-      <filePath value="$PROJECT_DIR$/" />
-      <pattern value="^TestAESGCM$" />
-      <method v="2" />
-    </configuration>
-    <configuration name="TestEncrypt in known01/utils" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+    <configuration name="TestDecrypt in known01/utils" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="known01" />
       <working_directory value="$PROJECT_DIR$/utils" />
       <framework value="gotest" />
       <kind value="PACKAGE" />
       <package value="known01/utils" />
-      <directory value="$PROJECT_DIR$/" />
-      <filePath value="$PROJECT_DIR$/" />
-      <pattern value="^TestEncrypt$" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <pattern value="^\QTestDecrypt\E$" />
       <method v="2" />
     </configuration>
     <configuration name="Test_ExtractMPhone in known01/utils" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
@@ -173,24 +185,42 @@
       <pattern value="^Test_ExtractMPhone$" />
       <method v="2" />
     </configuration>
-    <configuration name="Test_JudgeMessage in known01/brain" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+    <configuration name="Test_GetHTTPClient in known01/utils" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="known01" />
-      <working_directory value="$PROJECT_DIR$/brain" />
+      <working_directory value="$PROJECT_DIR$/utils" />
       <framework value="gotest" />
       <kind value="PACKAGE" />
-      <package value="known01/brain" />
-      <directory value="$PROJECT_DIR$/" />
-      <filePath value="$PROJECT_DIR$/" />
-      <pattern value="^Test_JudgeMessage$" />
+      <package value="known01/utils" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <pattern value="^\QTest_GetHTTPClient\E$" />
       <method v="2" />
     </configuration>
+    <configuration name="Test_GetURLHeader in known01/utils" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="known01" />
+      <working_directory value="$PROJECT_DIR$/utils" />
+      <framework value="gotest" />
+      <kind value="PACKAGE" />
+      <package value="known01/utils" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <pattern value="^\QTest_GetURLHeader\E$" />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Go Build.main" />
+      <item itemvalue="Go Test.Test_ExtractMPhone in known01/utils" />
+      <item itemvalue="Go Test.TestDecrypt in known01/utils" />
+      <item itemvalue="Go Test.Test_GetHTTPClient in known01/utils" />
+      <item itemvalue="Go Test.Test_GetURLHeader in known01/utils" />
+    </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Go Build.main" />
+        <item itemvalue="Go Test.Test_GetHTTPClient in known01/utils" />
+        <item itemvalue="Go Test.Test_GetURLHeader in known01/utils" />
+        <item itemvalue="Go Test.TestDecrypt in known01/utils" />
         <item itemvalue="Go Test.Test_ExtractMPhone in known01/utils" />
-        <item itemvalue="Go Test.TestAESGCM in known01/crypt" />
-        <item itemvalue="Go Test.TestEncrypt in known01/utils" />
-        <item itemvalue="Go Test.Test_JudgeMessage in known01/brain" />
-        <item itemvalue="Go Build.go build known01" />
       </list>
     </recent_temporary>
   </component>
@@ -267,7 +297,10 @@
     <MESSAGE value="uc login" />
     <MESSAGE value="todo  增加全局error" />
     <MESSAGE value="add thumb" />
-    <option name="LAST_COMMIT_MESSAGE" value="add thumb" />
+    <MESSAGE value="add get users" />
+    <MESSAGE value="liqi" />
+    <MESSAGE value="增加http get" />
+    <option name="LAST_COMMIT_MESSAGE" value="增加http get" />
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>
@@ -296,9 +329,9 @@
           <option name="timeStamp" value="6" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DlvLineBreakpoint">
-          <url>file://$PROJECT_DIR$/handle/login.go</url>
-          <line>32</line>
-          <option name="timeStamp" value="7" />
+          <url>file://$PROJECT_DIR$/router/router.go</url>
+          <line>8</line>
+          <option name="timeStamp" value="10" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

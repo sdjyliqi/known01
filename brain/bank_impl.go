@@ -130,13 +130,12 @@ func (bb *bankBrain) pickupMobilePhone(msg string) (string, bool) {
 	return utils.ExtractMobilePhone(msg)
 }
 
-func (bb *bankBrain) JudgeMessage(msg, phoneID, sender string) (int, string) {
+func (bb *bankBrain) JudgeMessage(msg, phoneID, sender string) (int, *model.Reference, string) {
 	v, ok := bb.PickupProperties(msg, phoneID, sender)
 	if !ok {
-		return 0, ""
+		return 0, nil, ""
 	}
-	score, suggest := bb.MatchScoreV2(v)
-	return score, suggest
+	return bb.MatchScoreV2(v)
 }
 
 //createMatchScoreIndex ...创建匹配字符串
@@ -167,7 +166,7 @@ func (bb *bankBrain) createMatchScoreIndex(pickup propertiesVec) (string, *model
 	}
 	//checkout message sender id
 	if pickup.senderID != "" {
-		if strings.HasSuffix(pickup.senderID, item.MessageId) {
+		if strings.HasSuffix(pickup.senderID, item.SenderId) {
 			msgIDIdx = "M1"
 		} else {
 			msgIDIdx = "M2"
@@ -185,18 +184,18 @@ func (bb *bankBrain) createMatchScoreIndex(pickup propertiesVec) (string, *model
 	return domainIdx + msgIDIdx + phoneIDIdx, item
 }
 
-func (bb *bankBrain) MatchScoreV2(pickup propertiesVec) (int, string) {
+func (bb *bankBrain) MatchScoreV2(pickup propertiesVec) (int, *model.Reference, string) {
 	findMobilePhoneScore := -10
 	notFindMessage := "尊敬的用户，是真是假APP提示您，你接收的短信类型为，目前未识别出关键信息，请加强安全意识，切勿泄露个人信息，认准官方。"
 	matchMessage := "尊敬的用户，是真是假APP提示您，你接收的短信类型为，目前判断短信内容可信度为%d%%，请致电官方客服%s或登录官方网站%s进行再次确认，避免上当，谢谢您使用时真是假APP。"
 	matchScore := 0
 	idx, bankItem := bb.createMatchScoreIndex(pickup)
 	if idx == "" {
-		return 0, notFindMessage
+		return 0, nil, notFindMessage
 	}
 	scoreItem, ok := bb.scoreDict[idx]
 	if !ok {
-		return 0, notFindMessage
+		return 0, nil, notFindMessage
 	}
 	//如果出现手机号，减分项目
 	matchScore = scoreItem.Score
@@ -207,5 +206,5 @@ func (bb *bankBrain) MatchScoreV2(pickup propertiesVec) (int, string) {
 		matchScore = 0
 	}
 	suggest := fmt.Sprintf(matchMessage, matchScore, bankItem.ManualPhone, bankItem.Website)
-	return matchScore, suggest
+	return matchScore, bankItem, suggest
 }
