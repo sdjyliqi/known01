@@ -23,26 +23,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="91f69e01-107a-433a-b190-0e176ab79e31" name="Default Changelist" comment="增加http get">
-      <change afterPath="$PROJECT_DIR$/known01.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/net_client.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/net_client_test.go" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/xorm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/brain/bank_impl.go" beforeDir="false" afterPath="$PROJECT_DIR$/brain/bank_impl.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/brain/brain_impl.go" beforeDir="false" afterPath="$PROJECT_DIR$/brain/brain_impl.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/brain/brain_impl_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/brain/brain_impl_test.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/brain/reward_impl.go" beforeDir="false" afterPath="$PROJECT_DIR$/brain/reward_impl.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/conf/config.go" beforeDir="false" afterPath="$PROJECT_DIR$/conf/config.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/conf/known01.yml" beforeDir="false" afterPath="$PROJECT_DIR$/conf/known01.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/handle/judge.go" beforeDir="false" afterPath="$PROJECT_DIR$/handle/judge.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/reference.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/reference.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/reference.go" beforeDir="false" afterPath="$PROJECT_DIR$/models/reference.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/router/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/router/router.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/initial.go" beforeDir="false" afterPath="$PROJECT_DIR$/utils/initial.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/mysql.go" beforeDir="false" afterPath="$PROJECT_DIR$/utils/mysql.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/templates.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/templates.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

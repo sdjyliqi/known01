@@ -24,7 +24,7 @@ func (t Templates) GetItems(engine *xorm.Engine) ([]*Templates, error) {
 	var items []*Templates
 	err := engine.Find(&items)
 	if err != nil {
-		glog.Errorf("Get items form table %s failed,err:%+v", t.TableName(), err)
+		glog.Fatalf("Get items form table %s failed,err:%+v", t.TableName(), err)
 		return nil, err
 	}
 	return items, nil
