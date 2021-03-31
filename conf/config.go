@@ -44,7 +44,7 @@ func Init(f string, v *Known01Config) {
 
 //DefaultConfig .
 var DefaultConfig = Known01Config{
-	DBMysql: "1wesK74jdqpFdSxpVSWyXTemUDaumleec+lIAr9+viJTSy0YwWnfg0o6fWiM5Rq6Fo0fZ9xSWQ6GfIVZZ95684tsvF4TcLIl8/oVdMYSI8Vx2TwRuFVAza12+WhKLetyDzvpMNlKymA35PRY9rU=",
+	DBMysql: "wdzHhOX/SSdWWziV4TDy0AYqXfr0dwPoVWNGPbgg26gLOoV0731EyR/b49lfJSSf6dnK0C9s5Il4QyRmaFsNTc6XOtu1ApToSaYGns+OVasYdbGpKsbRqyYRroZ0sirBC8VEyx8FbcWlXQ==",
 	WordDic: "D:\\learn\\gowork\\master\\known01\\data\\dictionary.txt",
 	Port:    8899,
 }
