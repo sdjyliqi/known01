@@ -8,7 +8,7 @@ import (
 var onceControl sync.Once
 var baCenter brain.Center
 
-func init() {
+func InitBrain() {
 	onceControl.Do(func() {
 		baCenter = brain.CreateCenter()
 	})
