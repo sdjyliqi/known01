@@ -339,10 +339,19 @@ func PickTelephone(str string) string {
 	}
 	telephoneList := reg.FindAllString(str, -1)
 	if telephoneList != nil {
-		if AreaCode[telephoneList[0][0:3]] == true || AreaCode[telephoneList[0][0:4]] == true {
-			telephoneList[0] = strings.Replace(telephoneList[0], " ", "", -1)
-			telephoneList[0] = strings.Replace(telephoneList[0], "-", "", -1)
-			return telephoneList[0]
+		telephoneList[0] = strings.Replace(telephoneList[0], " ", "", -1)
+		telephoneList[0] = strings.Replace(telephoneList[0], "-", "", -1)
+		if AreaCode[telephoneList[0][0:3]] == true {
+			if telephoneList[0][3:4] != "0" && telephoneList[0][3:4] != "1" && telephoneList[0][3:4] != "9" {
+				return telephoneList[0]
+			}
+			return ""
+		}
+		if AreaCode[telephoneList[0][0:4]] == true {
+			if telephoneList[0][3:4] != "0" && telephoneList[0][3:4] != "1" && telephoneList[0][3:4] != "9" {
+				return telephoneList[0]
+			}
+			return ""
 		}
 	}
 	return ""
