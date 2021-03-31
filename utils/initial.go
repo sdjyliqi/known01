@@ -6,5 +6,5 @@ import (
 
 func init() {
 	InitMySQL(conf.DefaultConfig.DBMysql, true) //建立MySQL连接
-	InitSegDic()                                //初始化分词词表
+	//InitSegDic()                                //初始化分词词表
 }

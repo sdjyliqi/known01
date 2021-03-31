@@ -22,15 +22,12 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="91f69e01-107a-433a-b190-0e176ab79e31" name="Default Changelist" comment="提取座机号">
+    <list default="true" id="91f69e01-107a-433a-b190-0e176ab79e31" name="Default Changelist" comment="UT and init">
       <change afterPath="$PROJECT_DIR$/known01" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/known01.exe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/conf/config.go" beforeDir="false" afterPath="$PROJECT_DIR$/conf/config.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/conf/known01.yml" beforeDir="false" afterPath="$PROJECT_DIR$/conf/known01.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/known01_windows.yml" beforeDir="false" afterPath="$PROJECT_DIR$/conf/known01_windows.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/conf/known01_windows.yml" beforeDir="false" afterPath="$PROJECT_DIR$/conf/known01_windows.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/known01.exe" beforeDir="false" afterPath="$PROJECT_DIR$/known01.exe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/utils/initial.go" beforeDir="false" afterPath="$PROJECT_DIR$/utils/initial.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -150,7 +147,7 @@
       <recent name="D:\learn\gowork\master\known01\data" />
     </key>
   </component>
-  <component name="RunManager" selected="Go Test.Test_ExtractMPhone in known01/utils">
+  <component name="RunManager" selected="Go Build.main">
     <configuration name="main" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true">
       <module name="known01" />
       <working_directory value="$PROJECT_DIR$" />
@@ -195,16 +192,29 @@
       <pattern value="^\QTest_ExtractMPhone\E$" />
       <method v="2" />
     </configuration>
+    <configuration name="Test_TimeFormat in known01/utils" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="known01" />
+      <working_directory value="$PROJECT_DIR$/utils" />
+      <framework value="gotest" />
+      <kind value="PACKAGE" />
+      <package value="known01/utils" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <pattern value="^\QTest_TimeFormat\E$" />
+      <method v="2" />
+    </configuration>
     <list>
       <item itemvalue="Go Build.main" />
       <item itemvalue="Go Test.TestPickTelephone in known01/utils" />
       <item itemvalue="Go Test.TestEncrypt in known01/utils" />
       <item itemvalue="Go Test.Test_ExtractMPhone in known01/utils" />
+      <item itemvalue="Go Test.Test_TimeFormat in known01/utils" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Go Test.Test_ExtractMPhone in known01/utils" />
         <item itemvalue="Go Build.main" />
+        <item itemvalue="Go Test.Test_TimeFormat in known01/utils" />
+        <item itemvalue="Go Test.Test_ExtractMPhone in known01/utils" />
         <item itemvalue="Go Test.TestEncrypt in known01/utils" />
         <item itemvalue="Go Test.TestPickTelephone in known01/utils" />
       </list>
@@ -287,7 +297,8 @@
     <MESSAGE value="liqi" />
     <MESSAGE value="增加http get" />
     <MESSAGE value="提取座机号" />
-    <option name="LAST_COMMIT_MESSAGE" value="提取座机号" />
+    <MESSAGE value="UT and init" />
+    <option name="LAST_COMMIT_MESSAGE" value="UT and init" />
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>
