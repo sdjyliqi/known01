@@ -143,8 +143,6 @@ func (c *Center) cutSpecialMessage(msg string) string {
 
 //amendMessage ...模板匹配前，需要提出辅助词
 func (c *Center) amendMessage(msg string) string {
-	//剔除空格
-	msg = strings.ReplaceAll(msg, " ", "")
 	//删除字母或者数字
 	var rWords []rune
 	for _, v := range []rune(msg) {
@@ -240,6 +238,7 @@ func (c *Center) GetEngineName(msg string) (utils.EngineType, string) {
 
 //JudgeMessage ... 鉴别短信的入口
 func (c *Center) JudgeMessage(msg, sender string) (int, *model.Reference, string) {
+	msg = c.cutSpecialMessage(msg)
 	engineName, phoneID := c.GetEngineName(msg)
 	switch engineName {
 	case utils.EngineBank:
