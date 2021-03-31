@@ -18,8 +18,7 @@ func InitMySQL(addr string, showSQL bool) (*xorm.Engine, error) {
 		msqlEngine, err = xorm.NewEngine("mysql", addrDecode)
 		msqlEngine.ShowSQL(showSQL)
 		if err != nil {
-			glog.Errorf("[init] Initialize mysql client for addr %s failed,err:%+v,please check the config.", addr, err)
-			glog.Fatalf("[init] Initialize mysql client failed,please check the addr:%+v", addrDecode)
+			glog.Fatalf("[init] Initialize mysql client failed,please check the addr:%+v,err:%+v", addrDecode, err)
 		}
 	})
 	return msqlEngine, err
