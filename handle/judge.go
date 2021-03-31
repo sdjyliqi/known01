@@ -1,6 +1,7 @@
 package handle
 
 import (
+	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/golang/glog"
 	"net/http"
@@ -10,11 +11,11 @@ func JudgeMessage(c *gin.Context) {
 	minLevelScore := 50
 	var scoreRate = 0.0
 	customPhone, website := "", ""
-	type SubmitContent struct {
+	type submitContent struct {
 		Content string `json:"content"`
 		Sender  string `json:"sender"`
 	}
-	reqJson := SubmitContent{}
+	reqJson := submitContent{}
 	err := c.ShouldBindJSON(&reqJson)
 	if err != nil {
 		glog.Errorf("The request %+v is invalid,please check.", c.Request)
@@ -38,14 +39,17 @@ func JudgeMessage(c *gin.Context) {
 	}
 
 	scoreRate = float64(score) / 100
-	c.JSON(http.StatusOK, gin.H{"code": 0, "msg": "succ",
+	box := gin.H{"code": 0,
+		"msg": "succ",
 		"data": gin.H{
 			"suggest": suggest,
 			"flag":    flag,
 			"score":   scoreRate,
 			"website": website,
 			"hotline": customPhone,
-		}})
+		}}
+	fmt.Printf("Request:%+v,Response:%+v\n", reqJson, box)
+	c.JSON(http.StatusOK, box)
 }
 
 func JudgeMessageGET(c *gin.Context) {
@@ -71,12 +75,15 @@ func JudgeMessageGET(c *gin.Context) {
 	}
 
 	scoreRate = float64(score) / 100
-	c.JSON(http.StatusOK, gin.H{"code": 0, "msg": "succ",
+	box := gin.H{"code": 0,
+		"msg": "succ",
 		"data": gin.H{
 			"suggest": suggest,
 			"flag":    flag,
 			"score":   scoreRate,
 			"website": website,
 			"hotline": customPhone,
-		}})
+		}}
+	fmt.Printf("Request:%+v,Response:%+v\n", c.Request.URL, box)
+	c.JSON(http.StatusOK, box)
 }

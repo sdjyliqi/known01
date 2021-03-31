@@ -3,6 +3,7 @@ package middleware
 import (
 	"fmt"
 	"github.com/gin-gonic/gin"
+	"known01/utils"
 
 	"time"
 )
@@ -16,10 +17,10 @@ func Logger() gin.HandlerFunc {
 		path := c.Request.URL.Path
 		clientIP := c.ClientIP()
 		method := c.Request.Method
-		fmt.Printf("| Header:%+v | %13v | %15s | %s  %s | %5d \n",
-			c.Request.Header,
-			latency,
+		fmt.Printf("Time at:%s %+v |cost:%v |%s %s |content-length:%d\n",
+			start.Format(utils.FullTime),
 			clientIP,
+			latency,
 			method,
 			path,
 			c.Writer.Size(),

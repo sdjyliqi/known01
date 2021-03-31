@@ -24,7 +24,12 @@
   <component name="ChangeListManager">
     <list default="true" id="91f69e01-107a-433a-b190-0e176ab79e31" name="Default Changelist" comment="增加http get">
       <change afterPath="$PROJECT_DIR$/xorm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/templates.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/templates.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/brain/brain.go" beforeDir="false" afterPath="$PROJECT_DIR$/brain/brain.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/brain/brain_impl.go" beforeDir="false" afterPath="$PROJECT_DIR$/brain/brain_impl.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/brain/reward_impl.go" beforeDir="false" afterPath="$PROJECT_DIR$/brain/reward_impl.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/handle/judge.go" beforeDir="false" afterPath="$PROJECT_DIR$/handle/judge.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/middleware/requestlog.go" beforeDir="false" afterPath="$PROJECT_DIR$/middleware/requestlog.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

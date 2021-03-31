@@ -151,21 +151,32 @@ func (bb *rewardBrain) createMatchScoreIndex(pickup propertiesVec) (string, *mod
 		return "", nil
 	}
 	//checkout website domain
-	if item.Domain == pickup.webDomain {
-		domainIdx = "D1"
-	} else {
-		domainIdx = "D2"
+	if pickup.webDomain != "" {
+		domains := strings.Split(item.Domain, ",")
+		domainDic := map[string]bool{}
+		for _, v := range domains {
+			if len(v) > 1 {
+				domainDic[strings.ToLower(v)] = true
+			}
+		}
+		_, ok = domainDic[strings.ToLower(pickup.webDomain)]
+		if ok {
+			domainIdx = "D1"
+		} else {
+			domainIdx = "D2"
+		}
 	}
 	//checkout message sender id
-	if strings.HasSuffix(pickup.senderID, item.SenderId) {
-		msgIDIdx = "M1"
-	} else {
-		msgIDIdx = "M2"
+	if pickup.senderID != "" {
+		if strings.HasSuffix(pickup.senderID, item.SenderId) {
+			msgIDIdx = "M1"
+		} else {
+			msgIDIdx = "M2"
+		}
 	}
-
 	//checkout customer phone id
-	if len(pickup.customerPhone) > 0 {
-		_, ok := bb.phoneNumDic[pickup.customerPhone]
+	if len(pickup.fixedPhone) > 0 {
+		_, ok := bb.phoneNumDic[pickup.fixedPhone]
 		if ok {
 			phoneIDIdx = "P1"
 		} else {
@@ -188,7 +199,7 @@ func (bb *rewardBrain) MatchScoreV2(pickup propertiesVec) (int, *model.Reference
 	if !ok {
 		return 0, nil, notFindMessage
 	}
-	//如果出现手机号，减分项目
+	//如果出现手机号，减分
 	matchScore = scoreItem.Score
 	if len(pickup.mobilePhone) > 1 {
 		matchScore = matchScore + findMobilePhoneScore

@@ -235,7 +235,7 @@ func (c *Center) GetEngineName(msg string) (utils.EngineType, string) {
 	if score > minMatchLevel {
 		return engineName, ""
 	}
-	return utils.EngineUnknown, ""
+	return utils.EngineReward, ""
 }
 
 //JudgeMessage ... 鉴别短信的入口
