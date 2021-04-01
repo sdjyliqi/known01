@@ -23,9 +23,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="91f69e01-107a-433a-b190-0e176ab79e31" name="Default Changelist" comment="UT and init">
-      <change beforePath="$PROJECT_DIR$/.idea/known01.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/brain/bank.go" beforeDir="false" afterPath="$PROJECT_DIR$/brain/bank.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/brain/bank_impl.go" beforeDir="false" afterPath="$PROJECT_DIR$/brain/bank_impl.go" afterDir="false" />
@@ -33,29 +30,10 @@
       <change beforePath="$PROJECT_DIR$/brain/brain_impl.go" beforeDir="false" afterPath="$PROJECT_DIR$/brain/brain_impl.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/brain/reward.go" beforeDir="false" afterPath="$PROJECT_DIR$/brain/reward.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/brain/reward_impl.go" beforeDir="false" afterPath="$PROJECT_DIR$/brain/reward_impl.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/handle/init.go" beforeDir="false" afterPath="$PROJECT_DIR$/handle/init.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/handle/judge.go" beforeDir="false" afterPath="$PROJECT_DIR$/handle/judge.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/handle/news.go" beforeDir="false" afterPath="$PROJECT_DIR$/handle/news.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/control/uc_impl.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/control/uc_impl_test.go" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/known01.exe" beforeDir="false" afterPath="$PROJECT_DIR$/known01.exe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/middleware/requestlog.go" beforeDir="false" afterPath="$PROJECT_DIR$/middleware/requestlog.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/news.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/news.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/reference.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/reference.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/results.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/results.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/templates.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/templates.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/user.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/router/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/router/router.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/utils/const.go" beforeDir="false" afterPath="$PROJECT_DIR$/utils/const.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/crypto.go" beforeDir="false" afterPath="$PROJECT_DIR$/utils/crypto.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/errdef.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/error.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/extract.go" beforeDir="false" afterPath="$PROJECT_DIR$/utils/extract.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/extract_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/utils/extract_test.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/pick_telephone.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/pick_telephone_test.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/simhash.go" beforeDir="false" afterPath="$PROJECT_DIR$/utils/simhash.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -325,7 +303,8 @@
     <MESSAGE value="增加http get" />
     <MESSAGE value="提取座机号" />
     <MESSAGE value="UT and init" />
-    <option name="LAST_COMMIT_MESSAGE" value="UT and init" />
+    <MESSAGE value="log find" />
+    <option name="LAST_COMMIT_MESSAGE" value="log find" />
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>
@@ -340,7 +319,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DlvLineBreakpoint">
           <url>file://$PROJECT_DIR$/utils/extract_test.go</url>
-          <line>52</line>
+          <line>41</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DlvLineBreakpoint">

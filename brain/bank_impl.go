@@ -1,6 +1,7 @@
 package brain
 
 import (
+	"fmt"
 	"github.com/gansidui/ahocorasick"
 	"github.com/golang/glog"
 	"github.com/sdjyliqi/known01/model"
@@ -20,7 +21,7 @@ func (bb *bankBrain) Init(items []*model.Reference) error {
 		aliasNamesDic[v.Name] = v.Name
 		bankAllNames = append(bankAllNames, v.Name)
 		if len(v.AliasNames) > 0 {
-			names := strings.Split(v.AliasNames, ",")
+			names := strings.Split(v.AliasNames, utils.SplitChar)
 			bankAllNames = append(bankAllNames, names...)
 			for _, vv := range names {
 				aliasNamesDic[vv] = v.Name
@@ -30,13 +31,25 @@ func (bb *bankBrain) Init(items []*model.Reference) error {
 		bb.bankDic[v.Name] = v
 		//客服电话映射表
 		phone := strings.ReplaceAll(v.ManualPhone, "-", "")
-		bb.phoneNumDic[phone] = v.Name
+		_, ok := bb.phoneNumDic[phone]
+		if ok {
+			bb.phoneNumDic[phone] = utils.SliceUnique(append(bb.phoneNumDic[phone], v.Name))
+		} else {
+			bb.phoneNumDic[phone] = []string{v.Name}
+		}
+
 		if len(v.Phone) > 0 {
 			phoneIDs := strings.Split(v.Phone, ",")
 			for _, vv := range phoneIDs {
-				bb.phoneNumDic[vv] = v.Name
+				_, ok := bb.phoneNumDic[vv]
+				if ok {
+					bb.phoneNumDic[vv] = utils.SliceUnique(append(bb.phoneNumDic[vv], v.Name))
+				} else {
+					bb.phoneNumDic[vv] = []string{v.Name}
+				}
 			}
 		}
+		fmt.Println(bb.phoneNumDic)
 	}
 	bb.aliasNames = aliasNamesDic
 	//基于银行名称创建ac自动机
@@ -67,21 +80,41 @@ func (bb *bankBrain) InitScoreItems() error {
 }
 
 //getBankNameByPhoneID ...通过客服电话查找银行名称
-func (bb *bankBrain) getBankNameByPhoneID(phone string) (string, bool) {
-	v, ok := bb.phoneNumDic[phone]
+func (bb *bankBrain) getBankNameByPhoneID(phone, msg string) (string, bool) {
+	items, ok := bb.phoneNumDic[phone]
 	if !ok {
 		glog.Errorf("Do not find the bank-name by customer phone %s", phone)
 		return "", false
 	}
-	return v, ok
+	if len(items) == 1 {
+		return items[0], true
+	}
+	//如果电话对应多个标准名称，使用标准名称查找到基准数据，然后利用基准数据中的name和别名去待鉴别的短信中去查找
+	for _, v := range items {
+		item, ok := bb.bankDic[v]
+		if !ok {
+			continue
+		}
+		if strings.Contains(msg, item.Name) {
+			return item.Name, true
+		}
+		//如果待鉴别短信中包括昵称信息，直接返回对应基准数据的标准名称
+		aliasNames := strings.Split(item.AliasNames, utils.SplitChar)
+		for _, v := range aliasNames {
+			if strings.Contains(msg, v) {
+				return item.Name, true
+			}
+		}
+	}
+	return "", false
 }
 
-//PickupProperties ... 摘取核心内容
+//PickupProperties ... 摘取核心内容,特别需要注意的是，一个客服电话对应多个单位的时候。
 func (bb *bankBrain) PickupProperties(msg, phoneID, sender string) (propertiesVec, bool) {
 	pickVal := propertiesVec{senderID: sender, fixedPhone: phoneID}
 	//优先通过客服电话id获取银行名称，如果找不到，只能通过ac自动机来寻找银行关键字。
 	if len(phoneID) > 0 {
-		govName, ok := bb.getBankNameByPhoneID(phoneID)
+		govName, ok := bb.getBankNameByPhoneID(phoneID, msg)
 		if ok {
 			pickVal.govName = govName
 		}

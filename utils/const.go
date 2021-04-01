@@ -15,3 +15,5 @@ const (
 	SCORE_SENDER_MOBILE = -10
 	SCORE_FIND_MOBILE   = -5
 )
+
+var SplitChar string = ","

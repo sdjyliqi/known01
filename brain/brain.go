@@ -27,9 +27,9 @@ type Center struct {
 	messageTemplatesItems []*model.Templates          //短信模块内容列表
 	cutWords              []string                    //副助词列表
 
-	acCustomerPhoneMatch *ahocorasick.Matcher        //提取官方客服电话的ac自动机
-	customerPhoneDic     map[string]*model.Reference //银行类短信模块内容列表
-	customerPhones       []string                    //客服电话列表，ac自动机匹配查询使用
+	acCustomerPhoneMatch *ahocorasick.Matcher          //提取官方客服电话的ac自动机
+	customerPhoneDic     map[string][]*model.Reference //银行类短信模块内容列表
+	customerPhones       []string                      //客服电话列表，ac自动机匹配查询使用
 
 	//构建分类的关键词ac自动机
 	indexWords    []string             //客服电话列表，ac自动机匹配查询使用
@@ -48,7 +48,7 @@ func CreateCenter() Center {
 	c := Center{
 		messageTemplates: map[string]utils.EngineType{},
 		indexWordsDic:    map[string]utils.EngineType{},
-		customerPhoneDic: map[string]*model.Reference{},
+		customerPhoneDic: map[string][]*model.Reference{},
 	}
 	c.init()
 	c.bank = CreateBankBrain(c.referencesItems)

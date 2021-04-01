@@ -56,7 +56,7 @@ func (c *Center) InitCutWordsFromDB() error {
 //getReferencesItemsFromDB ...初始化鉴别基准数据
 func (c *Center) InitReferencesItemsFromDB() error {
 	//初始化customerPhoneDic
-	phoneNumsDic := map[string]*model.Reference{}
+	phoneNumsDic := map[string][]*model.Reference{}
 	items, err := model.Reference{}.GetItems(utils.GetMysqlClient())
 	if err != nil {
 		return err
@@ -71,7 +71,12 @@ func (c *Center) InitReferencesItemsFromDB() error {
 		//初始化电话号码到详情的映射表
 		if len(v.Phone) > 0 {
 			phone := strings.ReplaceAll(v.Phone, "-", "")
-			phoneNumsDic[phone] = v
+			_, ok := phoneNumsDic[phone]
+			if ok {
+				phoneNumsDic[phone] = append(phoneNumsDic[phone], v)
+			} else {
+				phoneNumsDic[phone] = []*model.Reference{v}
+			}
 			allPhoneIDs = append(allPhoneIDs, phone)
 		}
 		if len(v.ManualPhone) > 0 {
@@ -79,8 +84,13 @@ func (c *Center) InitReferencesItemsFromDB() error {
 			phonesLine = strings.ReplaceAll(v.ManualPhone, "-", "")
 			phoneIDs := strings.Split(phonesLine, ",")
 			allPhoneIDs = append(allPhoneIDs, phoneIDs...)
-			for _, vv := range phoneIDs {
-				phoneNumsDic[vv] = v
+			for _, phone := range phoneIDs {
+				_, ok := phoneNumsDic[phone]
+				if ok {
+					phoneNumsDic[phone] = append(phoneNumsDic[phone], v)
+				} else {
+					phoneNumsDic[phone] = []*model.Reference{v}
+				}
 			}
 		}
 		//扩充分类关键词
@@ -110,7 +120,6 @@ func (c *Center) InitReferencesItemsFromDB() error {
 	acIndexWord.Build(indexWords)
 	c.indexWords = indexWords
 	c.acIndexWords = acIndexWord
-
 	return nil
 }
 
@@ -169,10 +178,13 @@ func (c *Center) acFindPhoneID(msg string) (string, bool) {
 	return "", false
 }
 
-//acFindPhoneNum ...根据寻找的客服电话，查找匹配的引擎名称
+//acFindPhoneNum ...根据寻找的客服电话，查找匹配的引擎名称,如果客服电话匹配多个基准单位，临时选择第一个单位对应的鉴别引擎。
 func (c *Center) getEngineByPhoneID(phone string) (utils.EngineType, bool) {
 	v, ok := c.customerPhoneDic[phone]
-	return v.CategoryId, ok
+	if ok && len(v) > 0 {
+		return v[0].CategoryId, true
+	}
+	return utils.ENGINE_UNKNOWN, false
 }
 
 //acFindPhoneNum ...寻找关键字
