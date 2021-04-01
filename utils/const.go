@@ -7,9 +7,11 @@ package utils
 type EngineType int
 
 const (
-	EngineUnknown EngineType = 0
-	EngineBank    EngineType = 1
-	EngineReward  EngineType = 2
+	ENGINE_UNKNOWN EngineType = 0
+	ENGINE_BANK    EngineType = 1
+	ENGINE_REWARD  EngineType = 2
 
-	PageEntry = 10
+	PAGE_ENTRY          = 10
+	SCORE_SENDER_MOBILE = -10
+	SCORE_FIND_MOBILE   = -5
 )

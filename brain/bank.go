@@ -2,7 +2,7 @@ package brain
 
 import (
 	"github.com/gansidui/ahocorasick"
-	"known01/model"
+	"github.com/sdjyliqi/known01/model"
 )
 
 type bankBrain struct {

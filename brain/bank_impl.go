@@ -1,11 +1,10 @@
 package brain
 
 import (
-	"fmt"
 	"github.com/gansidui/ahocorasick"
 	"github.com/golang/glog"
-	"known01/model"
-	"known01/utils"
+	"github.com/sdjyliqi/known01/model"
+	"github.com/sdjyliqi/known01/utils"
 	"strings"
 )
 
@@ -15,7 +14,7 @@ func (bb *bankBrain) Init(items []*model.Reference) error {
 	aliasNamesDic := map[string]string{}
 	var bankAllNames []string
 	for _, v := range items {
-		if v.CategoryId != utils.EngineBank {
+		if v.CategoryId != utils.ENGINE_BANK {
 			continue
 		}
 		aliasNamesDic[v.Name] = v.Name
@@ -130,12 +129,12 @@ func (bb *bankBrain) pickupMobilePhone(msg string) (string, bool) {
 	return utils.ExtractMobilePhone(msg)
 }
 
-func (bb *bankBrain) JudgeMessage(msg, phoneID, sender string) (int, *model.Reference, string) {
+func (bb *bankBrain) JudgeMessage(msg, phoneID, sender string) (int, *model.Reference) {
 	v, ok := bb.PickupProperties(msg, phoneID, sender)
 	if !ok {
-		return 0, nil, ""
+		return 0, nil
 	}
-	return bb.MatchScoreV2(v)
+	return bb.MatchScoreV2(v, sender)
 }
 
 //createMatchScoreIndex ...创建匹配字符串
@@ -184,27 +183,30 @@ func (bb *bankBrain) createMatchScoreIndex(pickup propertiesVec) (string, *model
 	return domainIdx + msgIDIdx + phoneIDIdx, item
 }
 
-func (bb *bankBrain) MatchScoreV2(pickup propertiesVec) (int, *model.Reference, string) {
-	findMobilePhoneScore := -10
-	notFindMessage := "尊敬的用户，是真是假APP提示您，你接收的短信类型为，目前未识别出关键信息，请加强安全意识，切勿泄露个人信息，认准官方。"
-	matchMessage := "尊敬的用户，是真是假APP提示您，你接收的短信类型为，目前判断短信内容可信度为%d%%，请致电官方客服%s或登录官方网站%s进行再次确认，避免上当，谢谢您使用时真是假APP。"
-	matchScore := 0
+func (bb *bankBrain) MatchScoreV2(pickup propertiesVec, sender string) (int, *model.Reference) {
+	findMobilePhoneScore, matchScore, senderScore := 0, 0, 0
 	idx, bankItem := bb.createMatchScoreIndex(pickup)
 	if idx == "" {
-		return 0, nil, notFindMessage
+		return 0, nil
 	}
 	scoreItem, ok := bb.scoreDict[idx]
 	if !ok {
-		return 0, nil, notFindMessage
+		return 0, nil
 	}
-	//如果出现手机号，减分项目
-	matchScore = scoreItem.Score
+
+	if utils.ChkContentIsMobilePhone(sender) {
+		senderScore = utils.SCORE_SENDER_MOBILE
+	}
+	if pickup.mobilePhone != "" {
+		findMobilePhoneScore = utils.SCORE_FIND_MOBILE
+	}
+	//基础分值加两个维度的浮动分值
+	matchScore = scoreItem.Score + senderScore + findMobilePhoneScore
 	if len(pickup.mobilePhone) > 1 {
 		matchScore = matchScore + findMobilePhoneScore
 	}
 	if matchScore < 0 {
 		matchScore = 0
 	}
-	suggest := fmt.Sprintf(matchMessage, matchScore, bankItem.ManualPhone, bankItem.Website)
-	return matchScore, bankItem, suggest
+	return matchScore, bankItem
 }

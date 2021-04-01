@@ -2,7 +2,7 @@ package model
 
 import (
 	"github.com/golang/glog"
-	"known01/utils"
+	"github.com/sdjyliqi/known01/utils"
 	"time"
 )
 

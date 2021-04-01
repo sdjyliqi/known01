@@ -23,10 +23,39 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="91f69e01-107a-433a-b190-0e176ab79e31" name="Default Changelist" comment="UT and init">
-      <change beforePath="$PROJECT_DIR$/conf/config.go" beforeDir="false" afterPath="$PROJECT_DIR$/conf/config.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/known01.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/brain/bank.go" beforeDir="false" afterPath="$PROJECT_DIR$/brain/bank.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/brain/bank_impl.go" beforeDir="false" afterPath="$PROJECT_DIR$/brain/bank_impl.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/brain/brain.go" beforeDir="false" afterPath="$PROJECT_DIR$/brain/brain.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/brain/brain_impl.go" beforeDir="false" afterPath="$PROJECT_DIR$/brain/brain_impl.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/brain/reward.go" beforeDir="false" afterPath="$PROJECT_DIR$/brain/reward.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/brain/reward_impl.go" beforeDir="false" afterPath="$PROJECT_DIR$/brain/reward_impl.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/handle/init.go" beforeDir="false" afterPath="$PROJECT_DIR$/handle/init.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/handle/judge.go" beforeDir="false" afterPath="$PROJECT_DIR$/handle/judge.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/handle/news.go" beforeDir="false" afterPath="$PROJECT_DIR$/handle/news.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/known01.exe" beforeDir="false" afterPath="$PROJECT_DIR$/known01.exe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/initial.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/middleware/requestlog.go" beforeDir="false" afterPath="$PROJECT_DIR$/middleware/requestlog.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/news.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/news.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/reference.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/reference.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/results.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/results.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/templates.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/templates.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/user.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/router/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/router/router.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/const.go" beforeDir="false" afterPath="$PROJECT_DIR$/utils/const.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/crypto.go" beforeDir="false" afterPath="$PROJECT_DIR$/utils/crypto.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/errdef.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/error.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/extract.go" beforeDir="false" afterPath="$PROJECT_DIR$/utils/extract.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/extract_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/utils/extract_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/pick_telephone.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/pick_telephone_test.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/simhash.go" beforeDir="false" afterPath="$PROJECT_DIR$/utils/simhash.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -117,6 +146,7 @@
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="DefaultGoTemplateProperty" value="Go File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="configurable..is.expanded" value="false" />
@@ -124,13 +154,14 @@
     <property name="go.gopath.indexing.explicitly.defined" value="true" />
     <property name="go.import.settings.migrated" value="true" />
     <property name="go.sdk.automatically.set" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/utils" />
+    <property name="go.tried.to.enable.integration.vgo.integrator" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
-    <property name="settings.editor.selected.configurable" value="go.vgo" />
+    <property name="settings.editor.selected.configurable" value="com.goide.configuration.GoLibrariesConfigurableProvider" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -145,76 +176,74 @@
       <recent name="D:\learn\gowork\master\known01\data" />
     </key>
   </component>
-  <component name="RunManager" selected="Go Build.main">
+  <component name="RunManager" selected="Go Build.main2">
     <configuration name="main" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true">
       <module name="known01" />
       <working_directory value="$PROJECT_DIR$" />
       <parameters value="-c D:\learn\gowork\master\known01\conf\known01_windows.yml" />
-      <kind value="PACKAGE" />
+      <kind value="DIRECTORY" />
       <filePath value="$PROJECT_DIR$/main.go" />
       <package value="known01" />
       <directory value="$PROJECT_DIR$/" />
       <method v="2" />
     </configuration>
-    <configuration name="TestEncrypt in known01/utils" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+    <configuration name="main2" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true">
+      <module name="known01" />
+      <working_directory value="$PROJECT_DIR$" />
+      <parameters value="-c D:\gowork\src\known01\conf\known01.yml" />
+      <kind value="FILE" />
+      <filePath value="$PROJECT_DIR$/main.go" />
+      <package value="known01" />
+      <directory value="$PROJECT_DIR$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="TestEncrypt in github.com/sdjyliqi/known01/utils" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="known01" />
       <working_directory value="$PROJECT_DIR$/utils" />
       <framework value="gotest" />
       <kind value="PACKAGE" />
-      <package value="known01/utils" />
+      <package value="github.com/sdjyliqi/known01/utils" />
       <directory value="$PROJECT_DIR$" />
       <filePath value="$PROJECT_DIR$" />
       <pattern value="^\QTestEncrypt\E$" />
       <method v="2" />
     </configuration>
-    <configuration name="TestPickTelephone in known01/utils" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+    <configuration name="TestPickTelephone in github.com/sdjyliqi/known01/utils" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="known01" />
       <working_directory value="$PROJECT_DIR$/utils" />
-      <parameters value="-c D:\learn\gowork\master\known01\data\known01_windows.yml" />
       <framework value="gotest" />
       <kind value="PACKAGE" />
-      <package value="known01/utils" />
+      <package value="github.com/sdjyliqi/known01/utils" />
       <directory value="$PROJECT_DIR$" />
       <filePath value="$PROJECT_DIR$" />
       <pattern value="^\QTestPickTelephone\E$" />
       <method v="2" />
     </configuration>
-    <configuration name="Test_ExtractMPhone in known01/utils" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+    <configuration name="Test_ChkContentIsMobilePhone in github.com/sdjyliqi/known01/utils" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="known01" />
       <working_directory value="$PROJECT_DIR$/utils" />
       <framework value="gotest" />
       <kind value="PACKAGE" />
-      <package value="known01/utils" />
+      <package value="github.com/sdjyliqi/known01/utils" />
       <directory value="$PROJECT_DIR$" />
       <filePath value="$PROJECT_DIR$" />
-      <pattern value="^\QTest_ExtractMPhone\E$" />
-      <method v="2" />
-    </configuration>
-    <configuration name="Test_TimeFormat in known01/utils" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
-      <module name="known01" />
-      <working_directory value="$PROJECT_DIR$/utils" />
-      <framework value="gotest" />
-      <kind value="PACKAGE" />
-      <package value="known01/utils" />
-      <directory value="$PROJECT_DIR$" />
-      <filePath value="$PROJECT_DIR$" />
-      <pattern value="^\QTest_TimeFormat\E$" />
+      <pattern value="^\QTest_ChkContentIsMobilePhone\E$" />
       <method v="2" />
     </configuration>
     <list>
       <item itemvalue="Go Build.main" />
-      <item itemvalue="Go Test.TestPickTelephone in known01/utils" />
-      <item itemvalue="Go Test.TestEncrypt in known01/utils" />
-      <item itemvalue="Go Test.Test_ExtractMPhone in known01/utils" />
-      <item itemvalue="Go Test.Test_TimeFormat in known01/utils" />
+      <item itemvalue="Go Build.main2" />
+      <item itemvalue="Go Test.Test_ChkContentIsMobilePhone in github.com/sdjyliqi/known01/utils" />
+      <item itemvalue="Go Test.TestEncrypt in github.com/sdjyliqi/known01/utils" />
+      <item itemvalue="Go Test.TestPickTelephone in github.com/sdjyliqi/known01/utils" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Go Build.main2" />
+        <item itemvalue="Go Test.TestPickTelephone in github.com/sdjyliqi/known01/utils" />
+        <item itemvalue="Go Test.TestEncrypt in github.com/sdjyliqi/known01/utils" />
+        <item itemvalue="Go Test.Test_ChkContentIsMobilePhone in github.com/sdjyliqi/known01/utils" />
         <item itemvalue="Go Build.main" />
-        <item itemvalue="Go Test.Test_TimeFormat in known01/utils" />
-        <item itemvalue="Go Test.Test_ExtractMPhone in known01/utils" />
-        <item itemvalue="Go Test.TestEncrypt in known01/utils" />
-        <item itemvalue="Go Test.TestPickTelephone in known01/utils" />
       </list>
     </recent_temporary>
   </component>
@@ -311,13 +340,18 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DlvLineBreakpoint">
           <url>file://$PROJECT_DIR$/utils/extract_test.go</url>
-          <line>42</line>
+          <line>52</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DlvLineBreakpoint">
           <url>file://$PROJECT_DIR$/brain/brain_impl_test.go</url>
           <line>64</line>
           <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/model/assist.go</url>
+          <line>2</line>
+          <option name="timeStamp" value="7" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

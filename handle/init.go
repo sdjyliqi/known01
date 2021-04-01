@@ -1,7 +1,7 @@
 package handle
 
 import (
-	"known01/brain"
+	"github.com/sdjyliqi/known01/brain"
 	"sync"
 )
 

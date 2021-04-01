@@ -3,7 +3,7 @@ package model
 import (
 	"github.com/go-xorm/xorm"
 	"github.com/golang/glog"
-	"known01/utils"
+	"github.com/sdjyliqi/known01/utils"
 	"time"
 )
 
@@ -25,7 +25,7 @@ func (t News) TableName() string {
 
 func (t News) GetItems(engine *xorm.Engine, pageID int) ([]*News, error) {
 	var items []*News
-	err := engine.Limit(utils.PageEntry, pageID*utils.PageEntry).Find(&items)
+	err := engine.Limit(utils.PAGE_ENTRY, pageID*utils.PAGE_ENTRY).Find(&items)
 	if err != nil {
 		glog.Errorf("Get items form table %s failed,err:%+v", t.TableName(), err)
 		return nil, err

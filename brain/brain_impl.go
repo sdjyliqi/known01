@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"github.com/gansidui/ahocorasick"
 	"github.com/golang/glog"
-	"known01/model"
-	"known01/utils"
+	"github.com/sdjyliqi/known01/model"
+	"github.com/sdjyliqi/known01/utils"
 	"strings"
 )
 
@@ -193,7 +193,7 @@ func (c *Center) getEngineByIndexWord(index string) (utils.EngineType, bool) {
 //bankEngineRate ...计算银行类信息匹配度
 func (c *Center) matchEngineRate(msg string) (utils.EngineType, float64) {
 	matchRate := 0.0
-	engineName := utils.EngineUnknown
+	engineName := utils.ENGINE_UNKNOWN
 	for _, v := range c.messageTemplatesItems {
 		simValue := utils.SimHashTool.Hash(msg)
 		rate := utils.SimHashTool.Similarity(simValue, v.SimHash)
@@ -233,20 +233,18 @@ func (c *Center) GetEngineName(msg string) (utils.EngineType, string) {
 	if score > minMatchLevel {
 		return engineName, ""
 	}
-	return utils.EngineReward, ""
+	return utils.ENGINE_REWARD, ""
 }
 
 //JudgeMessage ... 鉴别短信的入口
-func (c *Center) JudgeMessage(msg, sender string) (int, *model.Reference, string) {
+func (c *Center) JudgeMessage(msg, sender string) (int, *model.Reference) {
 	msg = c.cutSpecialMessage(msg)
 	engineName, phoneID := c.GetEngineName(msg)
 	switch engineName {
-	case utils.EngineBank:
+	case utils.ENGINE_BANK:
 		return c.bank.JudgeMessage(msg, phoneID, sender)
-	case utils.EngineReward:
-		return c.reward.JudgeMessage(msg, phoneID, sender)
 	default:
-		return 0, nil, "尊敬的用户,是真是假APP无法鉴别短信内容真假，并提示您加强安全防范意识，切勿泄露个人数据，避免财产损失。"
+		return c.reward.JudgeMessage(msg, phoneID, sender)
 	}
-	return 0, nil, ""
+	return 0, nil
 }
