@@ -24,16 +24,11 @@
   <component name="ChangeListManager">
     <list default="true" id="91f69e01-107a-433a-b190-0e176ab79e31" name="Default Changelist" comment="UT and init">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/brain/bank.go" beforeDir="false" afterPath="$PROJECT_DIR$/brain/bank.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/brain/bank_impl.go" beforeDir="false" afterPath="$PROJECT_DIR$/brain/bank_impl.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/brain/brain.go" beforeDir="false" afterPath="$PROJECT_DIR$/brain/brain.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/brain/brain_impl.go" beforeDir="false" afterPath="$PROJECT_DIR$/brain/brain_impl.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/brain/reward.go" beforeDir="false" afterPath="$PROJECT_DIR$/brain/reward.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/brain/reward_impl.go" beforeDir="false" afterPath="$PROJECT_DIR$/brain/reward_impl.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/control/uc_impl.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/control/uc_impl_test.go" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/known01.exe" beforeDir="false" afterPath="$PROJECT_DIR$/known01.exe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/const.go" beforeDir="false" afterPath="$PROJECT_DIR$/utils/const.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/extract_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/utils/extract_test.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -125,7 +120,6 @@
     <property name="DefaultGoTemplateProperty" value="Go File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="configurable..is.expanded" value="false" />
     <property name="configurable.GoLibrariesConfigurable.is.expanded" value="true" />
@@ -139,7 +133,7 @@
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
-    <property name="settings.editor.selected.configurable" value="com.goide.configuration.GoLibrariesConfigurableProvider" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -155,16 +149,6 @@
     </key>
   </component>
   <component name="RunManager" selected="Go Build.main2">
-    <configuration name="main" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true">
-      <module name="known01" />
-      <working_directory value="$PROJECT_DIR$" />
-      <parameters value="-c D:\learn\gowork\master\known01\conf\known01_windows.yml" />
-      <kind value="DIRECTORY" />
-      <filePath value="$PROJECT_DIR$/main.go" />
-      <package value="known01" />
-      <directory value="$PROJECT_DIR$/" />
-      <method v="2" />
-    </configuration>
     <configuration name="main2" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true">
       <module name="known01" />
       <working_directory value="$PROJECT_DIR$" />
@@ -208,20 +192,31 @@
       <pattern value="^\QTest_ChkContentIsMobilePhone\E$" />
       <method v="2" />
     </configuration>
+    <configuration name="Test_ExtractWebFirstDomain in github.com/sdjyliqi/known01/utils" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="known01" />
+      <working_directory value="$PROJECT_DIR$/utils" />
+      <framework value="gotest" />
+      <kind value="PACKAGE" />
+      <package value="github.com/sdjyliqi/known01/utils" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <pattern value="^\QTest_ExtractWebFirstDomain\E$" />
+      <method v="2" />
+    </configuration>
     <list>
-      <item itemvalue="Go Build.main" />
       <item itemvalue="Go Build.main2" />
       <item itemvalue="Go Test.Test_ChkContentIsMobilePhone in github.com/sdjyliqi/known01/utils" />
       <item itemvalue="Go Test.TestEncrypt in github.com/sdjyliqi/known01/utils" />
       <item itemvalue="Go Test.TestPickTelephone in github.com/sdjyliqi/known01/utils" />
+      <item itemvalue="Go Test.Test_ExtractWebFirstDomain in github.com/sdjyliqi/known01/utils" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Go Build.main2" />
+        <item itemvalue="Go Test.Test_ExtractWebFirstDomain in github.com/sdjyliqi/known01/utils" />
         <item itemvalue="Go Test.TestPickTelephone in github.com/sdjyliqi/known01/utils" />
         <item itemvalue="Go Test.TestEncrypt in github.com/sdjyliqi/known01/utils" />
         <item itemvalue="Go Test.Test_ChkContentIsMobilePhone in github.com/sdjyliqi/known01/utils" />
-        <item itemvalue="Go Build.main" />
       </list>
     </recent_temporary>
   </component>
@@ -304,7 +299,8 @@
     <MESSAGE value="提取座机号" />
     <MESSAGE value="UT and init" />
     <MESSAGE value="log find" />
-    <option name="LAST_COMMIT_MESSAGE" value="log find" />
+    <MESSAGE value="增加两个基准数据的客服电话相同的情况" />
+    <option name="LAST_COMMIT_MESSAGE" value="增加两个基准数据的客服电话相同的情况" />
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>
@@ -331,6 +327,11 @@
           <url>file://$PROJECT_DIR$/model/assist.go</url>
           <line>2</line>
           <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/brain/bank_impl.go</url>
+          <line>175</line>
+          <option name="timeStamp" value="8" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

@@ -78,6 +78,11 @@ func Test_ExtractWebFirstDomain(t *testing.T) {
 	txt = "请登录abc.cdf.hjk"
 	v, ok = ExtractWebFirstDomain(txt)
 	assert.False(t, ok)
+
+	txt = "立即抢购请戳www.cebwn.com。联系电话95595理财非存款"
+	v, ok = ExtractWebFirstDomain(txt)
+	t.Log(v)
+	assert.True(t, ok)
 }
 
 func TestPickTelephone(t *testing.T) {

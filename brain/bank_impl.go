@@ -1,7 +1,6 @@
 package brain
 
 import (
-	"fmt"
 	"github.com/gansidui/ahocorasick"
 	"github.com/golang/glog"
 	"github.com/sdjyliqi/known01/model"
@@ -49,7 +48,6 @@ func (bb *bankBrain) Init(items []*model.Reference) error {
 				}
 			}
 		}
-		fmt.Println(bb.phoneNumDic)
 	}
 	bb.aliasNames = aliasNamesDic
 	//基于银行名称创建ac自动机
