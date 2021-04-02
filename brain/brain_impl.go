@@ -221,7 +221,7 @@ func (c *Center) matchEngineRate(msg string) (utils.EngineType, float64) {
 //GetEngineName ... 根据提交的信息，判断最符合那个鉴别引擎
 func (c *Center) GetEngineName(msg string) (utils.EngineType, string) {
 	minMatchLevel := 0.6
-	//第二步，判断是否有官方电话号码,如果找到，返回类型和电话即可。
+	//第一步，判断是否有官方电话号码,如果找到，返回类型和电话即可。
 	msg = c.cutSpecialMessage(msg)
 	phoneID, ok := c.acFindPhoneID(msg)
 	if ok {

@@ -107,3 +107,9 @@ func TestPickTelephone(t *testing.T) {
 		}
 	}
 }
+
+func Test_PickupHits(t *testing.T) {
+	msg := "【拼多多】姿楠苑食品专营店：神秘主播讲解，看直播抢无法抵挡的红包，喊朋友一起围观 4pn.cn/6YeFfxjF（阈值) 回TD退订"
+	result := PickupHits(msg)
+	t.Log(result)
+}

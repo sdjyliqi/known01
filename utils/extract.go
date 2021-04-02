@@ -418,3 +418,14 @@ func PickTelephone(str string) string {
 	}
 	return ""
 }
+
+//PickupHits...从待鉴别诈骗短信中提取核心信息，如【中国移动】话费余额已不足。。。。，需要提取中国移动
+func PickupHits(msg string) string {
+	regHit := regexp.MustCompile(`【(.{2,8})】`)
+	hits := regHit.FindStringSubmatch(msg)
+	if len(hits) > 1 {
+		return hits[1]
+	}
+	return ""
+
+}

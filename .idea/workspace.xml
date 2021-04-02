@@ -24,10 +24,9 @@
   <component name="ChangeListManager">
     <list default="true" id="91f69e01-107a-433a-b190-0e176ab79e31" name="Default Changelist" comment="UT and init">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/brain/bank_impl.go" beforeDir="false" afterPath="$PROJECT_DIR$/brain/bank_impl.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/brain/brain_impl.go" beforeDir="false" afterPath="$PROJECT_DIR$/brain/brain_impl.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/known01.exe" beforeDir="false" afterPath="$PROJECT_DIR$/known01.exe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/extract.go" beforeDir="false" afterPath="$PROJECT_DIR$/utils/extract.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/utils/extract_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/utils/extract_test.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -148,7 +147,7 @@
       <recent name="D:\learn\gowork\master\known01\data" />
     </key>
   </component>
-  <component name="RunManager" selected="Go Build.main2">
+  <component name="RunManager" selected="Go Test.Test_PickupHits in github.com/sdjyliqi/known01/utils">
     <configuration name="main2" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true">
       <module name="known01" />
       <working_directory value="$PROJECT_DIR$" />
@@ -181,17 +180,6 @@
       <pattern value="^\QTestPickTelephone\E$" />
       <method v="2" />
     </configuration>
-    <configuration name="Test_ChkContentIsMobilePhone in github.com/sdjyliqi/known01/utils" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
-      <module name="known01" />
-      <working_directory value="$PROJECT_DIR$/utils" />
-      <framework value="gotest" />
-      <kind value="PACKAGE" />
-      <package value="github.com/sdjyliqi/known01/utils" />
-      <directory value="$PROJECT_DIR$" />
-      <filePath value="$PROJECT_DIR$" />
-      <pattern value="^\QTest_ChkContentIsMobilePhone\E$" />
-      <method v="2" />
-    </configuration>
     <configuration name="Test_ExtractWebFirstDomain in github.com/sdjyliqi/known01/utils" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="known01" />
       <working_directory value="$PROJECT_DIR$/utils" />
@@ -203,20 +191,31 @@
       <pattern value="^\QTest_ExtractWebFirstDomain\E$" />
       <method v="2" />
     </configuration>
+    <configuration name="Test_PickupHits in github.com/sdjyliqi/known01/utils" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="known01" />
+      <working_directory value="$PROJECT_DIR$/utils" />
+      <framework value="gotest" />
+      <kind value="PACKAGE" />
+      <package value="github.com/sdjyliqi/known01/utils" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <pattern value="^\QTest_PickupHits\E$" />
+      <method v="2" />
+    </configuration>
     <list>
       <item itemvalue="Go Build.main2" />
-      <item itemvalue="Go Test.Test_ChkContentIsMobilePhone in github.com/sdjyliqi/known01/utils" />
       <item itemvalue="Go Test.TestEncrypt in github.com/sdjyliqi/known01/utils" />
       <item itemvalue="Go Test.TestPickTelephone in github.com/sdjyliqi/known01/utils" />
       <item itemvalue="Go Test.Test_ExtractWebFirstDomain in github.com/sdjyliqi/known01/utils" />
+      <item itemvalue="Go Test.Test_PickupHits in github.com/sdjyliqi/known01/utils" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Go Test.Test_PickupHits in github.com/sdjyliqi/known01/utils" />
         <item itemvalue="Go Build.main2" />
         <item itemvalue="Go Test.Test_ExtractWebFirstDomain in github.com/sdjyliqi/known01/utils" />
         <item itemvalue="Go Test.TestPickTelephone in github.com/sdjyliqi/known01/utils" />
         <item itemvalue="Go Test.TestEncrypt in github.com/sdjyliqi/known01/utils" />
-        <item itemvalue="Go Test.Test_ChkContentIsMobilePhone in github.com/sdjyliqi/known01/utils" />
       </list>
     </recent_temporary>
   </component>
@@ -300,7 +299,8 @@
     <MESSAGE value="UT and init" />
     <MESSAGE value="log find" />
     <MESSAGE value="增加两个基准数据的客服电话相同的情况" />
-    <option name="LAST_COMMIT_MESSAGE" value="增加两个基准数据的客服电话相同的情况" />
+    <MESSAGE value="del log" />
+    <option name="LAST_COMMIT_MESSAGE" value="del log" />
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>
@@ -330,7 +330,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DlvLineBreakpoint">
           <url>file://$PROJECT_DIR$/brain/bank_impl.go</url>
-          <line>175</line>
+          <line>173</line>
           <option name="timeStamp" value="8" />
         </line-breakpoint>
       </breakpoints>
