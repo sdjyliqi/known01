@@ -3,7 +3,7 @@ package utils
 import (
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/go-xorm/xorm"
-	"github.com/golang/glog"
+	"github.com/prometheus/common/log"
 	"sync"
 )
 
@@ -18,7 +18,7 @@ func InitMySQL(addr string, showSQL bool) (*xorm.Engine, error) {
 		msqlEngine, err = xorm.NewEngine("mysql", addrDecode)
 		msqlEngine.ShowSQL(showSQL)
 		if err != nil {
-			glog.Fatalf("[init] Initialize mysql client failed,please check the addr:%+v,err:%+v", addrDecode, err)
+			log.Fatalf("[init] Initialize mysql client failed,please check the addr:%+v,err:%+v", addrDecode, err)
 		}
 	})
 	return msqlEngine, err

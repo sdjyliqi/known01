@@ -2,7 +2,7 @@ package model
 
 import (
 	"github.com/go-xorm/xorm"
-	"github.com/golang/glog"
+	"github.com/prometheus/common/log"
 	"github.com/sdjyliqi/known01/utils"
 	"time"
 )
@@ -28,7 +28,7 @@ func (t Reference) GetItems(engine *xorm.Engine) ([]*Reference, error) {
 	var items []*Reference
 	err := engine.Find(&items)
 	if err != nil {
-		glog.Fatal("Get items form table %s failed,err:%+v", t.TableName(), err)
+		log.Fatalf("Get items form table %s failed,err:%+v", t.TableName(), err)
 		return nil, err
 	}
 	return items, nil

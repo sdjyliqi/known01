@@ -81,7 +81,7 @@ func (bb *rewardBrain) InitScoreItems() error {
 func (bb *rewardBrain) getNameByPhoneID(phone, msg string) (string, bool) {
 	items, ok := bb.phoneNumDic[phone]
 	if !ok {
-		glog.Errorf("Do not find the bank-name by customer phone %s", phone)
+		log.Errorf("Do not find the bank-name by customer phone %s", phone)
 		return "", false
 	}
 	if len(items) == 1 {
@@ -163,7 +163,7 @@ func (bb *rewardBrain) pickupName(msg string) (string, bool) {
 		idx := bb.allNames[matchIndex[0]]
 		v, ok := bb.aliasNames[idx]
 		if !ok {
-			glog.Exitf("Do not find the key %s in dic.", idx)
+			log.Errorf("Do not find the key %s in dic.", idx)
 			return "", false
 		}
 		return v, true

@@ -2,7 +2,7 @@ package model
 
 import (
 	"errors"
-	"github.com/golang/glog"
+	"github.com/prometheus/common/log"
 	"github.com/sdjyliqi/known01/utils"
 	"time"
 )
@@ -26,7 +26,7 @@ func (t User) ChkPassword(key, password string) (bool, error) {
 	var item User
 	ok, err := utils.GetMysqlClient().Where("key = ?", key).Get(&item)
 	if err != nil {
-		glog.Errorf("Get item from table %s failed,err:%+v", t.TableName(), err)
+		log.Errorf("Get item from table %s failed,err:%+v", t.TableName(), err)
 		return false, err
 	}
 	if ok {
@@ -40,7 +40,7 @@ func (t User) GetItems(page, entry int) ([]*User, error) {
 	var items []*User
 	err := utils.GetMysqlClient().Limit(page*entry, entry).Find(items)
 	if err != nil {
-		glog.Errorf("Get items from table %s failed,err:%+v", t.TableName(), err)
+		log.Errorf("Get items from table %s failed,err:%+v", t.TableName(), err)
 		return nil, err
 	}
 	return items, errors.New("not-find")

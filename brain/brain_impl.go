@@ -3,7 +3,7 @@ package brain
 import (
 	"fmt"
 	"github.com/gansidui/ahocorasick"
-	"github.com/golang/glog"
+	"github.com/prometheus/common/log"
 	"github.com/sdjyliqi/known01/model"
 	"github.com/sdjyliqi/known01/utils"
 	"strings"
@@ -14,19 +14,19 @@ func (c *Center) init() error {
 	//load templates about bank
 	err := c.InitTemplatesItemsFromDB()
 	if err != nil {
-		glog.Errorf("Call InitTemplatesItemsFromDB failed,err:%+v", err)
+		log.Errorf("Call InitTemplatesItemsFromDB failed,err:%+v", err)
 		return err
 	}
 	//load cut-words from mysql
 	err = c.InitCutWordsFromDB()
 	if err != nil {
-		glog.Errorf("Call InitCutWordsFromDB failed,err:%+v", err)
+		log.Errorf("Call InitCutWordsFromDB failed,err:%+v", err)
 		return err
 	}
 
 	err = c.InitReferencesItemsFromDB()
 	if err != nil {
-		glog.Errorf("Call InitReferencesItemsFromDB failed,err:%+v", err)
+		log.Errorf("Call InitReferencesItemsFromDB failed,err:%+v", err)
 		return err
 	}
 
@@ -62,7 +62,7 @@ func (c *Center) InitReferencesItemsFromDB() error {
 		return err
 	}
 	if len(items) == 0 {
-		glog.Fatal("The count of items from table reference is zero,please check the reference table in mysql.")
+		log.Fatal("The count of items from table reference is zero,please check the reference table in mysql.")
 	}
 	c.referencesItems = items //尽可能的复用此数据，交付给鉴别引擎
 	//定义全量电话号码
@@ -131,7 +131,7 @@ func (c *Center) InitTemplatesItemsFromDB() error {
 		return err
 	}
 	if len(items) == 0 {
-		glog.Fatal("The count of items from table templates is zero,please check the templates table in mysql.")
+		log.Fatal("The count of items from table templates is zero,please check the templates table in mysql.")
 	}
 	for _, v := range items {
 		if v.Enable == 1 {

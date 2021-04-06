@@ -2,7 +2,7 @@ package model
 
 import (
 	"github.com/go-xorm/xorm"
-	"github.com/golang/glog"
+	"github.com/prometheus/common/log"
 )
 
 type Assist struct {
@@ -20,7 +20,7 @@ func (t Assist) GetItems(engine *xorm.Engine) ([]*Assist, error) {
 	var items []*Assist
 	err := engine.Find(&items)
 	if err != nil {
-		glog.Errorf("Get items form table %s failed,err:%+v", t.TableName(), err)
+		log.Errorf("Get items form table %s failed,err:%+v", t.TableName(), err)
 		return nil, err
 	}
 	return items, nil

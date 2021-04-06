@@ -1,8 +1,8 @@
 package model
 
 import (
+	"github.com/sdjyliqi/known01/utils"
 	"github.com/stretchr/testify/assert"
-	"known01/utils"
 	"testing"
 	"time"
 )

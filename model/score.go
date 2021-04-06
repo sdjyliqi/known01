@@ -3,7 +3,7 @@ package model
 import (
 	"errors"
 	"github.com/go-xorm/xorm"
-	"github.com/golang/glog"
+	"github.com/prometheus/common/log"
 	"time"
 )
 
@@ -22,7 +22,7 @@ func (t Score) GetItems(engine *xorm.Engine) ([]*Score, error) {
 	var items []*Score
 	err := engine.Find(&items)
 	if err != nil {
-		glog.Errorf("Get items form table %s failed,err:%+v", t.TableName(), err)
+		log.Errorf("Get items form table %s failed,err:%+v", t.TableName(), err)
 		return nil, err
 	}
 	return items, nil
@@ -32,11 +32,11 @@ func (t Score) GetItemByIdx(idx string, engine *xorm.Engine) (*Score, error) {
 	var item Score
 	ok, err := engine.Where("dimension=?", idx).Get(&item)
 	if err != nil {
-		glog.Errorf("Get items form table %s failed,err:%+v", t.TableName(), err)
+		log.Errorf("Get items form table %s failed,err:%+v", t.TableName(), err)
 		return nil, err
 	}
 	if !ok {
-		glog.Errorf("Do not find the item by dimension %+v from %+v.", idx, t.TableName())
+		log.Errorf("Do not find the item by dimension %+v from %+v.", idx, t.TableName())
 		return nil, errors.New("not-existed")
 	}
 	return &item, nil
