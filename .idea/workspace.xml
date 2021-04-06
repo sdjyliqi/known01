@@ -24,10 +24,10 @@
   <component name="ChangeListManager">
     <list default="true" id="91f69e01-107a-433a-b190-0e176ab79e31" name="Default Changelist" comment="UT and init">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/brain/brain_impl_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/brain/brain_impl_test.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/conf/config.go" beforeDir="false" afterPath="$PROJECT_DIR$/conf/config.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/brain/bank_impl.go" beforeDir="false" afterPath="$PROJECT_DIR$/brain/bank_impl.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/conf/known01.yml" beforeDir="false" afterPath="$PROJECT_DIR$/conf/known01.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/known01.exe" beforeDir="false" afterPath="$PROJECT_DIR$/known01.exe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/testutils/init.go" beforeDir="false" afterPath="$PROJECT_DIR$/testutils/init.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -147,16 +147,47 @@
       <recent name="D:\learn\gowork\master\known01\data" />
     </key>
   </component>
-  <component name="RunManager" selected="Go Test.Test_JudgeMessage in github.com/sdjyliqi/known01/brain">
-    <configuration name="TestEncrypt in github.com/sdjyliqi/known01/utils" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Go Build.main">
+    <configuration name="go build known01" type="GoApplicationRunConfiguration" factoryName="Go Application" nameIsGenerated="true">
       <module name="known01" />
-      <working_directory value="$PROJECT_DIR$/utils" />
+      <working_directory value="$PROJECT_DIR$" />
+      <go_parameters value="-i" />
+      <kind value="FILE" />
+      <filePath value="$PROJECT_DIR$" />
+      <package value="github.com/sdjyliqi/known01" />
+      <directory value="$PROJECT_DIR$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="main" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true">
+      <module name="known01" />
+      <working_directory value="$PROJECT_DIR$" />
+      <parameters value="-c D:\gowork\src\known01\conf\known01.yml" />
+      <kind value="PACKAGE" />
+      <filePath value="$PROJECT_DIR$/main.go" />
+      <package value="github.com/sdjyliqi/known01" />
+      <directory value="$PROJECT_DIR$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Test_AssistGetItems in github.com/sdjyliqi/known01/model" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="known01" />
+      <working_directory value="$PROJECT_DIR$/model" />
       <framework value="gotest" />
       <kind value="PACKAGE" />
-      <package value="github.com/sdjyliqi/known01/utils" />
+      <package value="github.com/sdjyliqi/known01/model" />
       <directory value="$PROJECT_DIR$" />
       <filePath value="$PROJECT_DIR$" />
-      <pattern value="^\QTestEncrypt\E$" />
+      <pattern value="^\QTest_AssistGetItems\E$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Test_GetEngineName in github.com/sdjyliqi/known01/brain" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="known01" />
+      <working_directory value="$PROJECT_DIR$/brain" />
+      <framework value="gotest" />
+      <kind value="PACKAGE" />
+      <package value="github.com/sdjyliqi/known01/brain" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <pattern value="^\QTest_GetEngineName\E$" />
       <method v="2" />
     </configuration>
     <configuration name="Test_JudgeMessage in github.com/sdjyliqi/known01/brain" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
@@ -168,28 +199,6 @@
       <directory value="$PROJECT_DIR$" />
       <filePath value="$PROJECT_DIR$" />
       <pattern value="^\QTest_JudgeMessage\E$" />
-      <method v="2" />
-    </configuration>
-    <configuration name="Test_acFindPhoneNum in github.com/sdjyliqi/known01/brain" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
-      <module name="known01" />
-      <working_directory value="$PROJECT_DIR$/brain" />
-      <framework value="gotest" />
-      <kind value="PACKAGE" />
-      <package value="github.com/sdjyliqi/known01/brain" />
-      <directory value="$PROJECT_DIR$" />
-      <filePath value="$PROJECT_DIR$" />
-      <pattern value="^\QTest_acFindPhoneNum\E$" />
-      <method v="2" />
-    </configuration>
-    <configuration name="Test_amendMessage in github.com/sdjyliqi/known01/brain" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
-      <module name="known01" />
-      <working_directory value="$PROJECT_DIR$/brain" />
-      <framework value="gotest" />
-      <kind value="PACKAGE" />
-      <package value="github.com/sdjyliqi/known01/brain" />
-      <directory value="$PROJECT_DIR$" />
-      <filePath value="$PROJECT_DIR$" />
-      <pattern value="^\QTest_amendMessage\E$" />
       <method v="2" />
     </configuration>
     <configuration name="Test_matchEngineRate in github.com/sdjyliqi/known01/brain" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
@@ -204,19 +213,20 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Go Test.TestEncrypt in github.com/sdjyliqi/known01/utils" />
+      <item itemvalue="Go Build.main" />
+      <item itemvalue="Go Build.go build known01" />
       <item itemvalue="Go Test.Test_JudgeMessage in github.com/sdjyliqi/known01/brain" />
-      <item itemvalue="Go Test.Test_acFindPhoneNum in github.com/sdjyliqi/known01/brain" />
-      <item itemvalue="Go Test.Test_amendMessage in github.com/sdjyliqi/known01/brain" />
       <item itemvalue="Go Test.Test_matchEngineRate in github.com/sdjyliqi/known01/brain" />
+      <item itemvalue="Go Test.Test_GetEngineName in github.com/sdjyliqi/known01/brain" />
+      <item itemvalue="Go Test.Test_AssistGetItems in github.com/sdjyliqi/known01/model" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Go Build.main" />
+        <item itemvalue="Go Test.Test_AssistGetItems in github.com/sdjyliqi/known01/model" />
+        <item itemvalue="Go Test.Test_GetEngineName in github.com/sdjyliqi/known01/brain" />
         <item itemvalue="Go Test.Test_JudgeMessage in github.com/sdjyliqi/known01/brain" />
         <item itemvalue="Go Test.Test_matchEngineRate in github.com/sdjyliqi/known01/brain" />
-        <item itemvalue="Go Test.Test_amendMessage in github.com/sdjyliqi/known01/brain" />
-        <item itemvalue="Go Test.Test_acFindPhoneNum in github.com/sdjyliqi/known01/brain" />
-        <item itemvalue="Go Test.TestEncrypt in github.com/sdjyliqi/known01/utils" />
       </list>
     </recent_temporary>
   </component>
@@ -304,7 +314,8 @@
     <MESSAGE value="glog --&gt;log" />
     <MESSAGE value="UT and init" />
     <MESSAGE value="import full path" />
-    <option name="LAST_COMMIT_MESSAGE" value="import full path" />
+    <MESSAGE value="run UT" />
+    <option name="LAST_COMMIT_MESSAGE" value="run UT" />
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>
@@ -334,7 +345,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DlvLineBreakpoint">
           <url>file://$PROJECT_DIR$/brain/bank_impl.go</url>
-          <line>193</line>
+          <line>202</line>
           <option name="timeStamp" value="8" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DlvLineBreakpoint">

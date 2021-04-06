@@ -87,6 +87,14 @@ func (bb *bankBrain) getBankNameByPhoneID(phone, msg string) (string, bool) {
 	if len(items) == 1 {
 		return items[0], true
 	}
+	//优先处理【】符合中的内容，如果名称为整理的基准数据，直接使用该值。
+	hit := utils.PickupHits(msg)
+	if len(hit) > 0 {
+		v, ok := bb.aliasNames[hit]
+		if ok {
+			return v, true
+		}
+	}
 	//如果电话对应多个标准名称，使用标准名称查找到基准数据，然后利用基准数据中的name和别名去待鉴别的短信中去查找
 	for _, v := range items {
 		item, ok := bb.bankDic[v]
