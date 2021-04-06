@@ -25,9 +25,7 @@
     <list default="true" id="91f69e01-107a-433a-b190-0e176ab79e31" name="Default Changelist" comment="UT and init">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/brain/bank_impl.go" beforeDir="false" afterPath="$PROJECT_DIR$/brain/bank_impl.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/brain/reward_impl.go" beforeDir="false" afterPath="$PROJECT_DIR$/brain/reward_impl.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/known01.exe" beforeDir="false" afterPath="$PROJECT_DIR$/known01.exe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -312,11 +310,12 @@
     <MESSAGE value="del log" />
     <MESSAGE value="change UT" />
     <MESSAGE value="glog --&gt;log" />
-    <MESSAGE value="UT and init" />
     <MESSAGE value="import full path" />
     <MESSAGE value="run UT" />
     <MESSAGE value="优先使用【】中的匹配数据" />
-    <option name="LAST_COMMIT_MESSAGE" value="优先使用【】中的匹配数据" />
+    <MESSAGE value="UT and init" />
+    <MESSAGE value="check the request valid" />
+    <option name="LAST_COMMIT_MESSAGE" value="check the request valid" />
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>
@@ -356,7 +355,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DlvLineBreakpoint">
           <url>file://$PROJECT_DIR$/brain/bank_impl.go</url>
-          <line>93</line>
+          <line>86</line>
           <option name="timeStamp" value="10" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DlvLineBreakpoint">

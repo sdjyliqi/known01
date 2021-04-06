@@ -221,7 +221,7 @@ func (bb *bankBrain) createMatchScoreIndex(pickup propertiesVec) (string, *model
 		}
 	}
 	//checkout message sender id
-	if pickup.senderID != "" {
+	if pickup.senderID != "" && item.SenderId != "" {
 		if strings.HasSuffix(pickup.senderID, item.SenderId) {
 			msgIDIdx = "M1"
 		} else {
