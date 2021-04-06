@@ -22,8 +22,8 @@ func JudgeMessage(c *gin.Context) {
 		c.JSON(http.StatusOK, gin.H{"code": 1, "msg": "bind json failed."})
 		return
 	}
-	if len(reqJson.Content) < 1 {
-		c.JSON(http.StatusOK, gin.H{"code": 1, "msg": "You must submit the invalid message11"})
+	if len(reqJson.Content) < 1 || len(reqJson.Content) > 2048 || len(reqJson.Sender) > 128 {
+		c.JSON(http.StatusOK, gin.H{"code": 1, "msg": "You must submit the valid message(the length of sender or content is invalid.)"})
 		return
 	}
 	score, reference := baCenter.JudgeMessage(reqJson.Content, reqJson.Sender)
