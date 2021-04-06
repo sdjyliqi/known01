@@ -3,6 +3,7 @@ package handle
 import (
 	"github.com/gin-gonic/gin"
 	"github.com/golang/glog"
+	"github.com/sdjyliqi/known01/utils"
 	"net/http"
 )
 
@@ -30,7 +31,7 @@ func JudgeMessage(c *gin.Context) {
 	if score > minLevelScore {
 		flag = 1
 	}
-	if score <= minLevelScore && score > 0 {
+	if score <= minLevelScore && score > utils.OutsideKnown {
 		flag = 2
 	}
 	if score > 0 && reference != nil {
@@ -63,7 +64,7 @@ func JudgeMessageGET(c *gin.Context) {
 	if score > minLevelScore {
 		flag = 1
 	}
-	if score <= minLevelScore && score > 0 {
+	if score <= minLevelScore && score > utils.OutsideKnown {
 		flag = 2
 	}
 	if score > 0 && reference != nil {

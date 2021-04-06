@@ -7,13 +7,15 @@ package utils
 type EngineType int
 
 const (
-	ENGINE_UNKNOWN EngineType = 0
-	ENGINE_BANK    EngineType = 1
-	ENGINE_REWARD  EngineType = 2
+	EngineUnknown EngineType = 0
+	EngineBank    EngineType = 1
+	EngineReward  EngineType = 2
 
-	PAGE_ENTRY          = 10
-	SCORE_SENDER_MOBILE = -10
-	SCORE_FIND_MOBILE   = -5
+	PageEntry         = 10
+	ScoreSenderMobile = -10
+	ScoreFindMobile   = -5
+
+	OutsideKnown = -99999 //如果不支持，返回该值
 )
 
 var SplitChar string = ","

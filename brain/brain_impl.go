@@ -184,7 +184,7 @@ func (c *Center) getEngineByPhoneID(phone string) (utils.EngineType, bool) {
 	if ok && len(v) > 0 {
 		return v[0].CategoryId, true
 	}
-	return utils.ENGINE_UNKNOWN, false
+	return utils.EngineUnknown, false
 }
 
 //acFindPhoneNum ...寻找关键字
@@ -205,11 +205,12 @@ func (c *Center) getEngineByIndexWord(index string) (utils.EngineType, bool) {
 //bankEngineRate ...计算银行类信息匹配度
 func (c *Center) matchEngineRate(msg string) (utils.EngineType, float64) {
 	matchRate := 0.0
-	engineName := utils.ENGINE_UNKNOWN
+	engineName := utils.EngineUnknown
 	for _, v := range c.messageTemplatesItems {
 		simValue := utils.SimHashTool.Hash(msg)
 		rate := utils.SimHashTool.Similarity(simValue, v.SimHash)
-		fmt.Println(simValue, v.SimHash, rate, v.Id, v.CategoryId)
+		fmt.Println(
+			simValue, v.SimHash, rate, v.Id, v.CategoryId)
 		if rate > matchRate {
 			matchRate = rate
 			engineName = v.CategoryId
@@ -245,7 +246,7 @@ func (c *Center) GetEngineName(msg string) (utils.EngineType, string) {
 	if score > minMatchLevel {
 		return engineName, ""
 	}
-	return utils.ENGINE_REWARD, ""
+	return utils.EngineReward, ""
 }
 
 //JudgeMessage ... 鉴别短信的入口
@@ -253,10 +254,10 @@ func (c *Center) JudgeMessage(msg, sender string) (int, *model.Reference) {
 	msg = c.cutSpecialMessage(msg)
 	engineName, phoneID := c.GetEngineName(msg)
 	switch engineName {
-	case utils.ENGINE_BANK:
+	case utils.EngineBank:
 		return c.bank.JudgeMessage(msg, phoneID, sender)
 	default:
 		return c.reward.JudgeMessage(msg, phoneID, sender)
 	}
-	return 0, nil
+	return utils.OutsideKnown, nil
 }

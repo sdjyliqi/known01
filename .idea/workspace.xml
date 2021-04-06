@@ -24,10 +24,18 @@
   <component name="ChangeListManager">
     <list default="true" id="91f69e01-107a-433a-b190-0e176ab79e31" name="Default Changelist" comment="UT and init">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/brain/bank_impl.go" beforeDir="false" afterPath="$PROJECT_DIR$/brain/bank_impl.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/brain/brain.go" beforeDir="false" afterPath="$PROJECT_DIR$/brain/brain.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/brain/brain_impl.go" beforeDir="false" afterPath="$PROJECT_DIR$/brain/brain_impl.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/brain/reward_impl.go" beforeDir="false" afterPath="$PROJECT_DIR$/brain/reward_impl.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/handle/judge.go" beforeDir="false" afterPath="$PROJECT_DIR$/handle/judge.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/handle/news.go" beforeDir="false" afterPath="$PROJECT_DIR$/handle/news.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/known01.exe" beforeDir="false" afterPath="$PROJECT_DIR$/known01.exe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/extract.go" beforeDir="false" afterPath="$PROJECT_DIR$/utils/extract.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/extract_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/utils/extract_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/news.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/news.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/const.go" beforeDir="false" afterPath="$PROJECT_DIR$/utils/const.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -147,7 +155,7 @@
       <recent name="D:\learn\gowork\master\known01\data" />
     </key>
   </component>
-  <component name="RunManager" selected="Go Test.Test_PickupHits in github.com/sdjyliqi/known01/utils">
+  <component name="RunManager" selected="Go Build.main2">
     <configuration name="main2" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true">
       <module name="known01" />
       <working_directory value="$PROJECT_DIR$" />
@@ -211,8 +219,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Go Test.Test_PickupHits in github.com/sdjyliqi/known01/utils" />
         <item itemvalue="Go Build.main2" />
+        <item itemvalue="Go Test.Test_PickupHits in github.com/sdjyliqi/known01/utils" />
         <item itemvalue="Go Test.Test_ExtractWebFirstDomain in github.com/sdjyliqi/known01/utils" />
         <item itemvalue="Go Test.TestPickTelephone in github.com/sdjyliqi/known01/utils" />
         <item itemvalue="Go Test.TestEncrypt in github.com/sdjyliqi/known01/utils" />
@@ -296,11 +304,11 @@
     <MESSAGE value="liqi" />
     <MESSAGE value="增加http get" />
     <MESSAGE value="提取座机号" />
-    <MESSAGE value="UT and init" />
     <MESSAGE value="log find" />
     <MESSAGE value="增加两个基准数据的客服电话相同的情况" />
     <MESSAGE value="del log" />
-    <option name="LAST_COMMIT_MESSAGE" value="del log" />
+    <MESSAGE value="UT and init" />
+    <option name="LAST_COMMIT_MESSAGE" value="UT and init" />
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>
@@ -330,8 +338,18 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DlvLineBreakpoint">
           <url>file://$PROJECT_DIR$/brain/bank_impl.go</url>
-          <line>173</line>
+          <line>193</line>
           <option name="timeStamp" value="8" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/brain/reward_impl.go</url>
+          <line>185</line>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/brain/bank_impl.go</url>
+          <line>86</line>
+          <option name="timeStamp" value="10" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

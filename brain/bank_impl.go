@@ -2,7 +2,7 @@ package brain
 
 import (
 	"github.com/gansidui/ahocorasick"
-	"github.com/golang/glog"
+	"github.com/prometheus/common/log"
 	"github.com/sdjyliqi/known01/model"
 	"github.com/sdjyliqi/known01/utils"
 	"strings"
@@ -14,7 +14,7 @@ func (bb *bankBrain) Init(items []*model.Reference) error {
 	aliasNamesDic := map[string]string{}
 	var bankAllNames []string
 	for _, v := range items {
-		if v.CategoryId != utils.ENGINE_BANK {
+		if v.CategoryId != utils.EngineBank {
 			continue
 		}
 		aliasNamesDic[v.Name] = v.Name
@@ -58,7 +58,7 @@ func (bb *bankBrain) Init(items []*model.Reference) error {
 	//初始化分数字典
 	err := bb.InitScoreItems()
 	if err != nil {
-		glog.Errorf("call InitScoreItems failed,err:%+v", err)
+		log.Errorf("call InitScoreItems failed,err:%+v", err)
 		return err
 	}
 	return nil
@@ -81,7 +81,7 @@ func (bb *bankBrain) InitScoreItems() error {
 func (bb *bankBrain) getBankNameByPhoneID(phone, msg string) (string, bool) {
 	items, ok := bb.phoneNumDic[phone]
 	if !ok {
-		glog.Errorf("Do not find the bank-name by customer phone %s", phone)
+		log.Errorf("Do not find the bank-name by customer phone %s", phone)
 		return "", false
 	}
 	if len(items) == 1 {
@@ -135,14 +135,34 @@ func (bb *bankBrain) PickupProperties(msg, phoneID, sender string) (propertiesVe
 	return pickVal, true
 }
 
-//pickupName ... 寻找银行名称，返回值为标准名称
+//pickupName ... 寻找银行名称，返回值为标准名称,如果【**】名称在AC自动机中匹配，优先使用。
 func (bb *bankBrain) pickupName(msg string) (string, bool) {
 	matchIndex := bb.acMatch.Match(msg)
+	if len(matchIndex) == 0 {
+		return "", false
+	}
+	//优先处理【】符合中的内容，如果名称为整理的基准数据，直接使用该值。
+	hit := utils.PickupHits(msg)
+	if len(hit) > 0 {
+		for _, v := range matchIndex {
+			name := bb.allNames[v]
+			if hit == name {
+				v, ok := bb.aliasNames[name]
+				if !ok {
+					log.Errorf("Do not find the key %s in dic.", name)
+					return "", false
+				}
+				return v, true
+			}
+		}
+	}
+
 	if len(matchIndex) > 0 {
+		//优先使用【值】的值
 		idx := bb.allNames[matchIndex[0]]
 		v, ok := bb.aliasNames[idx]
 		if !ok {
-			glog.Exitf("Do not find the key %s in dic.", idx)
+			log.Errorf("Do not find the key %s in dic.", idx)
 			return "", false
 		}
 		return v, true
@@ -163,7 +183,7 @@ func (bb *bankBrain) pickupMobilePhone(msg string) (string, bool) {
 func (bb *bankBrain) JudgeMessage(msg, phoneID, sender string) (int, *model.Reference) {
 	v, ok := bb.PickupProperties(msg, phoneID, sender)
 	if !ok {
-		return 0, nil
+		return utils.OutsideKnown, nil
 	}
 	return bb.MatchScoreV2(v, sender)
 }
@@ -218,18 +238,18 @@ func (bb *bankBrain) MatchScoreV2(pickup propertiesVec, sender string) (int, *mo
 	findMobilePhoneScore, matchScore, senderScore := 0, 0, 0
 	idx, bankItem := bb.createMatchScoreIndex(pickup)
 	if idx == "" {
-		return 0, nil
+		return utils.OutsideKnown, nil
 	}
 	scoreItem, ok := bb.scoreDict[idx]
 	if !ok {
-		return 0, nil
+		return utils.OutsideKnown, nil
 	}
 
 	if utils.ChkContentIsMobilePhone(sender) {
-		senderScore = utils.SCORE_SENDER_MOBILE
+		senderScore = utils.ScoreSenderMobile
 	}
 	if pickup.mobilePhone != "" {
-		findMobilePhoneScore = utils.SCORE_FIND_MOBILE
+		findMobilePhoneScore = utils.ScoreFindMobile
 	}
 	//基础分值加两个维度的浮动分值
 	matchScore = scoreItem.Score + senderScore + findMobilePhoneScore
