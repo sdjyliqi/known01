@@ -2,7 +2,6 @@ package brain
 
 import (
 	"github.com/gansidui/ahocorasick"
-	"github.com/golang/glog"
 	"github.com/prometheus/common/log"
 	"github.com/sdjyliqi/known01/model"
 	"github.com/sdjyliqi/known01/utils"
@@ -58,7 +57,7 @@ func (bb *rewardBrain) Init(items []*model.Reference) error {
 	//初始化分数字典
 	err := bb.InitScoreItems()
 	if err != nil {
-		glog.Errorf("call InitScoreItems failed,err:%+v", err)
+		log.Errorf("call InitScoreItems failed,err:%+v", err)
 		return err
 	}
 	return nil

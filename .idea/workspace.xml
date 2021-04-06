@@ -23,25 +23,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="91f69e01-107a-433a-b190-0e176ab79e31" name="Default Changelist" comment="UT and init">
-      <change afterPath="$PROJECT_DIR$/testutils/init.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/brain/brain_impl.go" beforeDir="false" afterPath="$PROJECT_DIR$/brain/brain_impl.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/brain/reward_impl.go" beforeDir="false" afterPath="$PROJECT_DIR$/brain/reward_impl.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/conf/config.go" beforeDir="false" afterPath="$PROJECT_DIR$/conf/config.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/known01.exe" beforeDir="false" afterPath="$PROJECT_DIR$/known01.exe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/assist.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/assist.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/assist_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/assist_test.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/db.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/db.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/news.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/news.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/news_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/news_test.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/reference.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/reference.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/results_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/results_test.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/score.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/score.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/score_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/score_test.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/templates_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/templates_test.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/user.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/mysql.go" beforeDir="false" afterPath="$PROJECT_DIR$/utils/mysql.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -161,16 +145,16 @@
       <recent name="D:\learn\gowork\master\known01\data" />
     </key>
   </component>
-  <component name="RunManager" selected="Go Test.Test_SGetItemByIdx in github.com/sdjyliqi/known01/model">
-    <configuration name="Test_AssistGetItems in github.com/sdjyliqi/known01/model" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Go Test.TestEncrypt in github.com/sdjyliqi/known01/utils">
+    <configuration name="TestEncrypt in github.com/sdjyliqi/known01/utils" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="known01" />
-      <working_directory value="$PROJECT_DIR$/model" />
+      <working_directory value="$PROJECT_DIR$/utils" />
       <framework value="gotest" />
       <kind value="PACKAGE" />
-      <package value="github.com/sdjyliqi/known01/model" />
+      <package value="github.com/sdjyliqi/known01/utils" />
       <directory value="$PROJECT_DIR$" />
       <filePath value="$PROJECT_DIR$" />
-      <pattern value="^\QTest_AssistGetItems\E$" />
+      <pattern value="^\QTestEncrypt\E$" />
       <method v="2" />
     </configuration>
     <configuration name="Test_SGetItemByIdx in github.com/sdjyliqi/known01/model" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
@@ -218,19 +202,19 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Go Test.Test_AssistGetItems in github.com/sdjyliqi/known01/model" />
       <item itemvalue="Go Test.Test_TemplatesGetItems in github.com/sdjyliqi/known01/model" />
       <item itemvalue="Go Test.Test_TemplatesUpdateSimHash in github.com/sdjyliqi/known01/model" />
       <item itemvalue="Go Test.Test_ScoreGetItems in github.com/sdjyliqi/known01/model" />
       <item itemvalue="Go Test.Test_SGetItemByIdx in github.com/sdjyliqi/known01/model" />
+      <item itemvalue="Go Test.TestEncrypt in github.com/sdjyliqi/known01/utils" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Go Test.TestEncrypt in github.com/sdjyliqi/known01/utils" />
         <item itemvalue="Go Test.Test_SGetItemByIdx in github.com/sdjyliqi/known01/model" />
         <item itemvalue="Go Test.Test_ScoreGetItems in github.com/sdjyliqi/known01/model" />
         <item itemvalue="Go Test.Test_TemplatesGetItems in github.com/sdjyliqi/known01/model" />
         <item itemvalue="Go Test.Test_TemplatesUpdateSimHash in github.com/sdjyliqi/known01/model" />
-        <item itemvalue="Go Test.Test_AssistGetItems in github.com/sdjyliqi/known01/model" />
       </list>
     </recent_temporary>
   </component>
@@ -315,7 +299,8 @@
     <MESSAGE value="增加两个基准数据的客服电话相同的情况" />
     <MESSAGE value="del log" />
     <MESSAGE value="UT and init" />
-    <option name="LAST_COMMIT_MESSAGE" value="UT and init" />
+    <MESSAGE value="change UT" />
+    <option name="LAST_COMMIT_MESSAGE" value="change UT" />
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>

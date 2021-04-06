@@ -4,7 +4,6 @@ import (
 	"flag"
 	"fmt"
 	"github.com/gin-gonic/gin"
-	"github.com/golang/glog"
 	"github.com/prometheus/common/log"
 	"github.com/sdjyliqi/known01/conf"
 	"github.com/sdjyliqi/known01/handle"
@@ -34,7 +33,6 @@ func init() {
 }
 
 func main() {
-	defer glog.Flush()
 	r := gin.Default()
 	gin.SetMode(gin.ReleaseMode)
 
