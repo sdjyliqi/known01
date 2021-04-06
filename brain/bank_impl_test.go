@@ -1,9 +1,9 @@
 package brain
 
 import (
+	"github.com/sdjyliqi/known01/model"
+	"github.com/sdjyliqi/known01/utils"
 	"github.com/stretchr/testify/assert"
-	"known01/model"
-	"known01/utils"
 	"testing"
 )
 

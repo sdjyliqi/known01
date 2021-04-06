@@ -1,7 +1,7 @@
 package model
 
 import (
-	"github.com/golang/glog"
+	"github.com/prometheus/common/log"
 	"github.com/sdjyliqi/known01/utils"
 	"time"
 )
@@ -27,7 +27,7 @@ func (t Results) TableName() string {
 func (t Results) Store(item *Results) error {
 	_, err := utils.GetMysqlClient().Insert(item)
 	if err != nil {
-		glog.Errorf("Insert item %+v to table %s failed,err:%+v", item, t.TableName(), err)
+		log.Errorf("Insert item %+v to table %s failed,err:%+v", item, t.TableName(), err)
 	}
 	return err
 }

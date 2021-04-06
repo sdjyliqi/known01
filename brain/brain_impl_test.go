@@ -2,7 +2,7 @@ package brain
 
 import (
 	"github.com/go-playground/assert/v2"
-	"known01/utils"
+	"github.com/sdjyliqi/known01/utils"
 	"testing"
 )
 
