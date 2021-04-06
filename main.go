@@ -35,7 +35,6 @@ func init() {
 func main() {
 	r := gin.Default()
 	gin.SetMode(gin.ReleaseMode)
-
 	// register the `/metrics` route.
 	router.InitRouter(r)
 	r.Run(fmt.Sprintf("0.0.0.0:%d", conf.DefaultConfig.Port))

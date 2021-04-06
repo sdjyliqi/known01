@@ -77,7 +77,13 @@ func (bb *rewardBrain) InitScoreItems() error {
 }
 
 //getBankNameByPhoneID ...通过客服电话查找银行名称
-func (bb *rewardBrain) getNameByPhoneID(phone, msg string) (string, bool) {
+func (bb *rewardBrain) getNameByPhoneID(phone, hit, msg string) (string, bool) {
+	if len(hit) > 0 {
+		v, ok := bb.aliasNames[hit]
+		if ok {
+			return v, true
+		}
+	}
 	items, ok := bb.phoneNumDic[phone]
 	if !ok {
 		log.Errorf("Do not find the bank-name by customer phone %s", phone)
@@ -112,14 +118,15 @@ func (bb *rewardBrain) PickupProperties(msg, phoneID, sender string) (properties
 		senderID:   sender,
 		fixedPhone: phoneID,
 	}
+	hit := utils.PickupHits(msg)
 	//优先通过客服电话id获取银行名称，如果找不到，只能通过ac自动机来寻找银行关键字。
 	if len(phoneID) > 0 {
-		govName, ok := bb.getNameByPhoneID(phoneID, msg)
+		govName, ok := bb.getNameByPhoneID(phoneID, hit, msg)
 		if ok {
 			pickVal.govName = govName
 		}
 	} else {
-		govName, ok := bb.pickupName(msg)
+		govName, ok := bb.pickupName(hit, msg)
 		if ok {
 			pickVal.govName = govName
 		}
@@ -137,14 +144,13 @@ func (bb *rewardBrain) PickupProperties(msg, phoneID, sender string) (properties
 	return pickVal, true
 }
 
-//pickupName ... 寻找银行名称，返回值为标准名称
-func (bb *rewardBrain) pickupName(msg string) (string, bool) {
+//pickupName ... 寻找银行名称，返回值为标准名称,如果【**】名称在AC自动机中匹配，优先使用。
+func (bb *rewardBrain) pickupName(hit, msg string) (string, bool) {
 	matchIndex := bb.acMatch.Match(msg)
 	if len(matchIndex) == 0 {
 		return "", false
 	}
 	//优先处理【】符合中的内容，如果名称为整理的基准数据，直接使用该值。
-	hit := utils.PickupHits(msg)
 	if len(hit) > 0 {
 		for _, v := range matchIndex {
 			name := bb.allNames[v]
@@ -159,6 +165,7 @@ func (bb *rewardBrain) pickupName(msg string) (string, bool) {
 		}
 	}
 	if len(matchIndex) > 0 {
+		//优先使用【值】的值
 		idx := bb.allNames[matchIndex[0]]
 		v, ok := bb.aliasNames[idx]
 		if !ok {
