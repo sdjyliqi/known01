@@ -7,6 +7,7 @@ import (
 	"net/http"
 )
 
+//JudgeMessage ...判断诈骗短信，如果score为未识别的分值，返回值中的score设置为0，flag需要设置为0
 func JudgeMessage(c *gin.Context) {
 	minLevelScore := 50
 	var scoreRate = 0.0
@@ -31,13 +32,15 @@ func JudgeMessage(c *gin.Context) {
 	if score > minLevelScore {
 		flag = 1
 	}
-	if score <= minLevelScore && score > utils.OutsideKnown {
+	if score <= minLevelScore && score != utils.OutsideKnown {
 		flag = 2
 	}
-	if score > 0 && reference != nil {
+	if reference != nil {
 		customPhone, website = reference.ManualPhone, reference.Website
 	}
-	scoreRate = float64(score) / 100
+	if score != utils.OutsideKnown {
+		scoreRate = float64(score) / 100
+	}
 	box := gin.H{"code": 0,
 		"msg": "succ",
 		"data": gin.H{
@@ -49,6 +52,7 @@ func JudgeMessage(c *gin.Context) {
 	c.JSON(http.StatusOK, box)
 }
 
+//JudgeMessageGET
 func JudgeMessageGET(c *gin.Context) {
 	minLevelScore := 50
 	var scoreRate = 0.0
@@ -67,10 +71,12 @@ func JudgeMessageGET(c *gin.Context) {
 	if score <= minLevelScore && score > utils.OutsideKnown {
 		flag = 2
 	}
-	if score > 0 && reference != nil {
+	if reference != nil {
 		customPhone, website = reference.ManualPhone, reference.Website
 	}
-	scoreRate = float64(score) / 100
+	if score != utils.OutsideKnown {
+		scoreRate = float64(score) / 100
+	}
 	box := gin.H{"code": 0,
 		"msg": "succ",
 		"data": gin.H{

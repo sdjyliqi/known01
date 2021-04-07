@@ -245,11 +245,15 @@ func (bb *rewardBrain) MatchScoreV2(pickup propertiesVec, sender string) (int, *
 	findMobilePhoneScore, matchScore, senderScore := 0, 0, 0
 	idx, referenceItem := bb.createMatchScoreIndex(pickup)
 	if idx == "" {
-		return utils.OutsideKnown, nil
+		return utils.OutsideKnown, referenceItem
+	}
+	//如果各个维度均无法确认，直接返回未识别
+	if idx == utils.OutsideIndex {
+		return utils.OutsideKnown, referenceItem
 	}
 	scoreItem, ok := bb.scoreDict[idx]
 	if !ok {
-		return utils.OutsideKnown, nil
+		return utils.OutsideKnown, referenceItem
 	}
 	if utils.ChkContentIsMobilePhone(sender) {
 		senderScore = utils.ScoreSenderMobile

@@ -130,7 +130,6 @@ func (bb *bankBrain) PickupProperties(msg, phoneID, sender string) (propertiesVe
 			pickVal.govName = govName
 		}
 	}
-
 	firstDomain, ok := bb.pickupWebDomain(msg)
 	if ok {
 		pickVal.webDomain = firstDomain
@@ -244,11 +243,15 @@ func (bb *bankBrain) MatchScoreV2(pickup propertiesVec, sender string) (int, *mo
 	findMobilePhoneScore, matchScore, senderScore := 0, 0, 0
 	idx, bankItem := bb.createMatchScoreIndex(pickup)
 	if idx == "" {
-		return utils.OutsideKnown, nil
+		return utils.OutsideKnown, bankItem
+	}
+	//如果各个维度均无法确认，直接返回未识别
+	if idx == utils.OutsideIndex {
+		return utils.OutsideKnown, bankItem
 	}
 	scoreItem, ok := bb.scoreDict[idx]
 	if !ok {
-		return utils.OutsideKnown, nil
+		return utils.OutsideKnown, bankItem
 	}
 
 	if utils.ChkContentIsMobilePhone(sender) {

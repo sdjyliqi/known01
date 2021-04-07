@@ -16,6 +16,7 @@ const (
 	ScoreFindMobile   = -5
 
 	OutsideKnown = -99999 //如果不支持，返回该值
+	OutsideIndex = "D0M0P0"
 )
 
 var SplitChar string = ","
