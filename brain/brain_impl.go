@@ -1,7 +1,6 @@
 package brain
 
 import (
-	"fmt"
 	"github.com/gansidui/ahocorasick"
 	"github.com/prometheus/common/log"
 	"github.com/sdjyliqi/known01/model"
@@ -209,8 +208,6 @@ func (c *Center) matchEngineRate(msg string) (utils.EngineType, float64) {
 	for _, v := range c.messageTemplatesItems {
 		simValue := utils.SimHashTool.Hash(msg)
 		rate := utils.SimHashTool.Similarity(simValue, v.SimHash)
-		fmt.Println(
-			simValue, v.SimHash, rate, v.Id, v.CategoryId)
 		if rate > matchRate {
 			matchRate = rate
 			engineName = v.CategoryId
