@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"github.com/gin-gonic/gin"
 	"github.com/sdjyliqi/known01/utils"
+	"io/ioutil"
 	"log"
 	"time"
 )
@@ -25,6 +26,8 @@ func (w bodyLogWriter) WriteString(s string) (int, error) {
 
 func Logger() gin.HandlerFunc {
 	return func(c *gin.Context) {
+		postBody, _ := c.GetRawData()                                // 获取POST BODY体后，默认会自动清理body体中的内容
+		c.Request.Body = ioutil.NopCloser(bytes.NewBuffer(postBody)) //  重新给POST BODY赋值
 		bodyLogWriter := &bodyLogWriter{body: bytes.NewBufferString(""), ResponseWriter: c.Writer}
 		c.Writer = bodyLogWriter
 		start := time.Now()
@@ -38,7 +41,7 @@ func Logger() gin.HandlerFunc {
 		accessLogMap["proto"] = c.Request.Proto
 		accessLogMap["ua"] = c.Request.UserAgent()
 		accessLogMap["referer"] = c.Request.Referer()
-		accessLogMap["post_body"] = c.Request.PostForm.Encode()
+		accessLogMap["post_body"] = string(postBody)
 		accessLogMap["client_ip"] = c.ClientIP()
 		accessLogMap["response"] = responseBody
 		accessLogMap["latency"] = time.Now().Sub(start).Microseconds()
