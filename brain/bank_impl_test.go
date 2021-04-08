@@ -21,7 +21,7 @@ func Test_pickupProperties(t *testing.T) {
 	t.Log(matchIndex)
 
 	//识别银行名称
-	name, ok := util.pickupName(messageTest)
+	name, ok := util.pickupName("", messageTest)
 	t.Log("pickup name :", ok, name)
 
 	//识别域名
