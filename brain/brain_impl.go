@@ -219,7 +219,7 @@ func (c *Center) matchEngineRate(msg string) (utils.EngineType, float64) {
 //GetEngineName ... 根据提交的信息，判断最符合那个鉴别引擎
 func (c *Center) GetEngineName(msg string) (utils.EngineType, string) {
 	minMatchLevel := 0.6
-	//第一步，判断是否有官方电话号码,如果找到，返回类型和电话即可。
+	//第一步，判断是否有官方电话号码或者【】中已匹配的内容,如果找到，返回类型和电话即可。
 	msg = c.cutSpecialMessage(msg)
 	phoneID, ok := c.acFindPhoneID(msg)
 	if ok {
@@ -228,16 +228,16 @@ func (c *Center) GetEngineName(msg string) (utils.EngineType, string) {
 			return engineName, phoneID
 		}
 	}
-	//第二部，修正短信数据，剔除副助词，英文字母或者数字
-	amendMessage := c.amendMessage(msg)
-	//第三步，寻找关键字
-	indexWord, ok := c.acFindIndexWord(amendMessage)
+	//第二步，寻找关键字，主要包括标准名称和昵称
+	indexWord, ok := c.acFindIndexWord(msg)
 	if ok {
 		engineName, ok := c.getEngineByIndexWord(indexWord)
 		if ok {
 			return engineName, ""
 		}
 	}
+	//第三部，修正短信数据，剔除副助词，英文字母或者数字
+	amendMessage := c.amendMessage(msg)
 	//第四步  顺序匹配模板，选择匹配最高分
 	engineName, score := c.matchEngineRate(amendMessage)
 	if score > minMatchLevel {
