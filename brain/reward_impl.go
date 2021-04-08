@@ -222,7 +222,7 @@ func (bb *rewardBrain) createMatchScoreIndex(pickup propertiesVec) (string, *mod
 		}
 	}
 	//checkout message sender id
-	if pickup.senderID != "" {
+	if pickup.senderID != "" && item.SenderId != "" {
 		if strings.HasSuffix(pickup.senderID, item.SenderId) {
 			msgIDIdx = "M1"
 		} else {
