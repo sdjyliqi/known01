@@ -156,7 +156,7 @@ func (bb *rewardBrain) createMatchScoreIndex(pickup propertiesVec) (string, *mod
 		domainIdx = "D2"
 	}
 	//checkout message sender id
-	if strings.HasSuffix(pickup.senderID, item.MessageId) {
+	if strings.HasSuffix(pickup.senderID, item.SenderId) {
 		msgIDIdx = "M1"
 	} else {
 		msgIDIdx = "M2"

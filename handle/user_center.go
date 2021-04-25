@@ -235,6 +235,10 @@ func UCAdminUpdateItem(c *gin.Context) {
 		c.JSON(http.StatusOK, gin.H{"code": 4006, "msg": "Keyid can't be empty"})
 		return
 	}
+	if json.Roles != "admin" && json.Roles != "editor" {
+		c.JSON(http.StatusOK, gin.H{"code": 4009, "msg": "Roles must be admin or editor"})
+		return
+	}
 	res, _ := model.User{}.AdminUpdateItem(json)
 	if res == true {
 		//用户个人信息更新成功
