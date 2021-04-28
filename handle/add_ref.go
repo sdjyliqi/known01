@@ -17,11 +17,11 @@ func GetRefList(c *gin.Context) {
 		c.JSON(http.StatusOK, gin.H{"code": 4004, "msg": "Page and entry must be integers greater than 0."})
 		return
 	}
-	items, err := model.Reference{}.GetPages(page1, entry1)
+	items, total, err := model.Reference{}.GetPages(page1, entry1)
 	if err != nil {
 		c.JSON(http.StatusOK, gin.H{"code": 4005, "msg": "Failed to get list from table"})
 	}
-	c.JSON(http.StatusOK, gin.H{"code": 0, "msg": "succ", "data": items})
+	c.JSON(http.StatusOK, gin.H{"code": 0, "msg": "succ", "data": items, "number": total})
 }
 
 //GetRefItem ... 展示表中的一条记录的详细信息

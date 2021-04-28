@@ -69,15 +69,17 @@ func (t User) GetItemById(keyid string) (User, error) {
 
 //GetItems ...按页获取数据库中的数据，page从0开始
 //返items类型为[]User ，原来的[]*User报错
-func (t User) GetItems(page, entry int) ([]ListUser, error) {
+func (t User) GetItems(page, entry int) ([]ListUser, int64, error) {
 	var items []ListUser
+	var user User
+	total, _ := utils.GetMysqlClient().Count(&user)
 	cols := []string{"keyid", "manager", "mobilephone", "email", "organization", "department"}
 	err := utils.GetMysqlClient().Table("user").Cols(cols...).Limit(entry, (page-1)*entry).Find(&items)
 	if err != nil {
 		glog.Errorf("Get items from table %s failed,err:%+v", t.TableName(), err)
-		return items, err
+		return items, total, err
 	}
-	return items, nil
+	return items, total, nil
 }
 
 //ShowInf   ...查看用户详细信息

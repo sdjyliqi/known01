@@ -29,7 +29,6 @@ func Test_UpdateInsertItem(t *testing.T) {
 		Phone:        "test",
 		ManualPhone:  "test",
 		Website:      "",
-		MessageId:    "",
 		Domain:       "",
 		LastModified: time.Now(),
 	}

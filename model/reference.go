@@ -36,14 +36,16 @@ func (t Reference) GetItems(engine *xorm.Engine) ([]*Reference, error) {
 }
 
 //GetPages   ...分页查询数据
-func (t Reference) GetPages(page, entry int) ([]*Reference, error) {
+func (t Reference) GetPages(page, entry int) ([]*Reference, int64, error) {
 	var items []*Reference
+	var ref Reference
+	total, _ := utils.GetMysqlClient().Count(&ref)
 	err := utils.GetMysqlClient().Limit(entry, page*entry).Find(&items)
 	if err != nil {
 		glog.Errorf("Get items form table %s failed,err:%+v", t.TableName(), err)
-		return nil, err
+		return nil, total, err
 	}
-	return items, nil
+	return items, total, nil
 }
 
 func (t Reference) GetItemByID(ID int) (*Reference, error) {

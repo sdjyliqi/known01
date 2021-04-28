@@ -72,11 +72,11 @@ func UCUsers(c *gin.Context) {
 		c.JSON(http.StatusOK, gin.H{"code": 4004, "msg": "Page and entry must be integers greater than 0."})
 		return
 	}
-	items, err := model.User{}.GetItems(page1, entry1)
+	items, total, err := model.User{}.GetItems(page1, entry1)
 	if err != nil {
 		c.JSON(http.StatusOK, gin.H{"code": 4005, "msg": "Failed to get list from table"})
 	}
-	c.JSON(http.StatusOK, gin.H{"code": 0, "msg": "succ", "data": items})
+	c.JSON(http.StatusOK, gin.H{"code": 0, "msg": "succ", "data": items, "number": total})
 }
 
 //UCShowInformation ... 展示用户详细信息
