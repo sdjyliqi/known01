@@ -30,6 +30,7 @@ type ListUser struct {
 	Manager      string `json:"manager" xorm:"comment('负责人') VARCHAR(255)"`
 	Mobilephone  string `json:"mobilephone" xorm:"default '' comment('负责人手机号') VARCHAR(32)"`
 	Email        string `json:"email" xorm:"default '' comment('负责人邮箱') VARCHAR(64)"`
+	Enable       int    `json:"enable" xorm:"comment('是否禁用') TINYINT(4)"`
 	Organization string `json:"organization" xorm:"default '' comment('机构名称') VARCHAR(64)"`
 	Department   string `json:"department" xorm:"default '' comment('部门名称') VARCHAR(64)"`
 }
@@ -68,12 +69,11 @@ func (t User) GetItemById(keyid string) (User, error) {
 }
 
 //GetItems ...按页获取数据库中的数据，page从0开始
-//返items类型为[]User ，原来的[]*User报错
 func (t User) GetItems(page, entry int) ([]ListUser, int64, error) {
 	var items []ListUser
 	var user User
 	total, _ := utils.GetMysqlClient().Count(&user)
-	cols := []string{"keyid", "manager", "mobilephone", "email", "organization", "department"}
+	cols := []string{"keyid", "manager", "mobilephone", "email", "enable", "organization", "department"}
 	err := utils.GetMysqlClient().Table("user").Cols(cols...).Limit(entry, (page-1)*entry).Find(&items)
 	if err != nil {
 		glog.Errorf("Get items from table %s failed,err:%+v", t.TableName(), err)

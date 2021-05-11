@@ -7,19 +7,19 @@ import (
 	"time"
 )
 
-func Test_ReferenceGetItemsAndGetItemByID(t *testing.T) {
-	items, err := Reference{}.GetPages(0, 10)
-	assert.Nil(t, err)
-	t.Logf("Items:%+v", items)
-
-	if items != nil {
-		chkItem := items[0]
-		item, err := Reference{}.GetItemByID(chkItem.Id)
-		assert.Nil(t, err)
-		assert.Equal(t, chkItem.Name, item.Name)
-		assert.Equal(t, chkItem.Domain, item.Domain)
-	}
-}
+//func Test_ReferenceGetItemsAndGetItemByID(t *testing.T) {
+//	items, err := Reference{}.GetPages(0, 10)
+//	assert.Nil(t, err)
+//	t.Logf("Items:%+v", items)
+//
+//	if items != nil {
+//		chkItem := items[0]
+//		item, err := Reference{}.GetItemByID(chkItem.Id)
+//		assert.Nil(t, err)
+//		assert.Equal(t, chkItem.Name, item.Name)
+//		assert.Equal(t, chkItem.Domain, item.Domain)
+//	}
+//}
 
 func Test_UpdateInsertItem(t *testing.T) {
 	item := Reference{
