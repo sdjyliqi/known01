@@ -1,6 +1,7 @@
 package brain
 
 import (
+	"fmt"
 	"github.com/gansidui/ahocorasick"
 	"github.com/prometheus/common/log"
 	"github.com/sdjyliqi/known01/model"
@@ -116,6 +117,8 @@ func (c *Center) InitReferencesItemsFromDB() error {
 		}
 	}
 	acIndexWord := ahocorasick.NewMatcher()
+	fmt.Println("indexWords===", indexWords)
+	fmt.Println("=====utils.EngineReward  indexwords=======", indexWordDic[utils.EngineReward])
 	acIndexWord.Build(indexWords)
 	c.indexWords = indexWords
 	c.acIndexWords = acIndexWord
@@ -188,7 +191,9 @@ func (c *Center) getEngineByPhoneID(phone string) (utils.EngineType, bool) {
 
 //acFindPhoneNum ...寻找关键字
 func (c *Center) acFindIndexWord(msg string) (string, bool) {
+
 	matchIndex := c.acIndexWords.Match(msg)
+	fmt.Println("acFindIndexWord=============", msg, matchIndex)
 	if len(matchIndex) > 0 {
 		return c.indexWords[matchIndex[0]], true
 	}
@@ -228,16 +233,16 @@ func (c *Center) GetEngineName(msg string) (utils.EngineType, string) {
 			return engineName, phoneID
 		}
 	}
-	//第二部，修正短信数据，剔除副助词，英文字母或者数字
-	amendMessage := c.amendMessage(msg)
-	//第三步，寻找关键字
-	indexWord, ok := c.acFindIndexWord(amendMessage)
+	//第二步，寻找关键字
+	indexWord, ok := c.acFindIndexWord(msg)
 	if ok {
 		engineName, ok := c.getEngineByIndexWord(indexWord)
 		if ok {
 			return engineName, ""
 		}
 	}
+	//第三部，修正短信数据，剔除副助词，英文字母或者数字
+	amendMessage := c.amendMessage(msg)
 	//第四步  顺序匹配模板，选择匹配最高分
 	engineName, score := c.matchEngineRate(amendMessage)
 	if score > minMatchLevel {
@@ -250,6 +255,7 @@ func (c *Center) GetEngineName(msg string) (utils.EngineType, string) {
 func (c *Center) JudgeMessage(msg, sender string) (int, *model.Reference) {
 	msg = c.cutSpecialMessage(msg)
 	engineName, phoneID := c.GetEngineName(msg)
+	fmt.Println("====================", engineName, phoneID)
 	switch engineName {
 	case utils.EngineBank:
 		return c.bank.JudgeMessage(msg, phoneID, sender)

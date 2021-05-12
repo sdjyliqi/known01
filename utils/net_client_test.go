@@ -2,7 +2,6 @@ package utils
 
 import (
 	"fmt"
-	"io/ioutil"
 	"testing"
 )
 
@@ -11,8 +10,22 @@ func Test_GetHTTPClient(t *testing.T) {
 	url := "http://t.cn/E9t6FgQ"
 	resp, err := GetHTTPClient().Get(url)
 	t.Log(resp.Header, err)
-	defer resp.Body.Close()
-	body, err := ioutil.ReadAll(resp.Body)
 	fmt.Println(resp.Status)
-	t.Log(string(body))
+
+	fmt.Println("------------------------------------")
+	/*
+		client := &http.Client{}
+		reqest, err := http.NewRequest("GET", url, nil)
+		if err != nil {
+			panic(err)
+		}
+		client.CheckRedirect = func(req *http.Request, via []*http.Request) error {
+			return fmt.Errorf("first response")
+		}
+		response, _ := client.Do(reqest)
+		fmt.Println(response.StatusCode)
+		//t.Log(response.Header)
+
+	*/
+
 }
