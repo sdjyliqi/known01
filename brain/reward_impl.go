@@ -1,6 +1,7 @@
 package brain
 
 import (
+	"fmt"
 	"github.com/gansidui/ahocorasick"
 	"github.com/prometheus/common/log"
 	"github.com/sdjyliqi/known01/model"
@@ -10,10 +11,11 @@ import (
 
 //getBankNameByPhoneID ...通过客服电话查找中奖单位名称
 func (bb *rewardBrain) Init(items []*model.Reference) error {
+	//初始化 PhoneNumDic，aliasNames
 	aliasNamesDic := map[string]string{}
 	var bankAllNames []string
 	for _, v := range items {
-		if v.CategoryId != utils.EngineReward {
+		if v.CategoryId == utils.EngineBank {
 			continue
 		}
 		aliasNamesDic[v.Name] = v.Name
@@ -52,6 +54,7 @@ func (bb *rewardBrain) Init(items []*model.Reference) error {
 	//基于银行名称创建ac自动机
 	ac := ahocorasick.NewMatcher()
 	bb.allNames = bankAllNames
+	fmt.Println("==============", bankAllNames)
 	ac.Build(bankAllNames)
 	bb.acMatch = ac
 	//初始化分数字典
