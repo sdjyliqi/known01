@@ -119,28 +119,23 @@ var MobilePhonePrefix = map[string]bool{
 
 func ExtractCardIDs(txt string) []string {
 	var cardIDs []string
-	//身份证号的第一位是1到8，没有0和9，该正则对出生年月进行了验证
 	pattern := `[1-8]\d{5}(18|19|20)\d{2}((0[1-9])|(1[0-2]))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]`
 	reg := regexp.MustCompile(pattern)
 	cardIDList := reg.FindAllString(txt, -1)
 	weight := []int{7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2}
 	for _, v := range cardIDList {
 		cardScore := 0
-		//目前近支持18位身份证号的识别
 		if len(v) != 18 {
 			continue
 		}
-		//检查一下身份证的前两位省编码是否合规
 		_, ok := provinceInfo[v[0:2]]
 		if !ok {
 			continue
 		}
-		//把身份证号的前17位进行加权求分值
 		for k, vv := range []rune(v)[0:17] {
 			digitalNum, _ := strconv.Atoi(string(vv))
 			cardScore += weight[k] * digitalNum
 		}
-		//计算身份证号的最后一位校验位
 		sign, _ := LastDigital[cardScore%11]
 		if sign == v[17:] {
 			cardIDs = append(cardIDs, v)
@@ -161,7 +156,7 @@ func ExtractCardIDs(txt string) []string {
 
 func ExtractMobilePhoneDs(txt string) []string {
 	var phoneIDs []string
-	var PhoneFormat = "[^0-9](1[3-9]\\d{9})[^0-9]"
+	var PhoneFormat = "[^0-9.-_](1[3-9]\\d{9})[^0-9]"
 	phoneRegx := regexp.MustCompile(PhoneFormat)
 	phoneNums := phoneRegx.FindAllString(txt, -1)
 	for _, v := range phoneNums {

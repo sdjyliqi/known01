@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="AutoImportSettings">
-    <option name="autoReloadType" value="SELECTIVE" />
+    <option name="autoReloadType" value="ALL" />
   </component>
   <component name="BranchesTreeState">
     <expand>
@@ -22,18 +22,20 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="91f69e01-107a-433a-b190-0e176ab79e31" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/data/city.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/testutils/personal.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/testutils/personal_test.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tryagain/cardid.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tryagain/personal_test.go" afterDir="false" />
+    <list default="true" id="91f69e01-107a-433a-b190-0e176ab79e31" name="Default Changelist" comment="UT and init">
+      <change afterPath="$PROJECT_DIR$/data/test.pptx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/test.xlsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/生产环境数据检查.docx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/生产环境数据检查.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/engine/main.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/engine/readme.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/reader/reader.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/reader/reader_test.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/brain/brain_impl.go" beforeDir="false" afterPath="$PROJECT_DIR$/brain/brain_impl.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/brain/reward_impl.go" beforeDir="false" afterPath="$PROJECT_DIR$/brain/reward_impl.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/extract_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/utils/extract_test.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/net_client.go" beforeDir="false" afterPath="$PROJECT_DIR$/utils/net_client.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/net_client_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/utils/net_client_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tryagain/cardid.go" beforeDir="false" afterPath="$PROJECT_DIR$/tryagain/cardid.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tryagain/personal_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tryagain/personal_test.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,7 +49,7 @@
       </list>
     </option>
   </component>
-  <component name="GOROOT" path="C:\Go" />
+  <component name="GOROOT" url="file://C:/Program Files/Go" />
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
@@ -128,40 +130,51 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="configurable..is.expanded" value="false" />
     <property name="configurable.GoLibrariesConfigurable.is.expanded" value="true" />
+    <property name="go.formatter.settings.were.checked" value="true" />
     <property name="go.gopath.indexing.explicitly.defined" value="true" />
     <property name="go.import.settings.migrated" value="true" />
+    <property name="go.modules.go.list.on.any.changes.was.set" value="true" />
     <property name="go.sdk.automatically.set" value="true" />
     <property name="go.tried.to.enable.integration.vgo.integrator" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/testutils" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
-    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+    <property name="settings.editor.selected.configurable" value="go.sdk" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\gowork\src\known01\data" />
+      <recent name="D:\gowork\src\known01\reader" />
       <recent name="D:\gowork\src\known01\testutils" />
       <recent name="D:\learn\gowork\master\known01\utils" />
       <recent name="D:\gowork\src\known01\conf" />
-      <recent name="D:\gowork\src\known01\utils" />
-      <recent name="D:\gowork\src\known01" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\learn\gowork\master\known01\conf" />
       <recent name="D:\learn\gowork\master\known01\data" />
     </key>
   </component>
-  <component name="RunManager" selected="Go Test.Test_Addr in github.com/sdjyliqi/known01/tryagain">
+  <component name="RunManager" selected="Go Test.Test_ReadPDF in github.com/sdjyliqi/known01/reader">
     <configuration default="true" type="GoApplicationRunConfiguration" factoryName="Go Application">
       <module name="known01" />
       <working_directory value="$PROJECT_DIR$" />
       <go_parameters value="-i" />
       <kind value="FILE" />
-      <filePath value="$PROJECT_DIR$" />
       <package value="known01" />
       <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="go build github.com/sdjyliqi/known01/engine" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="known01" />
+      <working_directory value="$PROJECT_DIR$" />
+      <kind value="PACKAGE" />
+      <package value="github.com/sdjyliqi/known01/engine" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$/engine/main.go" />
       <method v="2" />
     </configuration>
     <configuration name="go build known01" type="GoApplicationRunConfiguration" factoryName="Go Application" nameIsGenerated="true">
@@ -169,92 +182,85 @@
       <working_directory value="$PROJECT_DIR$" />
       <go_parameters value="-i" />
       <kind value="FILE" />
-      <filePath value="$PROJECT_DIR$" />
       <package value="github.com/sdjyliqi/known01" />
       <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
       <method v="2" />
     </configuration>
     <configuration name="TestDecrypt in github.com/sdjyliqi/known01/utils" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="known01" />
       <working_directory value="$PROJECT_DIR$/utils" />
-      <framework value="gotest" />
+      <root_directory value="$PROJECT_DIR$" />
       <kind value="PACKAGE" />
       <package value="github.com/sdjyliqi/known01/utils" />
       <directory value="$PROJECT_DIR$" />
       <filePath value="$PROJECT_DIR$" />
+      <framework value="gotest" />
       <pattern value="^\QTestDecrypt\E$" />
       <method v="2" />
     </configuration>
-    <configuration name="Test_Addr in github.com/sdjyliqi/known01/tryagain" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+    <configuration name="Test_CardID in github.com/sdjyliqi/known01/tryagain" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="known01" />
       <working_directory value="$PROJECT_DIR$/tryagain" />
-      <framework value="gotest" />
+      <root_directory value="$PROJECT_DIR$" />
       <kind value="PACKAGE" />
       <package value="github.com/sdjyliqi/known01/tryagain" />
       <directory value="$PROJECT_DIR$" />
       <filePath value="$PROJECT_DIR$" />
-      <pattern value="^\QTest_Addr\E$" />
-      <method v="2" />
-    </configuration>
-    <configuration name="Test_CardID in github.com/sdjyliqi/known01/tryagain (1)" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
-      <module name="known01" />
-      <working_directory value="$PROJECT_DIR$/tryagain" />
       <framework value="gotest" />
-      <kind value="PACKAGE" />
-      <package value="github.com/sdjyliqi/known01/tryagain" />
-      <directory value="$PROJECT_DIR$" />
-      <filePath value="$PROJECT_DIR$" />
       <pattern value="^\QTest_CardID\E$" />
       <method v="2" />
     </configuration>
-    <configuration name="Test_GetHTTPClient in github.com/sdjyliqi/known01/utils (1)" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+    <configuration name="Test_ReadExcel in github.com/sdjyliqi/known01/reader" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="known01" />
-      <working_directory value="$PROJECT_DIR$/utils" />
-      <framework value="gotest" />
+      <working_directory value="$PROJECT_DIR$/reader" />
+      <root_directory value="$PROJECT_DIR$" />
       <kind value="PACKAGE" />
-      <package value="github.com/sdjyliqi/known01/utils" />
+      <package value="github.com/sdjyliqi/known01/reader" />
       <directory value="$PROJECT_DIR$" />
       <filePath value="$PROJECT_DIR$" />
-      <pattern value="^\QTest_GetHTTPClient\E$" />
+      <framework value="gotest" />
+      <pattern value="^\QTest_ReadExcel\E$" />
       <method v="2" />
     </configuration>
-    <configuration name="Test_PhoneID in github.com/sdjyliqi/known01/tryagain" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+    <configuration name="Test_ReadPDF in github.com/sdjyliqi/known01/reader" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="known01" />
-      <working_directory value="$PROJECT_DIR$/tryagain" />
-      <framework value="gotest" />
+      <working_directory value="$PROJECT_DIR$/reader" />
+      <root_directory value="$PROJECT_DIR$" />
       <kind value="PACKAGE" />
-      <package value="github.com/sdjyliqi/known01/tryagain" />
+      <package value="github.com/sdjyliqi/known01/reader" />
       <directory value="$PROJECT_DIR$" />
       <filePath value="$PROJECT_DIR$" />
-      <pattern value="^\QTest_PhoneID\E$" />
+      <framework value="gotest" />
+      <pattern value="^\QTest_ReadPDF\E$" />
       <method v="2" />
     </configuration>
     <configuration default="true" type="GoTestRunConfiguration" factoryName="Go Test">
       <module name="known01" />
       <working_directory value="$PROJECT_DIR$" />
       <go_parameters value="-i" />
-      <framework value="gotest" />
       <kind value="DIRECTORY" />
       <package value="known01" />
       <directory value="$PROJECT_DIR$" />
       <filePath value="$PROJECT_DIR$" />
+      <framework value="gotest" />
       <method v="2" />
     </configuration>
     <list>
       <item itemvalue="Go Build.go build known01" />
-      <item itemvalue="Go Test.Test_GetHTTPClient in github.com/sdjyliqi/known01/utils (1)" />
-      <item itemvalue="Go Test.Test_PhoneID in github.com/sdjyliqi/known01/tryagain" />
-      <item itemvalue="Go Test.Test_CardID in github.com/sdjyliqi/known01/tryagain (1)" />
+      <item itemvalue="Go Build.go build github.com/sdjyliqi/known01/engine" />
       <item itemvalue="Go Test.TestDecrypt in github.com/sdjyliqi/known01/utils" />
-      <item itemvalue="Go Test.Test_Addr in github.com/sdjyliqi/known01/tryagain" />
+      <item itemvalue="Go Test.Test_CardID in github.com/sdjyliqi/known01/tryagain" />
+      <item itemvalue="Go Test.Test_ReadExcel in github.com/sdjyliqi/known01/reader" />
+      <item itemvalue="Go Test.Test_ReadPDF in github.com/sdjyliqi/known01/reader" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Go Test.Test_Addr in github.com/sdjyliqi/known01/tryagain" />
+        <item itemvalue="Go Test.Test_ReadPDF in github.com/sdjyliqi/known01/reader" />
+        <item itemvalue="Go Test.Test_ReadExcel in github.com/sdjyliqi/known01/reader" />
+        <item itemvalue="Go Build.go build github.com/sdjyliqi/known01/engine" />
+        <item itemvalue="Go Test.Test_CardID in github.com/sdjyliqi/known01/tryagain" />
         <item itemvalue="Go Test.TestDecrypt in github.com/sdjyliqi/known01/utils" />
-        <item itemvalue="Go Test.Test_CardID in github.com/sdjyliqi/known01/tryagain (1)" />
-        <item itemvalue="Go Test.Test_PhoneID in github.com/sdjyliqi/known01/tryagain" />
-        <item itemvalue="Go Test.Test_GetHTTPClient in github.com/sdjyliqi/known01/utils (1)" />
       </list>
     </recent_temporary>
   </component>
