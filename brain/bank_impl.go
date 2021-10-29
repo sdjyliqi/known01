@@ -2,7 +2,7 @@ package brain
 
 import (
 	"github.com/gansidui/ahocorasick"
-	"github.com/prometheus/common/log"
+	"github.com/golang/glog"
 	"github.com/sdjyliqi/known01/model"
 	"github.com/sdjyliqi/known01/utils"
 	"strings"
@@ -58,7 +58,7 @@ func (bb *bankBrain) Init(items []*model.Reference) error {
 	//初始化分数字典
 	err := bb.InitScoreItems()
 	if err != nil {
-		log.Errorf("call InitScoreItems failed,err:%+v", err)
+		glog.Errorf("call InitScoreItems failed,err:%+v", err)
 		return err
 	}
 	return nil
@@ -88,7 +88,7 @@ func (bb *bankBrain) getBankNameByPhoneID(phone, hit, msg string) (string, bool)
 	}
 	items, ok := bb.phoneNumDic[phone]
 	if !ok {
-		log.Errorf("Do not find the bank-name by customer phone %s", phone)
+		glog.Errorf("Do not find the bank-name by customer phone %s", phone)
 		return "", false
 	}
 	if len(items) == 1 {
@@ -155,7 +155,7 @@ func (bb *bankBrain) pickupName(hit, msg string) (string, bool) {
 			if hit == name {
 				v, ok := bb.aliasNames[name]
 				if !ok {
-					log.Errorf("Do not find the key %s in dic.", name)
+					glog.Errorf("Do not find the key %s in dic.", name)
 					return "", false
 				}
 				return v, true
@@ -167,7 +167,7 @@ func (bb *bankBrain) pickupName(hit, msg string) (string, bool) {
 		idx := bb.allNames[matchIndex[0]]
 		v, ok := bb.aliasNames[idx]
 		if !ok {
-			log.Errorf("Do not find the key %s in dic.", idx)
+			glog.Errorf("Do not find the key %s in dic.", idx)
 			return "", false
 		}
 		return v, true

@@ -5,7 +5,10 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/xuri/excelize/v2"
+	"io/ioutil"
 )
+
+var FReader FileReader
 
 type FileReader struct {
 }
@@ -57,4 +60,13 @@ func (fr FileReader) ReadDoc(path string) (string, error) {
 	fmt.Println(f.MergeFields())
 	fmt.Println(content)
 	return content, nil
+}
+
+//ReadTxt ... reader txt file
+func (fr FileReader) ReadTxt(path string) ([]byte, error) {
+	b, err := ioutil.ReadFile(path)
+	if err != nil {
+		return nil, err
+	}
+	return b, nil
 }
