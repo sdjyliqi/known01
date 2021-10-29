@@ -3,6 +3,7 @@ module github.com/sdjyliqi/known01
 go 1.14
 
 require (
+	baliance.com/gooxml v1.0.1 // indirect
 	github.com/adamzy/cedar-go v0.0.0-20170805034717-80a9c64b256d // indirect
 	github.com/gansidui/ahocorasick v0.0.0-20141022153900-5a4d7fb3524f
 	github.com/gin-gonic/gin v1.6.3
@@ -15,5 +16,7 @@ require (
 	github.com/prometheus/common v0.2.0
 	github.com/satori/go.uuid v1.2.0
 	github.com/stretchr/testify v1.7.0
+	github.com/unidoc/unioffice v1.14.0 // indirect
+	github.com/xuri/excelize/v2 v2.4.1
 	gopkg.in/yaml.v2 v2.4.0
 )
