@@ -3,6 +3,7 @@ package brain
 import (
 	"fmt"
 	"github.com/gansidui/ahocorasick"
+	"github.com/golang/glog"
 	"github.com/prometheus/common/log"
 	"github.com/sdjyliqi/known01/model"
 	"github.com/sdjyliqi/known01/utils"
@@ -14,19 +15,19 @@ func (c *Center) init() error {
 	//load templates about bank
 	err := c.InitTemplatesItemsFromDB()
 	if err != nil {
-		log.Errorf("Call InitTemplatesItemsFromDB failed,err:%+v", err)
+		glog.Errorf("Call InitTemplatesItemsFromDB failed,err:%+v", err)
 		return err
 	}
 	//load cut-words from mysql
 	err = c.InitCutWordsFromDB()
 	if err != nil {
-		log.Errorf("Call InitCutWordsFromDB failed,err:%+v", err)
+		glog.Errorf("Call InitCutWordsFromDB failed,err:%+v", err)
 		return err
 	}
 
 	err = c.InitReferencesItemsFromDB()
 	if err != nil {
-		log.Errorf("Call InitReferencesItemsFromDB failed,err:%+v", err)
+		glog.Errorf("Call InitReferencesItemsFromDB failed,err:%+v", err)
 		return err
 	}
 
