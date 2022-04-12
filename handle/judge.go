@@ -2,7 +2,7 @@ package handle
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/prometheus/common/log"
+	"github.com/golang/glog"
 	"github.com/sdjyliqi/known01/utils"
 	"net/http"
 )
@@ -19,7 +19,7 @@ func JudgeMessage(c *gin.Context) {
 	reqJson := submitContent{}
 	err := c.ShouldBindJSON(&reqJson)
 	if err != nil {
-		log.Errorf("The request %+v is invalid,please check.", c.Request)
+		glog.Errorf("The request %+v is invalid,please check.", c.Request)
 		c.JSON(http.StatusOK, gin.H{"code": 1, "msg": "bind json failed."})
 		return
 	}
@@ -60,6 +60,7 @@ func JudgeMessageGET(c *gin.Context) {
 	submitContent := c.DefaultQuery("content", "")
 	submitSender := c.DefaultQuery("sender", "")
 	if len(submitContent) < 1 {
+		glog.Errorf("The request %+v is invalid,please check.", c.Request)
 		c.JSON(http.StatusOK, gin.H{"code": 1, "msg": "You must submit the invalid message"})
 		return
 	}

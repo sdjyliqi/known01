@@ -40,6 +40,7 @@ func init() {
 	utils.InitMySQL(conf.DefaultConfig.DBMysql, true) //建立MySQL连接
 	utils.InitSegDic()                                //初始化分词词表
 	handle.InitBrain()                                //初始化
+	logCut()
 }
 
 func main() {
