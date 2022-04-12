@@ -46,7 +46,7 @@ func InitConfig(f string, v *Known01Config) {
 
 //DefaultConfig .
 var DefaultConfig = Known01Config{
-	DBMysql: "wdzHhOX/SSdWWziV4TDy0AYqXfr0dwPoVWNGPbgg26gLOoV0731EyR/b49lfJSSf6dnK0C9s5Il4QyRmaFsNTc6XOtu1ApToSaYGns+OVasYdbGpKsbRqyYRroZ0sirBC8VEyx8FbcWlXQ==",
+	DBMysql: "root:Bit0123456789!@tcp(127.0.0.1:3306)/data_guarder?charset=utf8mb4",
 	WordDic: "D:\\gowork\\src\\known01\\data\\dictionary.txt",
 	Port:    25001,
 }

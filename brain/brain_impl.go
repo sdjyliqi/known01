@@ -35,15 +35,13 @@ func (c *Center) init() error {
 
 //InitCutWordsFromDB ...初始化辅助词，数据来源mysql
 func (c *Center) InitCutWordsFromDB() error {
-	items, err := model.Assist{}.GetItems(utils.GetMysqlClient())
+	items, err := model.SpecialSymbolModel.GetItems()
 	if err != nil {
 		return err
 	}
 	words := make([]string, len(items))
 	for k, v := range items {
-		if v.Enable == 1 {
-			words[k] = v.Name
-		}
+		words[k] = v.Character
 	}
 	//构建副助词匹配自动机
 	c.cutWords = words
@@ -56,8 +54,8 @@ func (c *Center) InitCutWordsFromDB() error {
 //getReferencesItemsFromDB ...初始化鉴别基准数据
 func (c *Center) InitReferencesItemsFromDB() error {
 	//初始化customerPhoneDic
-	phoneNumsDic := map[string][]*model.Reference{}
-	items, err := model.Reference{}.GetItems(utils.GetMysqlClient())
+	phoneNumsDic := map[string][]*model.DsisEnterpriseBasic{}
+	items, err := model.EnterpriseBasicModel.GetItems(utils.GetMysqlClient())
 	if err != nil {
 		return err
 	}
@@ -75,7 +73,7 @@ func (c *Center) InitReferencesItemsFromDB() error {
 			if ok {
 				phoneNumsDic[phone] = append(phoneNumsDic[phone], v)
 			} else {
-				phoneNumsDic[phone] = []*model.Reference{v}
+				phoneNumsDic[phone] = []*model.DsisEnterpriseBasic{v}
 			}
 			allPhoneIDs = append(allPhoneIDs, phone)
 		}
@@ -89,15 +87,15 @@ func (c *Center) InitReferencesItemsFromDB() error {
 				if ok {
 					phoneNumsDic[phone] = append(phoneNumsDic[phone], v)
 				} else {
-					phoneNumsDic[phone] = []*model.Reference{v}
+					phoneNumsDic[phone] = []*model.DsisEnterpriseBasic{v}
 				}
 			}
 		}
 		//扩充分类关键词
-		indexWordDic[v.CategoryId] = append(indexWordDic[v.CategoryId], v.Name)
+		indexWordDic[utils.EngineBank] = append(indexWordDic[utils.EngineBank], v.Name)
 		if len(v.AliasNames) > 0 {
 			names := strings.Split(v.AliasNames, ",")
-			indexWordDic[v.CategoryId] = append(indexWordDic[v.CategoryId], names...)
+			indexWordDic[utils.EngineBank] = append(indexWordDic[utils.EngineBank], names...)
 		}
 		//把别名和昵称初始化到分类词表中
 	}
@@ -126,16 +124,17 @@ func (c *Center) InitReferencesItemsFromDB() error {
 //InitTemplatesItemsFromDB ...初始化短信模板相关的内容
 func (c *Center) InitTemplatesItemsFromDB() error {
 	templateDic := map[string]utils.EngineType{}
-	items, err := model.Templates{}.GetItems(utils.GetMysqlClient())
+	items, err := model.MessageTMPModel.GetItems()
 	if err != nil {
 		return err
 	}
 	if len(items) == 0 {
 		log.Fatal("The count of items from table templates is zero,please check the templates table in mysql.")
 	}
+	//首次上线只上线金融场景
 	for _, v := range items {
 		if v.Enable == 1 {
-			templateDic[v.Detail] = v.CategoryId
+			templateDic[v.Detail] = utils.EngineBank
 		}
 	}
 	c.messageTemplates = templateDic
@@ -182,7 +181,7 @@ func (c *Center) acFindPhoneID(msg string) (string, bool) {
 func (c *Center) getEngineByPhoneID(phone string) (utils.EngineType, bool) {
 	v, ok := c.customerPhoneDic[phone]
 	if ok && len(v) > 0 {
-		return v[0].CategoryId, true
+		return utils.EngineBank, true
 	}
 	return utils.EngineUnknown, false
 }
@@ -211,7 +210,7 @@ func (c *Center) matchEngineRate(msg string) (utils.EngineType, float64) {
 		rate := utils.SimHashTool.Similarity(simValue, v.SimHash)
 		if rate > matchRate {
 			matchRate = rate
-			engineName = v.CategoryId
+			engineName = utils.EngineBank
 		}
 	}
 	return engineName, matchRate
@@ -248,14 +247,12 @@ func (c *Center) GetEngineName(msg string) (utils.EngineType, string) {
 }
 
 //JudgeMessage ... 鉴别短信的入口
-func (c *Center) JudgeMessage(msg, sender string) (int, *model.Reference) {
+func (c *Center) JudgeMessage(msg, sender string) (int, *model.DsisEnterpriseBasic) {
 	msg = c.cutSpecialMessage(msg)
 	engineName, phoneID := c.GetEngineName(msg)
 	switch engineName {
 	case utils.EngineBank:
 		return c.bank.JudgeMessage(msg, phoneID, sender)
-	default:
-		return c.reward.JudgeMessage(msg, phoneID, sender)
 	}
 	return utils.OutsideKnown, nil
 }

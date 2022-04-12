@@ -9,14 +9,11 @@ import (
 )
 
 //getBankNameByPhoneID ...通过客服电话查找银行名称
-func (bb *bankBrain) Init(items []*model.Reference) error {
+func (bb *bankBrain) Init(items []*model.DsisEnterpriseBasic) error {
 	//初始化 PhoneNumDic，aliasNames
 	aliasNamesDic := map[string]string{}
 	var bankAllNames []string
 	for _, v := range items {
-		if v.CategoryId != utils.EngineBank {
-			continue
-		}
 		aliasNamesDic[v.Name] = v.Name
 		bankAllNames = append(bankAllNames, v.Name)
 		if len(v.AliasNames) > 0 {
@@ -185,7 +182,7 @@ func (bb *bankBrain) pickupMobilePhone(msg string) (string, bool) {
 	return utils.ExtractMobilePhone(msg)
 }
 
-func (bb *bankBrain) JudgeMessage(msg, phoneID, sender string) (int, *model.Reference) {
+func (bb *bankBrain) JudgeMessage(msg, phoneID, sender string) (int, *model.DsisEnterpriseBasic) {
 	v, ok := bb.PickupProperties(msg, phoneID, sender)
 	if !ok {
 		return utils.OutsideKnown, nil
@@ -194,7 +191,7 @@ func (bb *bankBrain) JudgeMessage(msg, phoneID, sender string) (int, *model.Refe
 }
 
 //createMatchScoreIndex ...创建匹配字符串
-func (bb *bankBrain) createMatchScoreIndex(pickup propertiesVec) (string, *model.Reference) {
+func (bb *bankBrain) createMatchScoreIndex(pickup propertiesVec) (string, *model.DsisEnterpriseBasic) {
 	domainIdx, msgIDIdx, phoneIDIdx := "D0", "M0", "P0"
 	if pickup.govName == "" {
 		return "", nil
@@ -239,7 +236,7 @@ func (bb *bankBrain) createMatchScoreIndex(pickup propertiesVec) (string, *model
 	return domainIdx + msgIDIdx + phoneIDIdx, item
 }
 
-func (bb *bankBrain) MatchScoreV2(pickup propertiesVec, sender string) (int, *model.Reference) {
+func (bb *bankBrain) MatchScoreV2(pickup propertiesVec, sender string) (int, *model.DsisEnterpriseBasic) {
 	findMobilePhoneScore, matchScore, senderScore := 0, 0, 0
 	idx, bankItem := bb.createMatchScoreIndex(pickup)
 	if idx == "" {

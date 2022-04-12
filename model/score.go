@@ -2,7 +2,9 @@ package model
 
 import (
 	"errors"
+	"fmt"
 	"github.com/go-xorm/xorm"
+	"github.com/golang/glog"
 	"github.com/prometheus/common/log"
 	"time"
 )
@@ -15,14 +17,15 @@ type Score struct {
 }
 
 func (t Score) TableName() string {
-	return "score"
+	return "dsis_initial_credibility"
 }
 
 func (t Score) GetItems(engine *xorm.Engine) ([]*Score, error) {
 	var items []*Score
 	err := engine.Find(&items)
 	if err != nil {
-		log.Errorf("Get items form table %s failed,err:%+v", t.TableName(), err)
+		fmt.Errorf("Get items form table %s failed,err:%+v", t.TableName(), err)
+		glog.Fatal("Get items form table %s failed,err:%+v", t.TableName(), err)
 		return nil, err
 	}
 	return items, nil
