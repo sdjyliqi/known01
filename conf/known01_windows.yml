@@ -1,3 +1,3 @@
 db_mysql: "wdzHhOX/SSdWWziV4TDy0AYqXfr0dwPoVWNGPbgg26gLOoV0731EyR/b49lfJSSf6dnK0C9s5Il4QyRmaFsNTc6XOtu1ApToSaYGns+OVasYdbGpKsbRqyYRroZ0sirBC8VEyx8FbcWlXQ=="
 port: 12345
-word_dic: "D:\\gowork\\src\\known01\\data\\dictionary.txt"
+word_dic: "D:\\gowork\\src\\known01\\conf\\dictionary.txt"
