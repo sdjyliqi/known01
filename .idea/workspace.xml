@@ -22,20 +22,61 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="91f69e01-107a-433a-b190-0e176ab79e31" name="Default Changelist" comment="UT and init">
+    <list default="true" id="91f69e01-107a-433a-b190-0e176ab79e31" name="Default Changelist" comment="处理文件">
+      <change afterPath="$PROJECT_DIR$/log/___main.exe.liqi-dell-win1o.LIQI-DELL-WIN1O_Administrator.log.ERROR.20220412-165750.59172" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/log/___main.exe.liqi-dell-win1o.LIQI-DELL-WIN1O_Administrator.log.ERROR.20220412-170016.44988" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/log/___main.exe.liqi-dell-win1o.LIQI-DELL-WIN1O_Administrator.log.ERROR.20220412-171520.55528" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/log/___main.exe.liqi-dell-win1o.LIQI-DELL-WIN1O_Administrator.log.INFO.20220412-163201.53692" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/log/___main.exe.liqi-dell-win1o.LIQI-DELL-WIN1O_Administrator.log.INFO.20220412-163218.58620" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/log/___main.exe.liqi-dell-win1o.LIQI-DELL-WIN1O_Administrator.log.INFO.20220412-163515.54604" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/log/___main.exe.liqi-dell-win1o.LIQI-DELL-WIN1O_Administrator.log.INFO.20220412-163937.61516" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/log/___main.exe.liqi-dell-win1o.LIQI-DELL-WIN1O_Administrator.log.INFO.20220412-165643.55344" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/log/___main.exe.liqi-dell-win1o.LIQI-DELL-WIN1O_Administrator.log.INFO.20220412-165747.59172" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/log/___main.exe.liqi-dell-win1o.LIQI-DELL-WIN1O_Administrator.log.INFO.20220412-170000.59172" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/log/___main.exe.liqi-dell-win1o.LIQI-DELL-WIN1O_Administrator.log.INFO.20220412-170012.44988" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/log/___main.exe.liqi-dell-win1o.LIQI-DELL-WIN1O_Administrator.log.INFO.20220412-171517.55528" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/log/___main.exe.liqi-dell-win1o.LIQI-DELL-WIN1O_Administrator.log.INFO.20220412-171920.56216" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/log/___main.exe.liqi-dell-win1o.LIQI-DELL-WIN1O_Administrator.log.WARNING.20220412-165750.59172" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/log/___main.exe.liqi-dell-win1o.LIQI-DELL-WIN1O_Administrator.log.WARNING.20220412-170016.44988" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/log/___main.exe.liqi-dell-win1o.LIQI-DELL-WIN1O_Administrator.log.WARNING.20220412-171520.55528" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/model/dsis_enterprise_basic.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/model/dsis_special_symbol.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/models/dsis_correction_character.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/models/dsis_domain_whiltelist.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/models/dsis_enterprise_basic.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/models/dsis_initial_credibility.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/models/dsis_marketing_forbidden_word.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/models/dsis_message_templates.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/models/dsis_special_symbol.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/models/dsis_url_whitelist.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/models/dsis_user_center.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/brain/bank.go" beforeDir="false" afterPath="$PROJECT_DIR$/brain/bank.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/brain/bank_impl.go" beforeDir="false" afterPath="$PROJECT_DIR$/brain/bank_impl.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/brain/brain.go" beforeDir="false" afterPath="$PROJECT_DIR$/brain/brain.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/brain/brain_impl.go" beforeDir="false" afterPath="$PROJECT_DIR$/brain/brain_impl.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/brain/reward.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/brain/reward_impl.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/brain/reward_impl_test.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/conf/config.go" beforeDir="false" afterPath="$PROJECT_DIR$/conf/config.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/conf/known01_windows.yml" beforeDir="false" afterPath="$PROJECT_DIR$/conf/known01_windows.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/crypt/aes_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/crypt/aes_test.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/city.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/dictionary.txt" beforeDir="false" afterPath="$PROJECT_DIR$/conf/dictionary.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/test.pptx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/test.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/生产环境数据检查.docx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/生产环境数据检查.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/router/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/router/router.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tryagain/cardid.go" beforeDir="false" afterPath="$PROJECT_DIR$/tryagain/cardid.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tryagain/personal_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tryagain/personal_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/crypt/aes.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/crypt/aes_test.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/crypt/md5.go" beforeDir="false" afterPath="$PROJECT_DIR$/utils/md5.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/handle/news.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/assist.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/assist.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/assist_test.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/news.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/news_test.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/reference.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/score.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/score.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/templates.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/dsis_message_templates.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/templates_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/dsis_message_templates_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tryagain/cardid.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tryagain/personal_test.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/crypto.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/crypto_test.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/mysql.go" beforeDir="false" afterPath="$PROJECT_DIR$/utils/mysql.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -149,7 +190,7 @@
     <property name="go.sdk.automatically.set" value="true" />
     <property name="go.tried.to.enable.integration.vgo.integrator" value="true" />
     <property name="go.watchers.conflict.with.on.save.actions.check.performed" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/conf" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/model" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.path.for.package.tslint" value="project" />
@@ -159,11 +200,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\gowork\src\known01\model" />
+      <recent name="D:\gowork\src\known01\utils" />
       <recent name="D:\gowork\src\known01\conf" />
       <recent name="D:\gowork\src\known01\middleware" />
       <recent name="D:\gowork\src\known01\data" />
-      <recent name="D:\gowork\src\known01\reader" />
-      <recent name="D:\gowork\src\known01\testutils" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\learn\gowork\master\known01\conf" />
@@ -370,7 +411,8 @@
     <MESSAGE value="check the request valid" />
     <MESSAGE value="D2" />
     <MESSAGE value="UT and init" />
-    <option name="LAST_COMMIT_MESSAGE" value="UT and init" />
+    <MESSAGE value="处理文件" />
+    <option name="LAST_COMMIT_MESSAGE" value="处理文件" />
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>
@@ -394,34 +436,19 @@
           <option name="timeStamp" value="6" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DlvLineBreakpoint">
-          <url>file://$PROJECT_DIR$/model/assist.go</url>
-          <line>2</line>
-          <option name="timeStamp" value="7" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
           <url>file://$PROJECT_DIR$/brain/bank_impl.go</url>
-          <line>198</line>
+          <line>195</line>
           <option name="timeStamp" value="8" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DlvLineBreakpoint">
-          <url>file://$PROJECT_DIR$/brain/reward_impl.go</url>
-          <line>194</line>
-          <option name="timeStamp" value="9" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
           <url>file://$PROJECT_DIR$/brain/bank_impl.go</url>
-          <line>86</line>
+          <line>83</line>
           <option name="timeStamp" value="10" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DlvLineBreakpoint">
           <url>file://$PROJECT_DIR$/testutils/init.go</url>
           <line>2</line>
           <option name="timeStamp" value="11" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
-          <url>file://$PROJECT_DIR$/model/assist_test.go</url>
-          <line>9</line>
-          <option name="timeStamp" value="12" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DlvLineBreakpoint">
           <url>file://$PROJECT_DIR$/testutils/personal_test.go</url>

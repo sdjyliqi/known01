@@ -13,12 +13,11 @@ var msqlEngine *xorm.Engine
 //InitMySQL ...初始化mysql，记得要先解密
 func InitMySQL(addr string, showSQL bool) (*xorm.Engine, error) {
 	var err error
-	addrDecode, _ := Decrypt(addr)
 	mysqlOnce.Do(func() {
-		msqlEngine, err = xorm.NewEngine("mysql", addrDecode)
+		msqlEngine, err = xorm.NewEngine("mysql", addr)
 		msqlEngine.ShowSQL(showSQL)
 		if err != nil {
-			glog.Error("[init] Initialize mysql client failed,please check the addr:%+v,err:%+v", addrDecode, err)
+			glog.Error("[init] Initialize mysql client failed,please check the addr:%+v,err:%+v", addr, err)
 		}
 	})
 	return msqlEngine, err
