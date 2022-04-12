@@ -1,10 +1,11 @@
-./package main
+package main
 
 import (
 	"flag"
 	"fmt"
+	"github.com/cleey/glogrotate"
 	"github.com/gin-gonic/gin"
-	"github.com/prometheus/common/log"
+	"github.com/golang/glog"
 	"github.com/sdjyliqi/known01/conf"
 	"github.com/sdjyliqi/known01/handle"
 	"github.com/sdjyliqi/known01/router"
@@ -13,18 +14,27 @@ import (
 	"time"
 )
 
+//logCut...完成日志切割,默认值为1小时切割一次，只需设置保留的时间即可。
+func logCut() {
+	glogrotate.Start(glogrotate.RotateOption{
+		Remain: time.Duration(time.Hour * 24 * 7),
+	})
+}
+
 func init() {
 	var ymlPath string
 	flag.StringVar(&ymlPath, "c", "", "configuration file")
 	flag.Parse()
 	if ymlPath == "" {
-		log.Fatal("You must input path of the yml ....")
+		glog.Fatal("You must input path of the yml ....")
 	}
 	//初始化配置，覆盖原来的默认配置参数苏
 	conf.InitConfig(ymlPath, &conf.DefaultConfig)
 	//检查配置项的合法性，如果任何一项为空，立即fatal掉
 	if conf.DefaultConfig.DBMysql == "" || conf.DefaultConfig.Port == 0 || conf.DefaultConfig.WordDic == "" {
-		log.Fatal("The content of yml is invalid.")
+		fmt.Println("The content of yml is invalid.")
+		glog.Errorln("The content of yml is invalid.")
+		glog.Fatal("The content of yml is invalid.")
 	}
 	rand.Seed(time.Now().UnixNano())
 	utils.InitMySQL(conf.DefaultConfig.DBMysql, true) //建立MySQL连接

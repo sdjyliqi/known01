@@ -11,7 +11,7 @@ func TestEncrypt(t *testing.T) {
 	assert.Nil(t, err)
 	t.Logf(s)
 
-	a = "root:Bit0123456789!@tcp(10.233.146.47:16315)/brain?charset=utf8mb4"
+	a = "root:Bit0123456789!@tcp(114.55.139.105:3306)/brain?charset=utf8mb4"
 	s, err = Encrypt(a)
 	assert.Nil(t, err)
 	t.Logf(s)
