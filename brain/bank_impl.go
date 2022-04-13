@@ -3,8 +3,8 @@ package brain
 import (
 	"github.com/gansidui/ahocorasick"
 	"github.com/golang/glog"
-	"github.com/sdjyliqi/known01/model"
-	"github.com/sdjyliqi/known01/utils"
+	"known01/model"
+	"known01/utils"
 	"strings"
 )
 
@@ -62,8 +62,8 @@ func (bb *bankBrain) Init(items []*model.DsisEnterpriseBasic) error {
 }
 
 func (bb *bankBrain) InitScoreItems() error {
-	scoreDic := map[string]*model.Score{}
-	items, err := model.Score{}.GetItems(utils.GetMysqlClient())
+	scoreDic := map[string]*model.DsisInitialCredibility{}
+	items, err := model.InitialCredibilityModel.GetItems()
 	if err != nil {
 		return err
 	}
@@ -148,7 +148,7 @@ func (bb *bankBrain) pickupName(hit, msg string) (string, bool) {
 	//优先处理【】符合中的内容，如果名称为整理的基准数据，直接使用该值。
 	if len(hit) > 0 {
 		for _, v := range matchIndex {
-			name := bb.allNames[v]
+			name := bb.allNames[v.Index]
 			if hit == name {
 				v, ok := bb.aliasNames[name]
 				if !ok {
@@ -161,7 +161,7 @@ func (bb *bankBrain) pickupName(hit, msg string) (string, bool) {
 	}
 	if len(matchIndex) > 0 {
 		//优先使用【值】的值
-		idx := bb.allNames[matchIndex[0]]
+		idx := bb.allNames[matchIndex[0].Index]
 		v, ok := bb.aliasNames[idx]
 		if !ok {
 			glog.Errorf("Do not find the key %s in dic.", idx)

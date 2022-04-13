@@ -2,7 +2,7 @@ package utils
 
 import (
 	"github.com/huichen/sego"
-	"github.com/sdjyliqi/known01/conf"
+	"known01/conf"
 	"math"
 	"strconv"
 	"sync"

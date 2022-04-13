@@ -3,7 +3,7 @@ package model
 import (
 	"fmt"
 	"github.com/golang/glog"
-	"github.com/sdjyliqi/known01/utils"
+	"known01/utils"
 	"time"
 )
 

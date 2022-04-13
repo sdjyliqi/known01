@@ -2,8 +2,8 @@ package brain
 
 import (
 	"github.com/gansidui/ahocorasick"
-	"github.com/sdjyliqi/known01/model"
-	"github.com/sdjyliqi/known01/utils"
+	"known01/model"
+	"known01/utils"
 )
 
 //propertiesVec... 定义文本识别提取数据维度
@@ -18,8 +18,8 @@ type propertiesVec struct {
 
 //indexWordDid ... 还需要融合mysql中结构名称的相关信息。
 var indexWordDic = map[utils.EngineType][]string{
-	utils.EngineBank:   []string{"汇款", "转账", "打钱", "存款", "银行", "储蓄", "取款", "ATM", "信贷", "信用卡", "储蓄卡", "利息", "贷款", "利率", "负债"},
-	utils.EngineReward: []string{"中奖"},
+	utils.EngineBank:   {},
+	utils.EngineReward: {},
 }
 
 type Center struct {

@@ -2,8 +2,8 @@ package router
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/sdjyliqi/known01/handle"
-	"github.com/sdjyliqi/known01/middleware"
+	"known01/handle"
+	"known01/middleware"
 )
 
 func InitRouter(r *gin.Engine) {

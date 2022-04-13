@@ -2,7 +2,7 @@ package brain
 
 import (
 	"github.com/gansidui/ahocorasick"
-	"github.com/sdjyliqi/known01/model"
+	"known01/model"
 )
 
 type bankBrain struct {
@@ -12,7 +12,7 @@ type bankBrain struct {
 	phoneNumDic     map[string][]string                   //存储客服电话到标准名称的映射。
 	bankDic         map[string]*model.DsisEnterpriseBasic //名称到详情的映射表
 	referencesItems []*model.DsisEnterpriseBasic          //基准数据
-	scoreDict       map[string]*model.Score
+	scoreDict       map[string]*model.DsisInitialCredibility
 }
 
 //CreateBankBrain ... 创建银行鉴别引擎
@@ -23,7 +23,7 @@ func CreateBankBrain(items []*model.DsisEnterpriseBasic) *bankBrain {
 		phoneNumDic: map[string][]string{},
 		bankDic:     map[string]*model.DsisEnterpriseBasic{},
 		acMatch:     nil,
-		scoreDict:   map[string]*model.Score{},
+		scoreDict:   map[string]*model.DsisInitialCredibility{},
 	}
 	brain.Init(items)
 	return &brain
