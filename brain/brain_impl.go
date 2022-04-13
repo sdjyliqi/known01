@@ -3,9 +3,9 @@ package brain
 import (
 	"github.com/gansidui/ahocorasick"
 	"github.com/golang/glog"
-	"github.com/prometheus/common/log"
-	"github.com/sdjyliqi/known01/model"
-	"github.com/sdjyliqi/known01/utils"
+	"known01/model"
+	"known01/utils"
+	"log"
 	"strings"
 )
 
@@ -129,7 +129,7 @@ func (c *Center) InitTemplatesItemsFromDB() error {
 		return err
 	}
 	if len(items) == 0 {
-		log.Fatal("The count of items from table templates is zero,please check the templates table in mysql.")
+		glog.Fatal("The count of items from table templates is zero,please check the templates table in mysql.")
 	}
 	//首次上线只上线金融场景
 	for _, v := range items {
@@ -163,7 +163,7 @@ func (c *Center) amendMessage(msg string) string {
 	//开启副助词ac自动机匹配，然后删除
 	matchIndex := c.acCutWords.Match(string(amendMessage))
 	for _, v := range matchIndex {
-		amendMessage = strings.ReplaceAll(amendMessage, c.cutWords[v], "")
+		amendMessage = strings.ReplaceAll(amendMessage, c.cutWords[v.Index], "")
 	}
 	return amendMessage
 }
@@ -172,7 +172,7 @@ func (c *Center) amendMessage(msg string) string {
 func (c *Center) acFindPhoneID(msg string) (string, bool) {
 	matchIndex := c.acCustomerPhoneMatch.Match(msg)
 	if len(matchIndex) > 0 {
-		return c.customerPhones[matchIndex[0]], true
+		return c.customerPhones[matchIndex[0].Index], true
 	}
 	return "", false
 }
@@ -190,7 +190,7 @@ func (c *Center) getEngineByPhoneID(phone string) (utils.EngineType, bool) {
 func (c *Center) acFindIndexWord(msg string) (string, bool) {
 	matchIndex := c.acIndexWords.Match(msg)
 	if len(matchIndex) > 0 {
-		return c.indexWords[matchIndex[0]], true
+		return c.indexWords[matchIndex[0].Index], true
 	}
 	return "", false
 }

@@ -3,7 +3,7 @@ package handle
 import (
 	"github.com/gin-gonic/gin"
 	"github.com/golang/glog"
-	"github.com/sdjyliqi/known01/utils"
+	"known01/utils"
 	"net/http"
 )
 

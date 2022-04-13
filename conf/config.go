@@ -5,11 +5,7 @@ import (
 	"github.com/golang/glog"
 	"gopkg.in/yaml.v2"
 	"io/ioutil"
-	"log"
 )
-
-// ConfigFile ..
-var ConfigFile string
 
 // Known01Config ...
 type Known01Config struct {
@@ -35,7 +31,6 @@ func YAMLLoad(fn string, v *Known01Config) error {
 
 // Init 传入带有默认值的 config, 加载配置到 config 中
 func InitConfig(f string, v *Known01Config) {
-	log.Printf("Init the yaml:%s", f)
 	err := YAMLLoad(f, v)
 	if err != nil {
 		fmt.Println("Init yaml failed:", err)
