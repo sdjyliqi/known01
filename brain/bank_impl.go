@@ -23,7 +23,6 @@ func (bb *bankBrain) Init(items []*model.DsisEnterpriseBasic) error {
 				aliasNamesDic[vv] = v.Name
 			}
 		}
-
 		bb.bankDic[v.Name] = v
 		//客服电话映射表
 		phone := strings.ReplaceAll(v.ManualPhone, "-", "")
