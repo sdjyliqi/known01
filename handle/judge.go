@@ -5,7 +5,12 @@ import (
 	"github.com/golang/glog"
 	"known01/utils"
 	"net/http"
+	"time"
 )
+
+func Ping(c *gin.Context) {
+	c.JSON(http.StatusOK, gin.H{"code": 0, "time": time.Now()})
+}
 
 //JudgeMessage ...判断诈骗短信，如果score为未识别的分值，返回值中的score设置为0，flag需要设置为0
 func JudgeMessage(c *gin.Context) {
