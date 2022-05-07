@@ -9,6 +9,6 @@ import (
 func InitRouter(r *gin.Engine) {
 	r.Use(middleware.Cors())
 	r.Use(middleware.Logger())
-	r.POST("/message/brain", handle.JudgeMessage)   //识别诈骗短消息
-	r.GET("/message/brain", handle.JudgeMessageGET) //识别诈骗短消息
+	r.GET("/message/ping", handle.Ping)           //探活接口
+	r.POST("/message/brain", handle.JudgeMessage) //识别诈骗短消息
 }

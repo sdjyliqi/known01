@@ -9,6 +9,7 @@ import (
 
 // Known01Config ...
 type Known01Config struct {
+	Env     string `yaml:"env"`
 	DBMysql string `yaml:"db_mysql"`
 	Port    int    `yaml:"port"`
 	WordDic string `yaml:"word_dic"`
@@ -29,7 +30,7 @@ func YAMLLoad(fn string, v *Known01Config) error {
 	return nil
 }
 
-// Init 传入带有默认值的 config, 加载配置到 config 中
+// InitConfig 传入带有默认值的 config, 加载配置到 config 中
 func InitConfig(f string, v *Known01Config) {
 	err := YAMLLoad(f, v)
 	if err != nil {
@@ -41,6 +42,7 @@ func InitConfig(f string, v *Known01Config) {
 
 //DefaultConfig .
 var DefaultConfig = Known01Config{
+	Env:     "dev",
 	DBMysql: "root:Bit0123456789!@tcp(127.0.0.1:3306)/data_guarder?charset=utf8mb4",
 	WordDic: "D:\\gowork\\src\\known01\\data\\dictionary.txt",
 	Port:    25001,
