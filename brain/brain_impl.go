@@ -228,16 +228,16 @@ func (c *Center) GetEngineName(msg string) (utils.EngineType, string) {
 			return engineName, phoneID
 		}
 	}
-	//第二部，修正短信数据，剔除副助词，英文字母或者数字
-	amendMessage := c.amendMessage(msg)
-	//第三步，寻找关键字
-	indexWord, ok := c.acFindIndexWord(amendMessage)
+	//第二步，寻找关键字
+	indexWord, ok := c.acFindIndexWord(msg)
 	if ok {
 		engineName, ok := c.getEngineByIndexWord(indexWord)
 		if ok {
 			return engineName, ""
 		}
 	}
+	//第三部，修正短信数据，剔除副助词，英文字母或者数字
+	amendMessage := c.amendMessage(msg)
 	//第四步  顺序匹配模板，选择匹配最高分
 	engineName, score := c.matchEngineRate(amendMessage)
 	if score > minMatchLevel {
