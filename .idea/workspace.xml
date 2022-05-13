@@ -23,12 +23,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="91f69e01-107a-433a-b190-0e176ab79e31" name="Default Changelist" comment="UT and init">
+      <change afterPath="$PROJECT_DIR$/known01.exe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/brain/bank_impl.go" beforeDir="false" afterPath="$PROJECT_DIR$/brain/bank_impl.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/brain/reward_impl.go" beforeDir="false" afterPath="$PROJECT_DIR$/brain/reward_impl.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/handle/judge.go" beforeDir="false" afterPath="$PROJECT_DIR$/handle/judge.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/known01.exe" beforeDir="false" afterPath="$PROJECT_DIR$/known01.exe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/const.go" beforeDir="false" afterPath="$PROJECT_DIR$/utils/const.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,7 +43,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="m0331" />
+        <entry key="$PROJECT_DIR$" value="master0408" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -148,7 +145,7 @@
       <recent name="D:\learn\gowork\master\known01\data" />
     </key>
   </component>
-  <component name="RunManager" selected="Go 构建.go build known01">
+  <component name="RunManager" selected="Go Build.go build known01">
     <configuration name="go build known01" type="GoApplicationRunConfiguration" factoryName="Go Application" nameIsGenerated="true">
       <module name="known01" />
       <working_directory value="$PROJECT_DIR$" />
@@ -214,12 +211,12 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Go 构建.go build known01" />
-      <item itemvalue="Go 构建.main" />
-      <item itemvalue="Go 测试.Test_AssistGetItems in github.com/sdjyliqi/known01/model" />
-      <item itemvalue="Go 测试.Test_GetEngineName in github.com/sdjyliqi/known01/brain" />
-      <item itemvalue="Go 测试.Test_JudgeMessage in github.com/sdjyliqi/known01/brain" />
-      <item itemvalue="Go 测试.Test_matchEngineRate in github.com/sdjyliqi/known01/brain" />
+      <item itemvalue="Go Build.go build known01" />
+      <item itemvalue="Go Build.main" />
+      <item itemvalue="Go Test.Test_AssistGetItems in github.com/sdjyliqi/known01/model" />
+      <item itemvalue="Go Test.Test_GetEngineName in github.com/sdjyliqi/known01/brain" />
+      <item itemvalue="Go Test.Test_JudgeMessage in github.com/sdjyliqi/known01/brain" />
+      <item itemvalue="Go Test.Test_matchEngineRate in github.com/sdjyliqi/known01/brain" />
     </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -282,7 +279,6 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
@@ -311,9 +307,6 @@
     <MESSAGE value="check the request valid" />
     <MESSAGE value="D2" />
     <option name="LAST_COMMIT_MESSAGE" value="D2" />
-  </component>
-  <component name="VgoProject">
-    <integration-enabled>true</integration-enabled>
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
