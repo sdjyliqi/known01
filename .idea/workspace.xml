@@ -22,13 +22,12 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="91f69e01-107a-433a-b190-0e176ab79e31" name="Default Changelist" comment="UT and init">
+    <list default="true" id="91f69e01-107a-433a-b190-0e176ab79e31" name="Default Changelist" comment="05-13 panic">
+      <change afterPath="$PROJECT_DIR$/known01.exe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/brain/bank_impl.go" beforeDir="false" afterPath="$PROJECT_DIR$/brain/bank_impl.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/brain/reward_impl.go" beforeDir="false" afterPath="$PROJECT_DIR$/brain/reward_impl.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/handle/judge.go" beforeDir="false" afterPath="$PROJECT_DIR$/handle/judge.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/known01.exe" beforeDir="false" afterPath="$PROJECT_DIR$/known01.exe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/const.go" beforeDir="false" afterPath="$PROJECT_DIR$/utils/const.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/brain/reward_impl.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/middleware/requestlog.go" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -148,7 +147,16 @@
       <recent name="D:\learn\gowork\master\known01\data" />
     </key>
   </component>
-  <component name="RunManager" selected="Go 构建.go build known01">
+  <component name="RunManager" selected="Go Build.main">
+    <configuration default="true" type="GoApplicationRunConfiguration" factoryName="Go Application">
+      <module name="known01" />
+      <working_directory value="$PROJECT_DIR$" />
+      <kind value="PACKAGE" />
+      <package value="known01" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <method v="2" />
+    </configuration>
     <configuration name="go build known01" type="GoApplicationRunConfiguration" factoryName="Go Application" nameIsGenerated="true">
       <module name="known01" />
       <working_directory value="$PROJECT_DIR$" />
@@ -162,8 +170,8 @@
     <configuration name="main" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true">
       <module name="known01" />
       <working_directory value="$PROJECT_DIR$" />
-      <parameters value="-c D:\gowork\src\known01\conf\known01.yml" />
-      <kind value="PACKAGE" />
+      <parameters value=" -c D:\gowork\src\known01\conf\known01_windows.yml " />
+      <kind value="DIRECTORY" />
       <package value="github.com/sdjyliqi/known01" />
       <directory value="$PROJECT_DIR$" />
       <filePath value="$PROJECT_DIR$/main.go" />
@@ -213,14 +221,29 @@
       <pattern value="^\QTest_matchEngineRate\E$" />
       <method v="2" />
     </configuration>
+    <configuration default="true" type="GoTestRunConfiguration" factoryName="Go Test">
+      <module name="known01" />
+      <working_directory value="$PROJECT_DIR$" />
+      <kind value="DIRECTORY" />
+      <package value="known01" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <framework value="gotest" />
+      <method v="2" />
+    </configuration>
     <list>
-      <item itemvalue="Go 构建.go build known01" />
-      <item itemvalue="Go 构建.main" />
-      <item itemvalue="Go 测试.Test_AssistGetItems in github.com/sdjyliqi/known01/model" />
-      <item itemvalue="Go 测试.Test_GetEngineName in github.com/sdjyliqi/known01/brain" />
-      <item itemvalue="Go 测试.Test_JudgeMessage in github.com/sdjyliqi/known01/brain" />
-      <item itemvalue="Go 测试.Test_matchEngineRate in github.com/sdjyliqi/known01/brain" />
+      <item itemvalue="Go Build.go build known01" />
+      <item itemvalue="Go Build.main" />
+      <item itemvalue="Go Test.Test_AssistGetItems in github.com/sdjyliqi/known01/model" />
+      <item itemvalue="Go Test.Test_GetEngineName in github.com/sdjyliqi/known01/brain" />
+      <item itemvalue="Go Test.Test_JudgeMessage in github.com/sdjyliqi/known01/brain" />
+      <item itemvalue="Go Test.Test_matchEngineRate in github.com/sdjyliqi/known01/brain" />
     </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Go Build.main" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TestHistory">
@@ -282,7 +305,6 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
@@ -310,10 +332,8 @@
     <MESSAGE value="UT and init" />
     <MESSAGE value="check the request valid" />
     <MESSAGE value="D2" />
-    <option name="LAST_COMMIT_MESSAGE" value="D2" />
-  </component>
-  <component name="VgoProject">
-    <integration-enabled>true</integration-enabled>
+    <MESSAGE value="05-13 panic" />
+    <option name="LAST_COMMIT_MESSAGE" value="05-13 panic" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -342,11 +362,6 @@
           <url>file://$PROJECT_DIR$/brain/bank_impl.go</url>
           <line>198</line>
           <option name="timeStamp" value="8" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
-          <url>file://$PROJECT_DIR$/brain/reward_impl.go</url>
-          <line>191</line>
-          <option name="timeStamp" value="9" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DlvLineBreakpoint">
           <url>file://$PROJECT_DIR$/brain/bank_impl.go</url>
