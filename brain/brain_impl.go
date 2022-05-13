@@ -41,7 +41,7 @@ func (c *Center) InitCutWordsFromDB() error {
 	}
 	words := make([]string, len(items))
 	for k, v := range items {
-		words[k] = v.Character
+		words[k] = v.SpecialCharacter
 	}
 	//构建副助词匹配自动机
 	c.cutWords = words
@@ -133,7 +133,7 @@ func (c *Center) InitTemplatesItemsFromDB() error {
 	}
 	//首次上线只上线金融场景
 	for _, v := range items {
-		if v.Enable == 1 {
+		if v.Status == 1 {
 			templateDic[v.Detail] = utils.EngineBank
 		}
 	}

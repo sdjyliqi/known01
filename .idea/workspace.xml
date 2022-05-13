@@ -24,6 +24,7 @@
   <component name="ChangeListManager">
     <list default="true" id="91f69e01-107a-433a-b190-0e176ab79e31" name="Default Changelist" comment="整理">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/brain/brain_impl.go" beforeDir="false" afterPath="$PROJECT_DIR$/brain/brain_impl.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/model/dsis_message_templates.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/dsis_message_templates.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/model/dsis_special_symbol.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/dsis_special_symbol.go" afterDir="false" />
     </list>
@@ -139,7 +140,7 @@
     <property name="go.sdk.automatically.set" value="true" />
     <property name="go.tried.to.enable.integration.vgo.integrator" value="true" />
     <property name="go.watchers.conflict.with.on.save.actions.check.performed" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../data-audit" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.path.for.package.tslint" value="project" />
