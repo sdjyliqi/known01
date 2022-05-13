@@ -10,10 +10,10 @@ import (
 var SpecialSymbolModel DsisSpecialSymbol
 
 type DsisSpecialSymbol struct {
-	Id           int       `json:"id" xorm:"not null pk autoincr INT(11)"`
-	SpecialCharacter    string    `json:"special_character" xorm:"unique VARCHAR(16)"`
-	WriteUser    string    `json:"submitter" xorm:"VARCHAR(255)"`
-	LastModified time.Time `json:"last_modified" xorm:"DATE"`
+	Id               int       `json:"id" xorm:"not null pk autoincr INT(11)"`
+	SpecialCharacter string    `json:"special_character" xorm:"unique VARCHAR(16)"`
+	Submitter        string    `json:"submitter" xorm:"VARCHAR(255)"`
+	LastModified     time.Time `json:"last_modified" xorm:"DATE"`
 }
 
 func (t DsisSpecialSymbol) TableName() string {
