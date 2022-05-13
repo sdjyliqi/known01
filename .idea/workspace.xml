@@ -148,15 +148,15 @@
       <recent name="D:\learn\gowork\master\known01\data" />
     </key>
   </component>
-  <component name="RunManager" selected="Go Build.main">
+  <component name="RunManager" selected="Go 构建.go build known01">
     <configuration name="go build known01" type="GoApplicationRunConfiguration" factoryName="Go Application" nameIsGenerated="true">
       <module name="known01" />
       <working_directory value="$PROJECT_DIR$" />
       <go_parameters value="-i" />
       <kind value="FILE" />
-      <filePath value="$PROJECT_DIR$" />
       <package value="github.com/sdjyliqi/known01" />
       <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
       <method v="2" />
     </configuration>
     <configuration name="main" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true">
@@ -164,72 +164,63 @@
       <working_directory value="$PROJECT_DIR$" />
       <parameters value="-c D:\gowork\src\known01\conf\known01.yml" />
       <kind value="PACKAGE" />
-      <filePath value="$PROJECT_DIR$/main.go" />
       <package value="github.com/sdjyliqi/known01" />
       <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$/main.go" />
       <method v="2" />
     </configuration>
     <configuration name="Test_AssistGetItems in github.com/sdjyliqi/known01/model" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="known01" />
       <working_directory value="$PROJECT_DIR$/model" />
-      <framework value="gotest" />
       <kind value="PACKAGE" />
       <package value="github.com/sdjyliqi/known01/model" />
       <directory value="$PROJECT_DIR$" />
       <filePath value="$PROJECT_DIR$" />
+      <framework value="gotest" />
       <pattern value="^\QTest_AssistGetItems\E$" />
       <method v="2" />
     </configuration>
     <configuration name="Test_GetEngineName in github.com/sdjyliqi/known01/brain" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="known01" />
       <working_directory value="$PROJECT_DIR$/brain" />
-      <framework value="gotest" />
       <kind value="PACKAGE" />
       <package value="github.com/sdjyliqi/known01/brain" />
       <directory value="$PROJECT_DIR$" />
       <filePath value="$PROJECT_DIR$" />
+      <framework value="gotest" />
       <pattern value="^\QTest_GetEngineName\E$" />
       <method v="2" />
     </configuration>
     <configuration name="Test_JudgeMessage in github.com/sdjyliqi/known01/brain" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="known01" />
       <working_directory value="$PROJECT_DIR$/brain" />
-      <framework value="gotest" />
       <kind value="PACKAGE" />
       <package value="github.com/sdjyliqi/known01/brain" />
       <directory value="$PROJECT_DIR$" />
       <filePath value="$PROJECT_DIR$" />
+      <framework value="gotest" />
       <pattern value="^\QTest_JudgeMessage\E$" />
       <method v="2" />
     </configuration>
     <configuration name="Test_matchEngineRate in github.com/sdjyliqi/known01/brain" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="known01" />
       <working_directory value="$PROJECT_DIR$/brain" />
-      <framework value="gotest" />
       <kind value="PACKAGE" />
       <package value="github.com/sdjyliqi/known01/brain" />
       <directory value="$PROJECT_DIR$" />
       <filePath value="$PROJECT_DIR$" />
+      <framework value="gotest" />
       <pattern value="^\QTest_matchEngineRate\E$" />
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Go Build.main" />
-      <item itemvalue="Go Build.go build known01" />
-      <item itemvalue="Go Test.Test_JudgeMessage in github.com/sdjyliqi/known01/brain" />
-      <item itemvalue="Go Test.Test_matchEngineRate in github.com/sdjyliqi/known01/brain" />
-      <item itemvalue="Go Test.Test_GetEngineName in github.com/sdjyliqi/known01/brain" />
-      <item itemvalue="Go Test.Test_AssistGetItems in github.com/sdjyliqi/known01/model" />
+      <item itemvalue="Go 构建.go build known01" />
+      <item itemvalue="Go 构建.main" />
+      <item itemvalue="Go 测试.Test_AssistGetItems in github.com/sdjyliqi/known01/model" />
+      <item itemvalue="Go 测试.Test_GetEngineName in github.com/sdjyliqi/known01/brain" />
+      <item itemvalue="Go 测试.Test_JudgeMessage in github.com/sdjyliqi/known01/brain" />
+      <item itemvalue="Go 测试.Test_matchEngineRate in github.com/sdjyliqi/known01/brain" />
     </list>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Go Build.main" />
-        <item itemvalue="Go Test.Test_AssistGetItems in github.com/sdjyliqi/known01/model" />
-        <item itemvalue="Go Test.Test_GetEngineName in github.com/sdjyliqi/known01/brain" />
-        <item itemvalue="Go Test.Test_JudgeMessage in github.com/sdjyliqi/known01/brain" />
-        <item itemvalue="Go Test.Test_matchEngineRate in github.com/sdjyliqi/known01/brain" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TestHistory">
