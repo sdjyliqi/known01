@@ -23,9 +23,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="91f69e01-107a-433a-b190-0e176ab79e31" name="Default Changelist" comment="整理">
+      <change afterPath="$PROJECT_DIR$/known01.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/known01.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/known01.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/brain/brain_impl.go" beforeDir="false" afterPath="$PROJECT_DIR$/brain/brain_impl.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/dsis_message_templates.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/dsis_message_templates.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/brain/bank.go" beforeDir="false" afterPath="$PROJECT_DIR$/brain/bank.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/model/dsis_special_symbol.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/dsis_special_symbol.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -123,31 +126,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
-    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="DefaultGoTemplateProperty" value="Go File" />
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="configurable..is.expanded" value="false" />
-    <property name="configurable.GoLibrariesConfigurable.is.expanded" value="true" />
-    <property name="go.format.on.save.advertiser.fired" value="true" />
-    <property name="go.formatter.settings.were.checked" value="true" />
-    <property name="go.gopath.indexing.explicitly.defined" value="true" />
-    <property name="go.import.settings.migrated" value="true" />
-    <property name="go.modules.go.list.on.any.changes.was.set" value="true" />
-    <property name="go.sdk.automatically.set" value="true" />
-    <property name="go.tried.to.enable.integration.vgo.integrator" value="true" />
-    <property name="go.watchers.conflict.with.on.save.actions.check.performed" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../data-audit" />
-    <property name="node.js.detected.package.eslint" value="true" />
-    <property name="node.js.path.for.package.eslint" value="project" />
-    <property name="node.js.path.for.package.tslint" value="project" />
-    <property name="node.js.selected.package.eslint" value="(autodetect)" />
-    <property name="node.js.selected.package.tslint" value="(autodetect)" />
-    <property name="settings.editor.selected.configurable" value="go.sdk" />
-  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.go.format.on.save.advertiser.fired": "true",
+    "RunOnceActivity.go.formatter.settings.were.checked": "true",
+    "RunOnceActivity.go.migrated.go.modules.settings": "true",
+    "RunOnceActivity.go.modules.go.list.on.any.changes.was.set": "true",
+    "RunOnceActivity.go.watchers.conflict.with.on.save.actions.check.performed": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "configurable..is.expanded": "false",
+    "configurable.GoLibrariesConfigurable.is.expanded": "true",
+    "go.import.settings.migrated": "true",
+    "last_opened_file_path": "D:/gowork/src/known01",
+    "settings.editor.selected.configurable": "go.vgo"
+  }
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\gowork\src\known01\model" />
@@ -167,27 +162,27 @@
       <working_directory value="$PROJECT_DIR$" />
       <go_parameters value="-i" />
       <kind value="FILE" />
-      <filePath value="$PROJECT_DIR$" />
       <package value="known01" />
       <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
       <method v="2" />
     </configuration>
     <configuration name="github.com/sdjyliqi/known01" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true">
       <module name="known01" />
       <working_directory value="$PROJECT_DIR$" />
       <kind value="PACKAGE" />
-      <filePath value="$PROJECT_DIR$/main.go" />
       <package value="github.com/sdjyliqi/known01" />
       <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$/main.go" />
       <method v="2" />
     </configuration>
     <configuration name="go build github.com/sdjyliqi/known01" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="known01" />
       <working_directory value="$PROJECT_DIR$" />
       <kind value="PACKAGE" />
-      <filePath value="$PROJECT_DIR$/main.go" />
       <package value="github.com/sdjyliqi/known01" />
       <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$/main.go" />
       <method v="2" />
     </configuration>
     <configuration name="main" type="GoApplicationRunConfiguration" factoryName="Go Application">
@@ -195,52 +190,52 @@
       <working_directory value="$PROJECT_DIR$" />
       <parameters value="-c D:\gowork\src\known01\conf\known01_windows.yml -log_dir=log" />
       <kind value="DIRECTORY" />
-      <filePath value="$PROJECT_DIR$" />
       <package value="github.com/sdjyliqi/known01" />
       <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
       <method v="2" />
     </configuration>
     <configuration name="TestAESGCM in github.com/sdjyliqi/known01/crypt" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="known01" />
       <working_directory value="$PROJECT_DIR$/crypt" />
-      <framework value="gotest" />
       <kind value="PACKAGE" />
       <package value="github.com/sdjyliqi/known01/crypt" />
       <directory value="$PROJECT_DIR$" />
       <filePath value="$PROJECT_DIR$" />
+      <framework value="gotest" />
       <pattern value="^\QTestAESGCM\E$" />
       <method v="2" />
     </configuration>
     <configuration name="Test_Addr in github.com/sdjyliqi/known01/tryagain" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="known01" />
       <working_directory value="$PROJECT_DIR$/tryagain" />
-      <framework value="gotest" />
       <kind value="PACKAGE" />
       <package value="github.com/sdjyliqi/known01/tryagain" />
       <directory value="$PROJECT_DIR$" />
       <filePath value="$PROJECT_DIR$" />
+      <framework value="gotest" />
       <pattern value="^\QTest_Addr\E$" />
       <method v="2" />
     </configuration>
     <configuration name="Test_ScoreGetItems in known01/model" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="known01" />
       <working_directory value="$PROJECT_DIR$/model" />
-      <framework value="gotest" />
       <kind value="PACKAGE" />
       <package value="known01/model" />
       <directory value="$PROJECT_DIR$" />
       <filePath value="$PROJECT_DIR$" />
+      <framework value="gotest" />
       <pattern value="^\QTest_ScoreGetItems\E$" />
       <method v="2" />
     </configuration>
     <configuration name="Test_pickupProperties in known01/brain" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="known01" />
       <working_directory value="$PROJECT_DIR$/brain" />
-      <framework value="gotest" />
       <kind value="PACKAGE" />
       <package value="known01/brain" />
       <directory value="$PROJECT_DIR$" />
       <filePath value="$PROJECT_DIR$" />
+      <framework value="gotest" />
       <pattern value="^\QTest_pickupProperties\E$" />
       <method v="2" />
     </configuration>
@@ -248,31 +243,22 @@
       <module name="known01" />
       <working_directory value="$PROJECT_DIR$" />
       <go_parameters value="-i" />
-      <framework value="gotest" />
       <kind value="DIRECTORY" />
       <package value="known01" />
       <directory value="$PROJECT_DIR$" />
       <filePath value="$PROJECT_DIR$" />
+      <framework value="gotest" />
       <method v="2" />
     </configuration>
     <list>
       <item itemvalue="Go Build.main" />
-      <item itemvalue="Go Build.go build github.com/sdjyliqi/known01" />
       <item itemvalue="Go Build.github.com/sdjyliqi/known01" />
-      <item itemvalue="Go Test.Test_Addr in github.com/sdjyliqi/known01/tryagain" />
+      <item itemvalue="Go Build.go build github.com/sdjyliqi/known01" />
       <item itemvalue="Go Test.TestAESGCM in github.com/sdjyliqi/known01/crypt" />
-      <item itemvalue="Go Test.Test_pickupProperties in known01/brain" />
+      <item itemvalue="Go Test.Test_Addr in github.com/sdjyliqi/known01/tryagain" />
       <item itemvalue="Go Test.Test_ScoreGetItems in known01/model" />
+      <item itemvalue="Go Test.Test_pickupProperties in known01/brain" />
     </list>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Go Test.Test_ScoreGetItems in known01/model" />
-        <item itemvalue="Go Test.Test_pickupProperties in known01/brain" />
-        <item itemvalue="Go Test.TestAESGCM in github.com/sdjyliqi/known01/crypt" />
-        <item itemvalue="Go Build.github.com/sdjyliqi/known01" />
-        <item itemvalue="Go Test.Test_Addr in github.com/sdjyliqi/known01/tryagain" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TestHistory">
@@ -334,7 +320,6 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
@@ -366,7 +351,7 @@
     <option name="LAST_COMMIT_MESSAGE" value="整理" />
   </component>
   <component name="VgoProject">
-    <integration-enabled>true</integration-enabled>
+    <settings-migrated>true</settings-migrated>
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

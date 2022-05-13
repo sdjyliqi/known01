@@ -12,5 +12,5 @@ require (
 	github.com/go-xorm/xorm v0.7.9 // indirect
 	github.com/golang/glog v1.0.0 // indirect
 	github.com/huichen/sego v0.0.0-20210824061530-c87651ea5c76 // indirect
-	gopkg.in/yaml.v2 v2.2.8 // indirect
+	gopkg.in/yaml.v2 v2.4.0 // indirect
 )
