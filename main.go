@@ -17,7 +17,7 @@ import (
 //logCut...完成日志切割,默认值为1小时切割一次，只需设置保留的时间即可。
 func logCut() {
 	glogrotate.Start(glogrotate.RotateOption{
-		Remain: time.Duration(time.Hour * 24 * 7),
+		Remain: time.Hour * 24 * 7,
 	})
 }
 
