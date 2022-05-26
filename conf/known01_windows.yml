@@ -1,4 +1,4 @@
 env: "online"
 db_mysql: "root:Bit0123456789!@tcp(114.55.139.105:3306)/data_guarder?charset=utf8mb4"
 port: 25006
-word_dic: "D:\\gowork\\src\\known01\\conf\\dictionary.txt"
+word_dic: "D:\\workspace\\known01\\conf\\dictionary.txt"

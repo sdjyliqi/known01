@@ -25,9 +25,11 @@
     <list default="true" id="91f69e01-107a-433a-b190-0e176ab79e31" name="Default Changelist" comment="05-13 panic">
       <change afterPath="$PROJECT_DIR$/known01.exe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/brain/reward_impl.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/middleware/requestlog.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/conf/known01_windows.yml" beforeDir="false" afterPath="$PROJECT_DIR$/conf/known01_windows.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/handle/judge.go" beforeDir="false" afterPath="$PROJECT_DIR$/handle/judge.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/middleware/log.go" beforeDir="false" afterPath="$PROJECT_DIR$/middleware/log.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -126,7 +128,7 @@
     <property name="go.import.settings.migrated" value="true" />
     <property name="go.sdk.automatically.set" value="true" />
     <property name="go.tried.to.enable.integration.vgo.integrator" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/testutils" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.path.for.package.tslint" value="project" />
@@ -152,9 +154,9 @@
       <module name="known01" />
       <working_directory value="$PROJECT_DIR$" />
       <kind value="PACKAGE" />
+      <filePath value="$PROJECT_DIR$" />
       <package value="known01" />
       <directory value="$PROJECT_DIR$" />
-      <filePath value="$PROJECT_DIR$" />
       <method v="2" />
     </configuration>
     <configuration name="go build known01" type="GoApplicationRunConfiguration" factoryName="Go Application" nameIsGenerated="true">
@@ -162,9 +164,9 @@
       <working_directory value="$PROJECT_DIR$" />
       <go_parameters value="-i" />
       <kind value="FILE" />
+      <filePath value="$PROJECT_DIR$" />
       <package value="github.com/sdjyliqi/known01" />
       <directory value="$PROJECT_DIR$" />
-      <filePath value="$PROJECT_DIR$" />
       <method v="2" />
     </configuration>
     <configuration name="main" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true">
@@ -172,63 +174,63 @@
       <working_directory value="$PROJECT_DIR$" />
       <parameters value=" -c D:\gowork\src\known01\conf\known01_windows.yml " />
       <kind value="DIRECTORY" />
+      <filePath value="$PROJECT_DIR$/main.go" />
       <package value="github.com/sdjyliqi/known01" />
       <directory value="$PROJECT_DIR$" />
-      <filePath value="$PROJECT_DIR$/main.go" />
       <method v="2" />
     </configuration>
     <configuration name="Test_AssistGetItems in github.com/sdjyliqi/known01/model" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="known01" />
       <working_directory value="$PROJECT_DIR$/model" />
+      <framework value="gotest" />
       <kind value="PACKAGE" />
       <package value="github.com/sdjyliqi/known01/model" />
       <directory value="$PROJECT_DIR$" />
       <filePath value="$PROJECT_DIR$" />
-      <framework value="gotest" />
       <pattern value="^\QTest_AssistGetItems\E$" />
       <method v="2" />
     </configuration>
     <configuration name="Test_GetEngineName in github.com/sdjyliqi/known01/brain" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="known01" />
       <working_directory value="$PROJECT_DIR$/brain" />
+      <framework value="gotest" />
       <kind value="PACKAGE" />
       <package value="github.com/sdjyliqi/known01/brain" />
       <directory value="$PROJECT_DIR$" />
       <filePath value="$PROJECT_DIR$" />
-      <framework value="gotest" />
       <pattern value="^\QTest_GetEngineName\E$" />
       <method v="2" />
     </configuration>
     <configuration name="Test_JudgeMessage in github.com/sdjyliqi/known01/brain" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="known01" />
       <working_directory value="$PROJECT_DIR$/brain" />
+      <framework value="gotest" />
       <kind value="PACKAGE" />
       <package value="github.com/sdjyliqi/known01/brain" />
       <directory value="$PROJECT_DIR$" />
       <filePath value="$PROJECT_DIR$" />
-      <framework value="gotest" />
       <pattern value="^\QTest_JudgeMessage\E$" />
       <method v="2" />
     </configuration>
     <configuration name="Test_matchEngineRate in github.com/sdjyliqi/known01/brain" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="known01" />
       <working_directory value="$PROJECT_DIR$/brain" />
+      <framework value="gotest" />
       <kind value="PACKAGE" />
       <package value="github.com/sdjyliqi/known01/brain" />
       <directory value="$PROJECT_DIR$" />
       <filePath value="$PROJECT_DIR$" />
-      <framework value="gotest" />
       <pattern value="^\QTest_matchEngineRate\E$" />
       <method v="2" />
     </configuration>
     <configuration default="true" type="GoTestRunConfiguration" factoryName="Go Test">
       <module name="known01" />
       <working_directory value="$PROJECT_DIR$" />
+      <framework value="gotest" />
       <kind value="DIRECTORY" />
       <package value="known01" />
       <directory value="$PROJECT_DIR$" />
       <filePath value="$PROJECT_DIR$" />
-      <framework value="gotest" />
       <method v="2" />
     </configuration>
     <list>
@@ -305,6 +307,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />

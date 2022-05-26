@@ -14,6 +14,7 @@ func Ping(c *gin.Context) {
 
 //JudgeMessage ...判断诈骗短信，如果score为未识别的分值，返回值中的score设置为0，flag需要设置为0
 func JudgeMessage(c *gin.Context) {
+	uuid, _ := c.Get("X-Request-ID")
 	minLevelScore := 50
 	var scoreRate = 0.0
 	customPhone, website := "", ""
@@ -23,8 +24,9 @@ func JudgeMessage(c *gin.Context) {
 	}
 	reqJson := submitContent{}
 	err := c.ShouldBindJSON(&reqJson)
-	if err != nil {
-		glog.Errorf("The request %+v is invalid,please check.", c.Request)
+	if err != nil || reqJson.Content == "" {
+		glog.Errorf("ERROR:Bad request(content should not be empty),uuid:%+v.", uuid)
+		//glog.Errorf("The request %+v is invalid,please check.", c.Request)
 		c.JSON(http.StatusOK, gin.H{"code": 1, "msg": "bind json failed."})
 		return
 	}
