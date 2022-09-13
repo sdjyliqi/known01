@@ -23,9 +23,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="91f69e01-107a-433a-b190-0e176ab79e31" name="Default Changelist" comment="05-13 panic">
-      <change afterPath="$PROJECT_DIR$/handle/PromHandler.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/router/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/router/router.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/handle/PromHandler.go" beforeDir="false" afterPath="$PROJECT_DIR$/handle/PromHandler.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/middleware/log.go" beforeDir="false" afterPath="$PROJECT_DIR$/middleware/log.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

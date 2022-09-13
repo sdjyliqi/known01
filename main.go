@@ -6,6 +6,7 @@ import (
 	"github.com/cleey/glogrotate"
 	"github.com/gin-gonic/gin"
 	"github.com/golang/glog"
+	"github.com/prometheus/client_golang/prometheus"
 	"known01/conf"
 	"known01/handle"
 	"known01/router"
@@ -41,6 +42,10 @@ func init() {
 	utils.InitSegDic()                                //初始化分词词表
 	handle.InitBrain()                                //初始化
 	logCut()
+	// 初始化监控指标
+	prometheus.MustRegister(
+		handle.WebRequestSecondsBucket,
+	)
 }
 
 func main() {
