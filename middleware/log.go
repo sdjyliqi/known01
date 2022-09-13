@@ -8,6 +8,7 @@ import (
 	"github.com/prometheus/client_golang/prometheus"
 	uuid "github.com/satori/go.uuid"
 	"known01/handle"
+	"strconv"
 	"time"
 )
 
@@ -40,7 +41,7 @@ func Logger() gin.HandlerFunc {
 		fmt.Println("INFO", uuid, c.ClientIP(), start, c.Request.Method, c.Request.RequestURI, c.Request.UserAgent(), len(responseBody), ",cost:", time.Now().Sub(start).Microseconds(), "response:", c.Writer.Status())
 		// prometheus监控增加标签，包括服务名、请求地址和响应时间
 		{
-			prometheusLables := prometheus.Labels{"application": "data-audit", "uri": c.Request.RequestURI, "status": "200"}
+			prometheusLables := prometheus.Labels{"application": "known01", "uri": c.Request.RequestURI, "status": strconv.Itoa(c.Writer.Status())}
 			handle.WebRequestSecondsBucket.With(prometheusLables).Observe(time.Now().Sub(start).Seconds())
 		}
 	}
