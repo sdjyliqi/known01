@@ -21,7 +21,7 @@ var (
 	//不同响应时间段请求量分布
 	WebRequestSecondsBucket = prometheus.NewHistogramVec(
 		prometheus.HistogramOpts{
-			Name: "Http_server_requests_seconds",
+			Name: "http_server_requests_seconds",
 			Help: "Duration distribution of the same request",
 			Buckets: []float64{0.1, 0.3, 0.6, 1.0, 3.0},
 		},
