@@ -12,6 +12,7 @@ type Known01Config struct {
 	Env     string `yaml:"env"`
 	DBMysql string `yaml:"db_mysql"`
 	Port    int    `yaml:"port"`
+	PromPort int   `yaml:"prom_port"` // 新增：Prometheus 独立监控端口
 	WordDic string `yaml:"word_dic"`
 }
 
@@ -46,4 +47,5 @@ var DefaultConfig = Known01Config{
 	DBMysql: "root:Bit0123456789!@tcp(127.0.0.1:3306)/data_guarder?charset=utf8mb4",
 	WordDic: "D:\\gowork\\src\\known01\\data\\dictionary.txt",
 	Port:    25001,
+	PromPort: 18080, // 新增：Prometheus 端口默认值
 }

@@ -7,11 +7,13 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/golang/glog"
 	"github.com/prometheus/client_golang/prometheus"
+	"github.com/prometheus/client_golang/prometheus/promhttp"
 	"known01/conf"
 	"known01/handle"
 	"known01/router"
 	"known01/utils"
 	"math/rand"
+	"net/http"
 	"time"
 )
 
@@ -49,9 +51,28 @@ func init() {
 }
 
 func main() {
+	// 1. 在独立的 Goroutine 中启动 Prometheus metrics 服务
+	go func() {
+		promMux := http.NewServeMux()
+		promMux.Handle("/metrics", promhttp.Handler())
+		promAddr := fmt.Sprintf("0.0.0.0:%d", conf.DefaultConfig.PromPort)
+
+		fmt.Printf("Prometheus metrics server is running on %s\n", promAddr)
+		glog.Infof("Prometheus metrics server is running on %s", promAddr)
+
+		if err := http.ListenAndServe(promAddr, promMux); err != nil {
+			glog.Fatalf("Failed to start Prometheus metrics server: %v", err)
+		}
+	}()
+
+	// 2. 启动主应用服务
 	r := gin.Default()
-	//gin.SetMode(gin.ReleaseMode)
-	// register the `/metrics` route.
+	// gin.SetMode(gin.ReleaseMode)
+
 	router.InitRouter(r)
-	r.Run(fmt.Sprintf("0.0.0.0:%d", conf.DefaultConfig.Port))
+
+	appAddr := fmt.Sprintf("0.0.0.0:%d", conf.DefaultConfig.Port)
+	fmt.Printf("Application server is running on %s\n", appAddr)
+
+	r.Run(appAddr)
 }
